@@ -33,11 +33,18 @@ export default {
             console.log(this.Risultato);
           })
         },
-        AddCategory(categoryId){
-          this.ArrayCategory.push(categoryId)
-          console.log(this.ArrayCategory)
+        AddCategory(valoreDaInserire) {
+            const index = this.ArrayCategory.indexOf(valoreDaInserire);
 
+            if (index === -1) {
+            this.ArrayCategory.push(valoreDaInserire);
+            } else {
+            this.ArrayCategory.splice(index, 1);
+            }
+
+            console.log(this.ArrayCategory);
         }
+        
         
     },
 
@@ -56,7 +63,7 @@ export default {
         <div class="d-flex gap-2 justify-content-center">
           <!-- Checkbox per selezionare le categorie -->
           <!-- ci passiamo l acategory id delle cose che selezioniamo -->
-          <div @click="AddCategory(category.id)" v-for="category in categories" :key="category.id" class="fs-4">
+          <div @click="AddCategory(category.id)" v-for="category in categories" :key="category.id" class="fs-4 d-flex gap-2 align-items-center ">
             <input 
               type="checkbox" 
               :value="category.id" 
