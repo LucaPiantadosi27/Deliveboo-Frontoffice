@@ -12,6 +12,7 @@ export default {
         return {
             baseApiUrl: "http://127.0.0.1:8000/api/",
             categories: [],
+            Risultato:[],
         }
     },
 
@@ -22,11 +23,31 @@ export default {
                 this.categories = res.data.results;
                 console.log(this.categories);
             })
+        },
+        // async feachdata(){
+        //   const Risultato = await axios.get(this.baseApiUrl + "categories"+ "{id}").then((res)=>{
+        //     console.log(Risultato);
+        //   })
+        // }
+        // CallCategory(){
+        //   axios.get(this.baseApiUrl + "categories" + "/id" ).then((res)=>{
+        //     this.Risultato = res.data.results;
+        //     console.log(this.Risultato);
+        //   })
+        // }
+        async CallCategory(){
+          await axios.get(this.baseApiUrl + "categories" + "/id" ).then((res)=>{
+            this.Risultato = res.data.results;
+            console.log(this.Risultato);
+          })
         }
+        
     },
 
     mounted() {
         this.apiCall();
+        // this.feachdata();
+        this.CallCategory();
     },
 }
 </script>
@@ -41,7 +62,7 @@ export default {
             <input 
               type="checkbox" 
               :value="category.id" 
-              v-model="selectedCategories" 
+              
               @change="fetchRestaurants" 
             />
             <label>{{ category.name }}</label>
