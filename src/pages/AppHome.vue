@@ -32,25 +32,29 @@ export default {
 </script>
 
 <template>
-<section>
-    <div class="container py-5">
+    <section>
+      <div class="container py-5">
         <h1 class="text-center">DeliveBoo</h1>
-        <ul class="d-flex gap-2 justify-content-center">
-            <li v-for="category in categories" class="fs-5">
-                <a href="#!" class="text-decoration-none text-uppercase">{{ category.name }}</a>
-            </li>
-        </ul>
-    </div>
-
-</section>
-
-</template>
+        <div class="d-flex gap-2 justify-content-center">
+          <!-- Checkbox per selezionare le categorie -->
+          <div v-for="category in categories" :key="category.id" class="fs-4">
+            <input 
+              type="checkbox" 
+              :value="category.id" 
+              v-model="selectedCategories" 
+              @change="fetchRestaurants" 
+            />
+            <label>{{ category.name }}</label>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
 
 <style lang="scss" scoped>
 
-ul{
-    list-style: none;
-}
-
+    ul{
+        list-style: none;
+    }
 
 </style>
