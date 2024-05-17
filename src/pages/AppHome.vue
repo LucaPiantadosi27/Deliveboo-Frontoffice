@@ -29,11 +29,16 @@ export default {
         },
 
         async CallCategory(){
-          await axios.get(this.baseApiUrl + "categories" + "/id" ).then((res)=>{
+          await axios.get(this.baseApiUrl + "categories", {
+            params:{
+              queryId:this.ArrayCategory,
+            }
+          }).then((res)=>{
             this.Risultato = res.data.results;
             console.log(this.Risultato);
           })
         },
+
         AddCategory(valoreDaInserire) {
             const index = this.ArrayCategory.indexOf(valoreDaInserire);
 
