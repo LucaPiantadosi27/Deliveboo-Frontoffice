@@ -22,10 +22,10 @@ export default {
 
 <template>
     <div class="container py-5">
-      <h2 class="text-center">Filtered Restaurants</h2>
-      <div v-if="restaurants.length === 0" class="text-center">No restaurants found.</div>
+      <h2 class="text-center">Ristoranti</h2>
+      <div v-if="restaurants.length === 0" class="text-center">Nessun ristorante</div>
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="restaurant-card">
-        <img :src="this.apiImageUrl + restaurant.img_res" class="card-img-top w-50" alt="{{ restaurant.name_res }}">
+        <img :src="apiImageUrl + restaurant.img_res" class="card-img-top w-50" :alt="restaurant.name_res">
         <h3>{{ restaurant.name_res }}</h3>
         <h4>{{ restaurant.address_res }}</h4>
         <div class="categories">
@@ -33,10 +33,11 @@ export default {
         </div>
       </div>
     </div>
-</template>
+  </template>
 
 
 <style scoped>
+
     .restaurant-card {
         border: 1px solid #ccc;
         padding: 15px;

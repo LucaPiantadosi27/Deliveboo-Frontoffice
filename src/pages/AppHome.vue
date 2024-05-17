@@ -56,8 +56,6 @@ export default {
 </script>
 
 
-
-
 <template>
   <section>
     <div class="container py-5">
@@ -75,6 +73,7 @@ export default {
     </div>
   </section>
 </template>
+
 
 <style lang="scss" scoped>
 

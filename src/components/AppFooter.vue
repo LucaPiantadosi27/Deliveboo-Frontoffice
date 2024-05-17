@@ -33,28 +33,13 @@ export default {
 <style lang="scss">
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    border-top: 1px solid white;
-    z-index: 10;
-
-    border-top: 1px solid white;
-    ul {
-        list-style-type: none;
-        padding: 0;
+    
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        background-color: grey; 
+        z-index: 100; 
+        border-top: 1px solid white;
     }
-}
-
-#contact-me{
-    text-decoration: none;
-    color: red;
-    transition: all .3s ease;
-    margin-bottom: 10px;
-    &:hover{
-        background-color: rgba(131, 24, 24, 0.4);
-    }
-}
 
 </style>
