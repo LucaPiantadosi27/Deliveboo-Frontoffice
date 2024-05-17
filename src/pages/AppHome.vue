@@ -1,26 +1,24 @@
 <script>
 import axios from "axios";
+import AppRestaurant from '../components/AppRestaurant.vue';
 
 export default {
     name: "AppHome",
 
     components: {
-
+        AppRestaurant
     },
 
     data() {
         return {
             baseApiUrl: "http://127.0.0.1:8000/api/",
             categories: [],
-            Risultato:[],
-            //array elementi che selezioniamo
-            ArrayCategory:[],
-           
+            Risultato: [],
+            ArrayCategory: [],
         }
     },
 
     methods: {
-        // initial api call to retrieve restaurant categories
         apiCall(){
             axios.get(this.baseApiUrl + "categories").then((res) => {
                 this.categories = res.data.results;
@@ -30,8 +28,8 @@ export default {
 
         async CallCategory(){
           await axios.post(this.baseApiUrl + "categories", {
-            queryId:this.ArrayCategory,
-          }).then((res)=>{
+            queryId: this.ArrayCategory,
+          }).then((res) => {
             this.Risultato = res.data.results;
             console.log(this.Risultato);
           })
@@ -41,21 +39,18 @@ export default {
             const index = this.ArrayCategory.indexOf(valoreDaInserire);
 
             if (index === -1) {
-            this.ArrayCategory.push(valoreDaInserire);
+                this.ArrayCategory.push(valoreDaInserire);
             } else {
-            this.ArrayCategory.splice(index, 1);
+                this.ArrayCategory.splice(index, 1);
             }
 
+            this.CallCategory();
             console.log(this.ArrayCategory);
         }
-
-
     },
 
     mounted() {
         this.apiCall();
-        // this.feachdata();
-     
     },
 }
 </script>
@@ -68,18 +63,15 @@ export default {
     <div class="container py-5">
       <h1 class="text-center">DeliveBoo</h1>
       <div class="d-flex gap-2 justify-content-center">
-        <!-- Checkbox per selezionare le categorie -->
-        <!-- ci passiamo l acategory id delle cose che selezioniamo -->
-        <div @click="AddCategory(category.id), CallCategory()" v-for="category in categories" :key="category.id" class="fs-4 d-flex gap-2 align-items-center ">
+        <div @click="AddCategory(category.id)" v-for="category in categories" :key="category.id" class="fs-4 d-flex gap-2 align-items-center ">
           <input 
             type="checkbox" 
             :value="category.id" 
-
-            @change="fetchRestaurants" 
           />
           <label>{{ category.name }}</label>
         </div>
       </div>
+      <AppRestaurant :restaurants="Risultato"></AppRestaurant>
     </div>
   </section>
 </template>
