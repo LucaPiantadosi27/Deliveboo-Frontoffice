@@ -24,37 +24,45 @@ export default {
     <div class="container py-5">
       <h2 class="text-center">Ristoranti</h2>
       <div v-if="restaurants.length === 0" class="text-center">Nessun ristorante</div>
-      <div v-for="restaurant in restaurants" :key="restaurant.id" class="restaurant-card">
-        <img :src="apiImageUrl + restaurant.img_res" class="card-img-top mx-auto d-block w-50" :alt="restaurant.name_res">
-        <h3 class="text-center">{{ restaurant.name_res }}</h3>
-        <h4 class="text-center">{{ restaurant.address_res }}</h4>
-        <div class="categories text-center">
-          <span v-for="category in restaurant.categories" :key="category.id" class="badge bg-secondary">{{ category.name }}</span>
+      <div class="row">
+        <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4">
+          <div class="restaurant-card">
+            <img :src="apiImageUrl + restaurant.img_res" class="card-img-top" :alt="restaurant.name_res">
+            <div class="description text-black">
+              <h3 class="text-center">{{ restaurant.name_res }}</h3>
+              <h4 class="text-center">{{ restaurant.address_res }}</h4>
+              <div class="categories text-center">
+                <span v-for="category in restaurant.categories" :key="category.id" class="badge bg-secondary">{{ category.name }}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </template>
+</template>
   
-  <style scoped>
+<style scoped>
+
   .restaurant-card {
-    padding: 15px;
-    margin-bottom: 10px;
+    border: none;
     border-radius: 5px;
+    overflow: hidden;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    display: block;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .description {
+    padding: 15px;
   }
   
   .categories .badge {
     margin-right: 5px;
   }
-  
-  /* Rimuovi il contorno */
-  .restaurant-card img {
-    border: none;
-  }
-  
-  /* Centra l'immagine */
-  .restaurant-card img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  </style>
+</style>
