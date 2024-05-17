@@ -30,7 +30,7 @@ export default {
         async CallCategory(){
           await axios.get(this.baseApiUrl + "categories" + "/id" ).then((res)=>{
             this.Risultato = res.data.results;
-            console.log(this.Risultato);
+            console.log(this.Risultato );
           })
         },
         AddCategory(valoreDaInserire) {
