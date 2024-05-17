@@ -15,9 +15,7 @@ export default {
             Risultato:[],
             //array elementi che selezioniamo
             ArrayCategory:[],
-            Risultato:[],
-            //array elementi che selezioniamo
-            ArrayCategory:[],
+           
         }
     },
 
@@ -55,8 +53,7 @@ export default {
         this.apiCall();
         // this.feachdata();
         this.CallCategory();
-        // this.feachdata();
-        this.CallCategory();
+     
     },
 }
 </script>
