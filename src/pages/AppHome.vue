@@ -29,10 +29,8 @@ export default {
         },
 
         async CallCategory(){
-          await axios.get(this.baseApiUrl + "categories", {
-            params:{
-              queryId:this.ArrayCategory,
-            }
+          await axios.post(this.baseApiUrl + "categories", {
+            queryId:this.ArrayCategory,
           }).then((res)=>{
             this.Risultato = res.data.results;
             console.log(this.Risultato);
@@ -57,7 +55,6 @@ export default {
     mounted() {
         this.apiCall();
         // this.feachdata();
-        this.CallCategory();
      
     },
 }
@@ -73,7 +70,7 @@ export default {
       <div class="d-flex gap-2 justify-content-center">
         <!-- Checkbox per selezionare le categorie -->
         <!-- ci passiamo l acategory id delle cose che selezioniamo -->
-        <div @click="AddCategory(category.id)" v-for="category in categories" :key="category.id" class="fs-4 d-flex gap-2 align-items-center ">
+        <div @click="AddCategory(category.id), CallCategory()" v-for="category in categories" :key="category.id" class="fs-4 d-flex gap-2 align-items-center ">
           <input 
             type="checkbox" 
             :value="category.id" 
