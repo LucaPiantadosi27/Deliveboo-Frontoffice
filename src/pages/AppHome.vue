@@ -13,6 +13,8 @@ export default {
             baseApiUrl: "http://127.0.0.1:8000/api/",
             categories: [],
             Risultato:[],
+            //array elementi che selezioniamo
+            ArrayCategory:[],
         }
     },
 
@@ -24,22 +26,17 @@ export default {
                 console.log(this.categories);
             })
         },
-        // async feachdata(){
-        //   const Risultato = await axios.get(this.baseApiUrl + "categories"+ "{id}").then((res)=>{
-        //     console.log(Risultato);
-        //   })
-        // }
-        // CallCategory(){
-        //   axios.get(this.baseApiUrl + "categories" + "/id" ).then((res)=>{
-        //     this.Risultato = res.data.results;
-        //     console.log(this.Risultato);
-        //   })
-        // }
+        
         async CallCategory(){
           await axios.get(this.baseApiUrl + "categories" + "/id" ).then((res)=>{
             this.Risultato = res.data.results;
             console.log(this.Risultato);
           })
+        },
+        AddCategory(categoryId){
+          this.ArrayCategory.push(categoryId)
+          console.log(this.ArrayCategory)
+
         }
         
     },
@@ -58,7 +55,8 @@ export default {
         <h1 class="text-center">DeliveBoo</h1>
         <div class="d-flex gap-2 justify-content-center">
           <!-- Checkbox per selezionare le categorie -->
-          <div v-for="category in categories" :key="category.id" class="fs-4">
+          <!-- ci passiamo l acategory id delle cose che selezioniamo -->
+          <div @click="AddCategory(category.id)" v-for="category in categories" :key="category.id" class="fs-4">
             <input 
               type="checkbox" 
               :value="category.id" 
