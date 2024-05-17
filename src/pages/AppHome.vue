@@ -36,7 +36,7 @@ export default {
     <div class="container py-5">
         <h1 class="text-center">DeliveBoo</h1>
         <ul class="d-flex gap-2 justify-content-center">
-            <li v-for="category in categories" class="fs-4 ">
+            <li v-for="category in categories" class="fs-5">
                 <a href="#!" class="text-decoration-none text-uppercase">{{ category.name }}</a>
             </li>
         </ul>
