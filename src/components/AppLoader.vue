@@ -48,13 +48,9 @@ body {
 h1 {
   text-align: center;
   margin-top: 15px;
-  font-family: 'Pacifico', cursive;
+  font-family:"Pacifico", cursive;
+  text-shadow:2px 4px #fd6055ba;
   color: white;
-  text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
 }
 
 
