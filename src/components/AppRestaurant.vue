@@ -22,12 +22,11 @@ export default {
 
 <template>
     <div class="container py-5">
-      <h2 class="text-center">Ristoranti</h2>
-      <div v-if="restaurants.length === 0" class="text-center">Nessun ristorante</div>
+      <h2 class="text-center mb-3" v-if="restaurants.length != 0">Ristoranti {{ restaurants.length }}</h2>
       <div class="row">
         <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4">
-          <div class="restaurant-card">
-            <img :src="apiImageUrl + restaurant.img_res" class="card-img-top" :alt="restaurant.name_res">
+          <div class="restaurant-card h-100 pb-5">
+            <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover" :alt="restaurant.name_res">
             <div class="description text-black">
               <h3 class="text-center">{{ restaurant.name_res }}</h3>
               <h4 class="text-center">{{ restaurant.address_res }}</h4>
