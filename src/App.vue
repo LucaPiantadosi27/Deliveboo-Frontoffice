@@ -15,7 +15,7 @@ export default{
 
   <AppHeader></AppHeader>
 
-  <div class="container py-5">
+  <div class="">
 
     <router-view></router-view>
 
