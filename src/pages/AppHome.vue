@@ -59,14 +59,14 @@ export default {
 <template>
   <section>
     <div class="container py-5">
-      <div class="d-flex gap-2 justify-content-center">
+      <div class="d-flex gap-2 category-wrapper justify-content-center flex-wrap">
         <div
           @click="AddCategory(category.id)"
           v-for="category in categories"
           :key="category.id"
           :class="{'selected': ArrayCategory.includes(category.id)}"
-          class="fs-4 d-flex gap-2 align-items-center">
-          <div class="card-category card h-100 rounded-4 border-0" style="width: 150px;">
+          class=" d-flex gap-2 align-items-center card-wrapper">
+          <div class="card-category card h-100 rounded-4 border-0 ">
             <img class="category-img rounded-4" :src="'http://localhost:8000/storage/' + category.image" alt="">
             <div>{{ category.name }}</div>
           </div>
@@ -80,6 +80,33 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
+
+// .category-wrapper{
+//   overflow-x: hidden;
+//   padding-bottom: 2px;
+
+//   &:hover{
+//     overflow-x: auto;
+//   }
+
+//   &::-webkit-scrollbar {
+//     height: 5px;
+//   }
+  
+//   &::-webkit-scrollbar-track{
+//     margin-top: 5px;
+//   }
+
+//   &::-webkit-scrollbar-thumb{
+//     background-color: rgba($color: #000000, $alpha: 0.2);
+//     border-radius: 30px;
+//     opacity: 0;
+//   }
+// }
+
+.card-wrapper{
+  width: calc(100% / 6 - 8px * 6 / 5);
+}
 
 section {
   .card-category {
