@@ -31,7 +31,8 @@ export default{
   margin-bottom: 250px;
   background-color: #3dc4df;
 
-  height: 100vh;
+  height: 100%;
+  min-height: 1000px;
 
 }
 
