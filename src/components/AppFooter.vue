@@ -73,7 +73,7 @@ export default {
     right: 0;
     left: 0;
 
-    background-color: #3393a6;
+    background-color: rgb(130, 148, 196);
 
     z-index: -1;
 }

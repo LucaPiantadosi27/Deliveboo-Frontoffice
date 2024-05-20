@@ -15,7 +15,7 @@ export default{
 
   <AppHeader></AppHeader>
 
-  <div class="box py-5">
+  <div class="box">
 
     <router-view></router-view>
   </div>
@@ -29,10 +29,10 @@ export default{
 <style scoped>
 .box{
   margin-bottom: 250px;
-  background-color: #3dc4df;
+  background-color: rgb(172, 177, 214);
 
   height: 100%;
-  min-height: 1000px;
+  min-height: 250px;
 
 }
 

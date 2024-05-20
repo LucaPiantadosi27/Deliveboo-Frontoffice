@@ -49,13 +49,13 @@ export default {
 <style lang="scss">
 
 nav{
-    background-color: #3393a6;
+    background-color: rgb(130, 148, 196);
 
     color: #F6F3E4;
     font-size: 25px;
 
     font-family:"Pacifico", cursive;
-    text-shadow:2px 4px hsla(4, 98%, 66%, 0.7);
+    text-shadow:2px 3px rgb(172, 177, 214);
     font-weight: 400;
     font-style: normal;
 

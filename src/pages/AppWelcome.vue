@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 .jumbotron{
-    background-color: #3dc4df;
+    background-color: rgb(172, 177, 214);
     overflow-x: hidden;
 
     height: calc(100vh - 126px);
@@ -47,9 +47,9 @@ export default {
     .welcome_text{
         h1{
             font-size: 100px;
-            color: #F6F3E4;
+            color: rgb(255, 234, 210);
             font-family:"Pacifico", cursive;
-            text-shadow:2px 4px #fd6055ba;
+            text-shadow:2px 4px rgb(130, 148, 196);
             font-weight: 400;
             font-style: normal;
         }
@@ -58,13 +58,14 @@ export default {
 .btn { 
   font-family:"Pacifico", cursive;
   font-size: 30px;
-  color: #F6F3E4;
-  text-shadow:2px 3px #fd6055ba;
+  color: rgb(255, 234, 210);
+  text-shadow:2px 3px rgb(130, 148, 196);
 
   &:hover{
-   background-color: #3393a6; 
-   color: #F6F3E4;
-   border-color: #3393a6;
+   background-color: rgb(130, 148, 196); 
+   color: rgb(255, 234, 210);
+   text-shadow:2px 3px rgb(172, 177, 214);
+   border-color: rgb(130, 148, 196);
   }
 
 }
