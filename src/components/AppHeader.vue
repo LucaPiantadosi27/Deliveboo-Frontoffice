@@ -31,13 +31,13 @@ export default {
             <ul class="navbar-nav ml-auto gap-3 ">
                 <!-- Authentication Links -->
                 <li class="nav-item">
-                    <router-link :to="{ name: 'welcome'}" class="nav-link text-light text-decoration-none ">Home</router-link>
+                    <router-link :to="{ name: 'welcome'}" class="nav-link text-light text-decoration-none">Home</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="@">Login</a>
+                    <a class="nav-link text-light" href="http://127.0.0.1:8000/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="@">Register</a>
+                    <a class="nav-link text-light" href="http://127.0.0.1:8000/register">Register</a>
                 </li>
             </ul>
         </div>
