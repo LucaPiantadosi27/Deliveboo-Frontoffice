@@ -19,8 +19,8 @@ export default {
 
 
 <template>
-<div class="jumbotron p-5 d-flex align-items-center ">
-    <div class="container-fluid d-flex justify-content-between flex-wrap px-5 py-5">
+<div class="jumbotron px-5 d-flex align-items-center ">
+    <div class="container-fluid d-flex justify-content-between flex-wrap px-5">
         <div class="welcome_text d-flex align-items-center ps-3 col-5 ">
             <h1 class="display-5 fw-bold">
                 Welcome to<br> DeliveBoo!
@@ -29,7 +29,7 @@ export default {
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
             <router-link :to="{ name: 'home'}" class="btn btn-outline-light">Welcome</router-link>
         </div>
-        <div class="logo_laravel col-5 d-flex justify-content-end ">
+        <div class="logo_laravel col-5 d-flex justify-content-end align-items-center ">
             <img class="slide" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
         </div>
     </div>
