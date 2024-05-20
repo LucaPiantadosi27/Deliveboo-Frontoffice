@@ -2,6 +2,7 @@
 
 export default {
   name: "AppRestaurant",
+
   props: {
     restaurants: {
       type: Array,
@@ -19,7 +20,7 @@ export default {
     restaurantText() {
       const count = this.restaurants.length;
       if (count === 1) {
-        return "Restaurant";
+        return "One Restaurant";
       } else if (count > 1) {
         return "Restaurants";
       }
@@ -34,7 +35,7 @@ export default {
 
 <template>
   <div class="container py-5">
-    <h2 class="text-center mb-3">{{ restaurantText }} {{ restaurantCount }}</h2>
+    <h2 class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</h2>
     <div class="row">
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4">
         <div class="restaurant-card h-100 pb-5">
@@ -52,7 +53,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 
   .restaurant-card {
     border: none;
