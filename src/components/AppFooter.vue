@@ -11,7 +11,7 @@ export default {
 <template>
     <footer id="footer" class="fixed-footer text-white">
         <div class="my-footer">
-            <div class="row text-center text-md-left">
+            <div class="row pt-4 text-center  text-md-left">
                 <!-- Colonna 1 -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase">Colonna 1</h5>
@@ -40,17 +40,23 @@ export default {
                     </ul>
                 </div>
             </div>
-            <div class="row">
-                <div class="col text-center">
-                    <p class="mb-0">© 2024 Deliveboo. Developed by MLMSM</p>
+            <div class="row d-flex 100w justify-content-center align-items-center ">
+                <div class="col-6 d-flex justify-content-center align-items-center  ">
+                    <div class="text-center">
+                        <p><strong>COPYRIGHT</strong></p>
+                        <p class="mb-0">© 2024 Deliveboo. Developed by MLMSM</p>
+                    </div>
                 </div>
-                <div class="col text-center">
-                    <ul class="list-unstyled">
-                        <i class="fa-brands fa-square-facebook fa-2xl me-5"></i>
-                        <i class="fa-brands fa-square-x-twitter fa-2xl me-5"></i>
-                        <i class="fa-brands fa-square-instagram fa-2xl me-5"></i>
-                        <i class="fa-brands fa-linkedin fa-2xl me-5"></i>
-                    </ul>
+                <div class="col-6 d-flex flex-column justify-content-start align-items-center ">
+                    <div class="text-center ">
+                        <p class=""><strong>FOLLOW US</strong></p>
+                        <div class="d-flex justify-content-around gap-4">
+                            <i class="fa-brands fa-square-facebook "></i>
+                            <i class="fa-brands fa-square-x-twitter "></i>
+                            <i class="fa-brands fa-square-instagram "></i>
+                            <i class="fa-brands fa-linkedin "></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,6 +88,13 @@ export default {
 
 i {
     cursor: pointer;
+    font-size: 25px;
+    transition: .2s linear;
+
+    &:hover{
+        
+        transform: scale(1.3);
+    }
 }
 
 
