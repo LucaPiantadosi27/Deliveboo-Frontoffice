@@ -1,12 +1,14 @@
 <script>
 import axios from "axios";
 import AppRestaurant from '../components/AppRestaurant.vue';
+import AppLoader from '../components/AppLoader.vue'
 
 export default {
     name: "AppHome",
 
     components: {
-        AppRestaurant
+        AppRestaurant,
+        AppLoader
     },
 
     data() {
@@ -15,6 +17,7 @@ export default {
             categories: [],
             Risultato: [],
             ArrayCategory: [],
+            isLoading:true,
         }
     },
 
@@ -46,11 +49,18 @@ export default {
 
             this.CallCategory();
             console.log(this.ArrayCategory);
-        }
+        },
+        
     },
 
     mounted() {
         this.apiCall();
+        setTimeout(() => {
+          //impostaimo il timeout occio allo scoop
+          this.isLoading=false
+          
+        }, 2000);
+
     },
 }
 </script>
@@ -59,21 +69,24 @@ export default {
 <template>
   <section>
     <div class="container py-5">
-      <div class="d-flex gap-2 category-wrapper justify-content-center flex-wrap">
-        <div
-          @click="AddCategory(category.id)"
-          v-for="category in categories"
-          :key="category.id"
-          :class="{'selected': ArrayCategory.includes(category.id)}"
-          class=" d-flex gap-2 align-items-center card-wrapper">
-          <div class="card-category card h-100 rounded-4 border-0 ">
-            <img class="category-img rounded-4" :src="'http://localhost:8000/storage/' + category.image" alt="">
-            <div>{{ category.name }}</div>
+      <AppLoader v-if=" isLoading"></AppLoader>
+      <div v-if="isLoading == false" class="container py-5">
+        <div class="d-flex gap-2 justify-content-center category-wrapper justify-content-center flex-wrap">
+          <div
+            @click="AddCategory(category.id)"
+            v-for="category in categories"
+            :key="category.id"
+            :class="{'selected': ArrayCategory.includes(category.id)}"
+            class=" d-flex gap-2 align-items-center card-wrapper">
+            <div class="card-category card h-100 rounded-4 border-0 ">
+              <img class="category-img rounded-4" :src="'http://localhost:8000/storage/' + category.image" alt="">
+              <div>{{ category.name }}</div>
+            </div>
           </div>
         </div>
+        <AppRestaurant :restaurants="Risultato"></AppRestaurant>
       </div>
-      <AppRestaurant :restaurants="Risultato"></AppRestaurant>
-    </div>
+      </div>
   </section>
 </template>
 
