@@ -5,24 +5,11 @@ export default {
 }
 
 
-// document.addEventListener('scroll', function() {
-//     const footer = document.getElementById('footer');
-//     const scrollPosition = window.scrollY + window.innerHeight;
-//     const documentHeight = document.body.offsetHeight;
-
-//     if (scrollPosition >= documentHeight - 100) { // Adjust this value as needed
-//         footer.classList.add('show');
-//     } else {
-//         footer.classList.remove('show');
-//     }
-// });
-
-
 </script>
 
 
 <template>
-    <footer id="footer" class="fixed-footer bg-black text-white">
+    <footer id="footer" class="fixed-footer text-white">
         <div class="my-footer">
             <div class="row text-center text-md-left">
                 <!-- Colonna 1 -->
@@ -76,11 +63,13 @@ export default {
 
 .fixed-footer {
     position: fixed;
-    bottom: -500px; 
+    bottom: 0; 
     right: 0;
     left: 0;
-    transition: bottom 0.5s ease-in-out;
-    z-index: 1;
+
+    background-color: #3393a6;
+
+    z-index: -1;
 }
 
 .fixed-footer.show {
@@ -88,7 +77,7 @@ export default {
 }
 
 .my-footer {
-    height: 500px;
+    height: 250px;
 }
 
 i {

@@ -28,9 +28,10 @@ export default{
 
 <style scoped>
 .box{
-  margin-bottom: 500px;
+  margin-bottom: 250px;
+  background-color: #3dc4df;
 
-  height: 1000px;
+  height: 100vh;
 
 }
 
