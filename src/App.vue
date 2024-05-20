@@ -15,16 +15,28 @@ export default{
 
   <AppHeader></AppHeader>
 
-  <div class="">
+  <div class="box py-5">
 
     <router-view></router-view>
-
   </div>
 
   <AppFooter></AppFooter>
   
 </template>
 
+
+
 <style scoped>
+.box{
+  margin-bottom: 250px;
+  background-color: #3dc4df;
+
+  height: 100vh;
+
+}
+
+
+
+
 
 </style>
