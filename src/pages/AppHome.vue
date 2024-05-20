@@ -72,10 +72,11 @@ export default {
     <div v-if="isLoading == false" class="container py-5">
       <div class="d-flex gap-2 justify-content-center">
         <div
-        @click="AddCategory(category.id)"
-        v-for="category in categories"
-        :key="category.id"
-        class="fs-4 d-flex gap-2 align-items-center">
+          @click="AddCategory(category.id)"
+          v-for="category in categories"
+          :key="category.id"
+          :class="{'selected': ArrayCategory.includes(category.id)}"
+          class="fs-4 d-flex gap-2 align-items-center">
           <div class="card-category card h-100 rounded-4 border-0" style="width: 150px;">
             <img class="category-img rounded-4" :src="'http://localhost:8000/storage/' + category.image" alt="">
             <div>{{ category.name }}</div>
@@ -89,23 +90,25 @@ export default {
 
 
 <style lang="scss" scoped>
-    @use '../styles/variables' as *;
+@use '../styles/variables' as *;
 
-    section{
+section {
+  .card-category {
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s ease;
 
-      .card-category{
-
-        background-color: rgba(0, 0, 0, 0.4);
-        text-align: center;
-        cursor: pointer;
-        user-select: none;
-
-        .category-img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        }
-      }
+    .category-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
+  }
 
+  .selected .card-category {
+    opacity: 0.4;
+  }
+}
 </style>
