@@ -68,7 +68,7 @@ export default {
 
 <template>
   <section>
-    <div class="container py-5">
+    <div class="container pb-5">
       <AppLoader v-if=" isLoading"></AppLoader>
       <div v-if="isLoading == false" class="container py-5">
         <div class="d-flex gap-2 justify-content-center category-wrapper justify-content-center flex-wrap">
