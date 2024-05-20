@@ -32,12 +32,7 @@ export default{
   background-color: rgb(172, 177, 214);
 
   height: 100%;
-  min-height: 250px;
+  min-height: 800px;
 
 }
-
-
-
-
-
 </style>
