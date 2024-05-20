@@ -1,12 +1,14 @@
 <script>
 import axios from "axios";
 import AppRestaurant from '../components/AppRestaurant.vue';
+import AppLoader from '../components/AppLoader.vue'
 
 export default {
     name: "AppHome",
 
     components: {
-        AppRestaurant
+        AppRestaurant,
+        AppLoader
     },
 
     data() {
@@ -15,6 +17,7 @@ export default {
             categories: [],
             Risultato: [],
             ArrayCategory: [],
+            isLoading:true,
         }
     },
 
@@ -46,11 +49,18 @@ export default {
 
             this.CallCategory();
             console.log(this.ArrayCategory);
-        }
+        },
+        
     },
 
     mounted() {
         this.apiCall();
+        setTimeout(() => {
+          //impostaimo il timeout occio allo scoop
+          this.isLoading=false
+          
+        }, 2000);
+
     },
 }
 </script>
@@ -58,7 +68,8 @@ export default {
 
 <template>
   <section>
-    <div class="container py-5">
+    <AppLoader v-if=" isLoading"></AppLoader>
+    <div v-if="isLoading == false" class="container py-5">
       <div class="d-flex gap-2 justify-content-center">
         <div
         @click="AddCategory(category.id)"
