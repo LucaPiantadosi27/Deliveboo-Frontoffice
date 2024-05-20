@@ -61,11 +61,14 @@ export default {
     <div class="container py-5">
       <h1 class="text-center">DeliveBoo</h1>
       <div class="d-flex gap-2 justify-content-center">
-        <div @click="AddCategory(category.id)" v-for="category in categories" :key="category.id" class="fs-4 d-flex gap-2 align-items-center ">
-          <div class="card h-100 border-0" style="width: 150px;">
-            <img class="category-img" :src="'http://localhost:8000/storage/' + category.image" alt="">
+        <div
+        @click="AddCategory(category.id)"
+        v-for="category in categories"
+        :key="category.id"
+        class="fs-4 d-flex gap-2 align-items-center">
+          <div class="card h-100 rounded-4 border-0" style="width: 150px;">
+            <img class="category-img rounded-4" :src="'http://localhost:8000/storage/' + category.image" alt="">
             <div>{{ category.name }}</div>
-
           </div>
         </div>
       </div>
@@ -81,15 +84,14 @@ export default {
         list-style: none;
     }
 
-    .card{
-      pointer-events: none;
-    }
-    
+
     .category-img{
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
+
 
 
 </style>
