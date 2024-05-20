@@ -84,14 +84,11 @@ export default {
         list-style: none;
     }
 
-
     .category-img{
       width: 100%;
       height: 100%;
       object-fit: cover;
+      cursor: pointer;
     }
-
-
-
 
 </style>
