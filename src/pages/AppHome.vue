@@ -105,7 +105,8 @@ export default {
             </div>
           </div>
         </div>
-        <AppRestaurant :restaurants="Risultato"></AppRestaurant>
+        <!-- passiamo i ristoranti e le categorie al componente AppRestaurant -->
+        <AppRestaurant :restaurants="Risultato" :categories="categories"></AppRestaurant>
       </div>
     </div>
   </section>
