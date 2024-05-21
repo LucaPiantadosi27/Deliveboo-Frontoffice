@@ -38,7 +38,7 @@ export default {
     <h2 class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</h2>
     <div class="row">
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4">
-        <router-link :to="{ name: 'restaurant'}" >
+        <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
           <div class="restaurant-card h-100 pb-5">
             <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover" :alt="restaurant.name_res">
             <div class="description text-black">
