@@ -17,25 +17,35 @@ export default {
             categories: [],
             Risultato: [],
             ArrayCategory: [],
-            isLoading:true,
+            isLoading: true,
         }
     },
 
     methods: {
-        apiCall(){
-            axios.get(this.baseApiUrl + "categories").then((res) => {
+        async apiCall(){
+            try {
+                const res = await axios.get(this.baseApiUrl + "categories");
                 this.categories = res.data.results;
                 console.log(this.categories);
-            })
+
+                // Aspetta il caricamento di tutte le immagini
+                await this.loadAllImages();
+                this.isLoading = false;
+            } catch (error) {
+                console.error("Errore nel caricamento delle categorie:", error);
+            }
         },
 
         async CallCategory(){
-          await axios.post(this.baseApiUrl + "categories", {
-            queryId: this.ArrayCategory,
-          }).then((res) => {
-            this.Risultato = res.data.results;
-            console.log(this.Risultato);
-          })
+            try {
+                const res = await axios.post(this.baseApiUrl + "categories", {
+                    queryId: this.ArrayCategory,
+                });
+                this.Risultato = res.data.results;
+                console.log(this.Risultato);
+            } catch (error) {
+                console.error("Errore nel caricamento dei risultati della categoria:", error);
+            }
         },
 
         AddCategory(valoreDaInserire) {
@@ -50,17 +60,28 @@ export default {
             this.CallCategory();
             console.log(this.ArrayCategory);
         },
-        
+
+        loadImage(src) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = src;
+                img.onload = resolve;
+                img.onerror = reject;
+            });
+        },
+
+        async loadAllImages() {
+            const imagePromises = this.categories.map(category => {
+                const imageUrl = `http://localhost:8000/storage/${category.image}`;
+                return this.loadImage(imageUrl);
+            });
+
+            await Promise.all(imagePromises);
+        }
     },
 
     mounted() {
         this.apiCall();
-        setTimeout(() => {
-          //impostaimo il timeout occio allo scoop
-          this.isLoading=false
-          
-        }, 2000);
-
     },
 }
 </script>
@@ -69,16 +90,16 @@ export default {
 <template>
   <section>
     <div class="container pb-5">
-      <AppLoader v-if=" isLoading"></AppLoader>
-      <div v-if="isLoading == false" class="container py-5">
-        <div class="d-flex gap-2 justify-content-center category-wrapper justify-content-center flex-wrap">
+      <AppLoader v-if="isLoading"></AppLoader>
+      <div v-if="!isLoading" class="container py-5">
+        <div class="d-flex gap-2 justify-content-center category-wrapper flex-wrap">
           <div
             @click="AddCategory(category.id)"
             v-for="category in categories"
             :key="category.id"
             :class="{'selected': ArrayCategory.includes(category.id)}"
-            class=" d-flex gap-2 align-items-center card-wrapper">
-            <div class="card-category card h-100 rounded-4 border-0 ">
+            class="d-flex gap-2 align-items-center card-wrapper">
+            <div class="card-category card h-100 rounded-4 border-0">
               <img class="category-img rounded-4" :src="'http://localhost:8000/storage/' + category.image" alt="">
               <div>{{ category.name }}</div>
             </div>
@@ -86,7 +107,7 @@ export default {
         </div>
         <AppRestaurant :restaurants="Risultato"></AppRestaurant>
       </div>
-      </div>
+    </div>
   </section>
 </template>
 
