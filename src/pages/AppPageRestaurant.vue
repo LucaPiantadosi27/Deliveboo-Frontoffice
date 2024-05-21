@@ -9,6 +9,7 @@ export default {
     data() {
         return {
             baseApiUrl: "http://127.0.0.1:8000/api/",
+            apiImageUrl: 'http://127.0.0.1:8000/storage/',
             categories: [],
             Risultato: [],
             ArrayCategory: [],
@@ -48,29 +49,81 @@ export default {
 
 
 <template>
-    <div id="restaurant"  class="container">
-        <h2 class="pt-4 fw-bolder ">{{singleRestaurant.name_res}}</h2>
-        <span class="image fit"><img src="" alt="" /></span>
-        <div class="box alt">
-            <div class="row gtr-50 gtr-uniform">
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
-                <!-- Break -->
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
-                <!-- Break -->
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
-                <div class="col-4"><span class="image fit"><img src="" alt="" /></span></div>
+    <div id="restaurant"  class="container position-relative  pt-5 ">
+        <div class="back">
+           <router-link class="text-decoration-none" :to="{ name: 'home'}"><i class="my-arrow fa-solid fa-reply"></i></router-link> 
+        </div>
+        <div class="my-jumbo row card d-flex flex-row  " style="width: 100%;">
+            <div class="col-6 p-0">
+                <div class="img-box">
+                    <img class="img-fluid " :src="apiImageUrl + singleRestaurant.img_res"/>
+                </div>
+            </div>
+            <div class="col-6 p-0 card-body">
+                <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center pt-5">
+            <h2>Menù</h2>
+        </div>
+        <div class=" d-flex justify-content-center pt-5">
+            <div class="d-flex flex-wrap justify-content-center gap-3 " style="width: calc(100% / 14rem - 1rem/4 * 5);">
+
+                <div v-for="plate in singleRestaurant.plates" class="card " style="width: 14rem;">
+                    <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover"
+                        alt="@" style="height: 170px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plate.name }}</h5>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="card-text">{{ plate.price }} &euro;</h6>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>   
     </div>
 </template>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../styles/variables' as *;
+
+.back{
+    position: absolute;
+
+    left: -250px;
+    top: 35px;
+
+    .my-arrow{
+        font-size: 35px;
+        color: rgb(130, 148, 196);
+
+        &:hover{
+            color: #F6F3E4;
+        }
+    }
+}
+
+.my-jumbo{
+    
+    .img-box{
+        height: 100%;
+        width: 100%;
+    }
+
+    h1{
+        text-align: center;
+        margin-top: 15px;
+        font-family:"Pacifico", cursive;
+        text-shadow:2px 3px rgb(172, 177, 214);
+        color: #F6F3E4; 
+    }
+}
+
+.card{
+    border: solid 1px #F6F3E4;
+    background-color: rgb(130, 148, 196);
+}
 
 </style>
