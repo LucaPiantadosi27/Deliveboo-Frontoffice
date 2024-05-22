@@ -65,10 +65,10 @@ export default {
   z-index: 99;
 
   &:hover{
-   background-color: rgb(130, 148, 196); 
-   color: rgb(255, 234, 210);
+   background-color: rgb(255, 234, 210); 
+   color: #8294c4;
    text-shadow:2px 3px rgb(172, 177, 214);
-   border-color: rgb(130, 148, 196);
+   border-color: rgb(255, 234, 210);
   }
 
 }

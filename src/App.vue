@@ -25,9 +25,7 @@ export default{
 
   <div class="box">
     <div class="wave-box">
-    
       <img :src="apiImageUrl + 'branding/svg.png' " alt="">
-      
     </div>
 
     <router-view></router-view>
@@ -41,6 +39,7 @@ export default{
 
 <style scoped>
 .box{
+
   margin-bottom: 400px;
   background-color: rgb(172, 177, 214);
   position: relative;
@@ -52,17 +51,15 @@ export default{
     background-color: rgb(172, 177, 214);
     position: absolute;
     width: 100%;
-
   
-    
     img{
-        width: 100%;
-        height: 100%;
-        transform: rotate(180deg);
+      width: 100%;
+      height: 100%;
+      transform: rotate(180deg);
         
     }
-}
-
+    
+  }
 
 }
 </style>
