@@ -20,7 +20,7 @@ export default {
             restaurantId: null,
             singleRestaurant:'',
             Cart:[],
-            // Carrello:(JSON.parse(localStorage.getItem("cart"))),
+            showModal: false,
         }
     },
 
@@ -62,29 +62,33 @@ export default {
             //gestione ricerca id 
             if( this.Cart.length!=0 && this.Cart.find((Item)=>Item.restaurant_id != plate.restaurant_id)){
                 console.log("Diverso");
+                this.showModal = true;
             }else{
                 const CurrentItem=this.Cart.find((Item)=>Item.id === plate.id)
 
                 if(CurrentItem){
 
-                CurrentItem.quantity++;
+                    CurrentItem.quantity++;
 
                 }else{
-                let Item = plate;
 
-                Item.quantity = 1;
+                    let Item = plate;
 
-                this.Cart.push(Item);
+                    Item.quantity = 1;
+
+                    this.Cart.push(Item);
                 }
                 //stringa inserita per la persistenza dei dati nello storage del browser
                 localStorage.setItem("cart", JSON.stringify(this.Cart));
 
                 console.log(JSON.parse(localStorage.getItem("cart")));
-
             }
-
-           
         },
+
+        closeModal() {
+            this.showModal = false; 
+        },
+
         RemoveItemFromCart(plate){
             const plateIndex = this.Cart.findIndex((Item)=>Item.id === plate.id)
 
@@ -149,23 +153,39 @@ export default {
                     </div>
                     <div class="d-flex justify-content-center gap-2">
                         <button  @click="AddItemToCart(plate)">Add</button>
-                      <button  @click="RemoveItemFromCart(plate)">Remove</button>  
+                        <button  @click="RemoveItemFromCart(plate)">Remove</button>  
                     </div>
-                    
                 </div>
-
             </div>
         </div>   
     </div>
     <div>
         <h1>Carrello</h1>
-
-<ul>
-    <li class="fs-4 fw-bolder " v-for="(item, index) in Cart" :key="index">
-        {{ item.name }}
-        {{ item.quantity }}
-    </li>
-</ul>
+        <ul>
+            <li class="fs-4 fw-bolder " v-for="(item, index) in Cart" :key="index">
+                {{ item.name }}
+                {{ item.quantity }}
+            </li>
+        </ul>
+        
+        <!-- modale gestione carrello -->
+        <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Attention</h5>
+                    <button type="button" class="btn-close" @click="closeModal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you trying to add a dish from a different restaurant, empty your cart first?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+                    <button type="button" class="btn btn-primary">Empty cart</button>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -208,6 +228,10 @@ export default {
 .card{
     border: solid 1px #F6F3E4;
     background-color: rgb(130, 148, 196);
+}
+
+.modal.show.d-block {
+  display: block;
 }
 
 </style>
