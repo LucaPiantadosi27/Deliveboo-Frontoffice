@@ -45,6 +45,7 @@ export default {
 
 
         })
+        console.log(JSON.parse(localStorage.getItem("cart")));
     },
     methods:{
         AddItemToCart(plate){
@@ -54,6 +55,7 @@ export default {
 
                 CurrentItem.quantity++;
             }
+
             else{
                 let Item = plate;
 
@@ -62,8 +64,10 @@ export default {
                 this.Cart.push(Item);
 
             }
+            //stringa inserita per la persistenza dei dati nello storage del browser
+            localStorage.setItem("cart", JSON.stringify(this.Cart));
 
-            console.log(this.Cart);
+            console.log(JSON.parse(localStorage.getItem("cart")));
         },
         RemoveItemFromCart(plate){
             const plateIndex = this.Cart.findIndex((Item)=>Item.id === plate.id)
@@ -82,7 +86,9 @@ export default {
                 
 
             }
-            console.log(this.Cart)
+            localStorage.setItem("cart", JSON.stringify(this.Cart));
+            // console.log(this.Cart)
+            console.log(JSON.parse(localStorage.getItem("cart")));
     }
             }
 
