@@ -60,10 +60,9 @@ export default {
                 <div class="col-4 d-flex justify-content-center align-items-center">
                     <div class="text-center">
                     <p><strong>DOWNLOAD APP</strong></p>
-                    <div>
-                        <img class="small-image" :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
-                   
-                        <img class="small-image" :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
+                    <div class="d-flex gap-3 justify-content-center " >
+                        <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
+                        <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
                     </div>
                     </div>
                 </div>
@@ -95,7 +94,6 @@ export default {
 
     font-family:"Pacifico", cursive;
     text-shadow:2px 3px rgb(172, 177, 214);
-    
 }
 
 .fixed-footer {
@@ -148,7 +146,6 @@ export default {
     
     }
 }
-
 
 
 

@@ -38,6 +38,8 @@ export default{
 
 
 <style scoped>
+
+
 .box{
 
   margin-bottom: 450px;
