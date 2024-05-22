@@ -159,13 +159,12 @@ export default {
     </div>
     <div>
         <h1>Carrello</h1>
-
-<ul>
-    <li class="fs-4 fw-bolder " v-for="(item, index) in Cart" :key="index">
-        {{ item.name }}
-        {{ item.quantity }}
-    </li>
-</ul>
+        <ul>
+            <li class="fs-4 fw-bolder " v-for="(item, index) in Cart" :key="index">
+                {{ item.name }}
+                {{ item.quantity }}
+            </li>
+        </ul>
     </div>
 </template>
 
