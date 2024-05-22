@@ -31,6 +31,9 @@ export default {
     },
 
     mounted() {
+        // se il carrello non è vuoto
+        //e se l'id del ristorante del piatto che stiamo aggiungendo non è uguale all'id del ristorante di un piatto gia inserito 
+        
 
         this.restaurantId = this.$route.params.id
 
@@ -55,25 +58,31 @@ export default {
     },
     methods:{
         AddItemToCart(plate){
-            const CurrentItem=this.Cart.find((Item)=>Item.id === plate.id)
 
-            if(CurrentItem){
+            if( this.Cart.length!=0 && this.Cart.find((Item)=>Item.restaurant_id != plate.restaurant_id)){
+                console.log("Diverso");
+            }else{
+                const CurrentItem=this.Cart.find((Item)=>Item.id === plate.id)
+
+                if(CurrentItem){
 
                 CurrentItem.quantity++;
-            }
 
-            else{
+                }else{
                 let Item = plate;
 
                 Item.quantity = 1;
 
                 this.Cart.push(Item);
+                }
+                //stringa inserita per la persistenza dei dati nello storage del browser
+                localStorage.setItem("cart", JSON.stringify(this.Cart));
+
+                console.log(JSON.parse(localStorage.getItem("cart")));
 
             }
-            //stringa inserita per la persistenza dei dati nello storage del browser
-            localStorage.setItem("cart", JSON.stringify(this.Cart));
 
-            console.log(JSON.parse(localStorage.getItem("cart")));
+           
         },
         RemoveItemFromCart(plate){
             const plateIndex = this.Cart.findIndex((Item)=>Item.id === plate.id)
@@ -151,7 +160,7 @@ export default {
         <h1>Carrello</h1>
 
 <ul>
-    <li v-for="(item, index) in Cart" :key="index">
+    <li class="fs-4 fw-bolder " v-for="(item, index) in Cart" :key="index">
         {{ item.name }}
         {{ item.quantity }}
     </li>
