@@ -59,11 +59,12 @@ export default {
                 
                 <div class="col-4 d-flex justify-content-center align-items-center">
                     <div class="text-center">
-                        <p class=""><strong>DOWNLOAD APP</strong></p>
-
-
-                        <img class="download" :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="@">
-                        <!-- <img class="download" src="" alt="Img 2" class="img-fluid" style="width: 45%;"> -->
+                    <p><strong>DOWNLOAD APP</strong></p>
+                    <div>
+                        <img class="small-image" :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
+                   
+                        <img class="small-image" :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
+                    </div>
                     </div>
                 </div>
 
@@ -126,7 +127,21 @@ i:nth-of-type(3):hover{
 i:nth-of-type(4):hover{
     background-color:#0077B5;
 }
+.small-image {
+  width: 120px; 
+  height: auto;
+  border-radius: 5px;
+  border: 2px solid transparent;
 
+    &:hover{
+        border-color: rgba(255, 255, 255, 0.514);
+   
+        cursor: pointer;
+  
+}
+
+
+}
 i {
     cursor: pointer;
     font-size: 25px;
@@ -141,9 +156,7 @@ i {
 
 }
 
-.download{
-    color: white;
-}
+
 
 }
 </style>
