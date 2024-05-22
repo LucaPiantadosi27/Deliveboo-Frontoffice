@@ -59,6 +59,7 @@ export default {
     methods:{
         AddItemToCart(plate){
 
+            //gestione ricerca id 
             if( this.Cart.length!=0 && this.Cart.find((Item)=>Item.restaurant_id != plate.restaurant_id)){
                 console.log("Diverso");
             }else{
