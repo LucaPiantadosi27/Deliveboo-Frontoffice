@@ -2,6 +2,7 @@
 import axios from "axios";
 import AppRestaurant from '../components/AppRestaurant.vue';
 import AppLoader from '../components/AppLoader.vue'
+import AppCart from "../components/AppCart.vue";
 
 
 
@@ -19,12 +20,14 @@ export default {
             restaurantId: null,
             singleRestaurant:'',
             Cart:[],
+            // Carrello:(JSON.parse(localStorage.getItem("cart"))),
         }
     },
 
     components: {
         AppRestaurant,
         AppLoader,
+        AppCart,
     },
 
     mounted() {
@@ -46,6 +49,9 @@ export default {
 
         })
         console.log(JSON.parse(localStorage.getItem("cart")));
+        // console.log("carrello",this.Carrello)
+
+        this.Cart=JSON.parse(localStorage.getItem("cart"))
     },
     methods:{
         AddItemToCart(plate){
@@ -87,10 +93,15 @@ export default {
 
             }
             localStorage.setItem("cart", JSON.stringify(this.Cart));
-            // console.log(this.Cart)
+            // console.log("qualcosa",this.Cart)
             console.log(JSON.parse(localStorage.getItem("cart")));
-    }
-            }
+        }
+    },
+    // watch: { 
+    //         Cart(newItems) { 
+    //             localStorage.setItem(Cart(cart), JSON.stringify(newItems)); 
+    //         }, 
+    //     }, 
 
 }
 </script>
@@ -135,6 +146,16 @@ export default {
 
             </div>
         </div>   
+    </div>
+    <div>
+        <h1>Carrello</h1>
+
+<ul>
+    <li v-for="(item, index) in Cart" :key="index">
+        {{ item.name }}
+        {{ item.quantity }}
+    </li>
+</ul>
     </div>
 </template>
 

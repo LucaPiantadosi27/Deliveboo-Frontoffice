@@ -11,16 +11,18 @@ export default {
     data() {
         return {
             store,
+            Carrello:JSON.parse(localStorage.getItem("cart")),
            
         }
     },
 
     methods: {
-        
+
         
     },
 
     mounted() {
+        console.log("carrello",this.Carrello)
         
     },
 }
@@ -28,6 +30,15 @@ export default {
 
 
 <template>
+    <h1>Carrello</h1>
+
+    <ul>
+        <li v-for="item in Carrello">
+            {{ item.name }}
+
+        </li>
+    </ul>
+    
 
 </template>
 
