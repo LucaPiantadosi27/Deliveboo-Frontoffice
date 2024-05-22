@@ -9,7 +9,7 @@ export default {
 
 
 <template>
-    <footer id="footer" class="fixed-footer text-white">
+    <footer id="footer" class="fixed-footer text-white pb-3">
         <div class="my-footer">
             <div class="row pt-4 text-center  text-md-left text-decoration-none ">
                 <!-- Colonna 1 -->
@@ -114,7 +114,7 @@ export default {
 }
 
 .my-footer {
-    height: 400px;
+    height: 450px;
 }
 
 

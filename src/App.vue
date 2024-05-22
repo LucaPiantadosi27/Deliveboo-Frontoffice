@@ -40,7 +40,7 @@ export default{
 <style scoped>
 .box{
 
-  margin-bottom: 400px;
+  margin-bottom: 450px;
   background-color: rgb(172, 177, 214);
   position: relative;
   
