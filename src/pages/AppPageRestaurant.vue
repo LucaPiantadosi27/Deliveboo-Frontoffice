@@ -109,7 +109,14 @@ export default {
             localStorage.setItem("cart", JSON.stringify(this.Cart));
             // console.log("qualcosa",this.Cart)
             console.log(JSON.parse(localStorage.getItem("cart")));
-        }
+        },
+
+        // svuotamento carrello dal modale
+        emptyCart() {
+            this.Cart = [];
+            localStorage.removeItem("cart");
+            this.showModal = false; 
+        },
     },
     // watch: { 
     //         Cart(newItems) { 
@@ -177,11 +184,11 @@ export default {
                     <button type="button" class="btn-close" @click="closeModal"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you trying to add a dish from a different restaurant, empty your cart first?</p>
+                    <p>Are you trying to add a plate from a different restaurant, empty your cart first</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-                    <button type="button" class="btn btn-primary">Empty cart</button>
+                    <button type="button" class="btn btn-primary" @click="emptyCart">Empty cart</button>
                 </div>
                 </div>
             </div>
