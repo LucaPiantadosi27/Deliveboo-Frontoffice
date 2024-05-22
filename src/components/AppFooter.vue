@@ -9,7 +9,7 @@ export default {
 
 
 <template>
-    <footer id="footer" class="fixed-footer text-white pb-3">
+    <footer id="footer" class="fixed-footer text-white ">
         <div class="my-footer">
             <div class="row pt-4 text-center  text-md-left text-decoration-none ">
                 <!-- Colonna 1 -->
