@@ -166,14 +166,21 @@ export default {
             </div>
         </div>   
     </div>
-    <div>
-        <h1>Carrello</h1>
-        <ul>
-            <li class="fs-4 fw-bolder " v-for="(item, index) in Cart" :key="index">
+    <div class="text-center">
+        <h1>Cart</h1>
+        <ul v-if="Cart.length > 0">  
+            <li class="fs-4 fw-bolder" v-for="(item, index) in Cart" :key="index">
                 {{ item.name }}
-                {{ item.quantity }}
+                <span class="text-danger fw-bold">{{ item.quantity }}</span>
             </li>
         </ul>
+        <p v-else class="fs-3 text-uppercase text-danger fw-bold">Cart is empty</p>  
+        <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+        </div>
         
         <!-- modale gestione carrello -->
         <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
