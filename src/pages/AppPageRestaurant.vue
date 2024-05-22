@@ -54,11 +54,21 @@ export default {
         console.log(JSON.parse(localStorage.getItem("cart")));
         // console.log("carrello",this.Carrello)
 
-        this.Cart=JSON.parse(localStorage.getItem("cart"))
+        // Recupera i dati dal local storage se il carrello è gia pieno se è vuoto procede
+        if(JSON.parse(localStorage.getItem("cart"))!= null){
+            this.Cart=JSON.parse(localStorage.getItem("cart"))
+        }
+
+        // this.Cart=JSON.parse(localStorage.getItem("cart"))
     },
     methods:{
         AddItemToCart(plate){
 
+            // if( this.Cart == null ){
+            //      //stringa inserita per la persistenza dei dati nello storage del browser
+            //      localStorage.setItem("cart", JSON.stringify(this.Cart));
+            // }
+            
             //gestione ricerca id 
             if( this.Cart.length!=0 && this.Cart.find((Item)=>Item.restaurant_id != plate.restaurant_id)){
                 console.log("Diverso");
@@ -149,7 +159,7 @@ export default {
                     </div>
                     <div class="d-flex justify-content-center gap-2">
                         <button  @click="AddItemToCart(plate)">Add</button>
-                      <button  @click="RemoveItemFromCart(plate)">Remove</button>  
+                        <button  @click="RemoveItemFromCart(plate)">Remove</button>  
                     </div>
                     
                 </div>
