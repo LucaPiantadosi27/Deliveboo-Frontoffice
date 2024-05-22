@@ -48,13 +48,25 @@ export default {
                     </ul>
                 </div>
             </div>
+
             <div class="row d-flex 100w justify-content-center align-items-center ">
                 <div class="col-6 d-flex justify-content-center align-items-center  ">
                     <div class="text-center">
-                        <p><strong>COPYRIGHT</strong></p>
+                        <p class=""><strong>COPYRIGHT</strong></p>
                         <p class="mb-0">© 2024 Deliveboo. Developed by MLMSM</p>
                     </div>
                 </div>
+                
+                <div class="col-4 d-flex justify-content-center align-items-center">
+                    <div class="text-center">
+                        <p class=""><strong>DOWNLOAD APP</strong></p>
+
+
+                        <img class="download" :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="@">
+                        <!-- <img class="download" src="" alt="Img 2" class="img-fluid" style="width: 45%;"> -->
+                    </div>
+                </div>
+
                 <div class="col-6 d-flex flex-column justify-content-start align-items-center ">
                     <div class="text-center ">
                         <p class=""><strong>FOLLOW US</strong></p>
@@ -80,10 +92,9 @@ export default {
 
     font-family:"Pacifico", cursive;
     text-shadow:2px 3px rgb(172, 177, 214);
-    &:hover{
-
-    }
+    
 }
+
 .fixed-footer {
     position: fixed;
     bottom: 0; 
@@ -100,7 +111,7 @@ export default {
 }
 
 .my-footer {
-    height: 350px;
+    height: 400px;
 }
 
 i:nth-of-type(1):hover{
@@ -130,6 +141,9 @@ i {
 
 }
 
+.download{
+    color: white;
+}
 
 }
 </style>
