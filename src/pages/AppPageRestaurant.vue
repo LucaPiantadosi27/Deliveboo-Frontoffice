@@ -49,11 +49,11 @@ export default {
 
 
 <template>
-    <div id="restaurant"  class="container position-relative  pt-5 ">
-        <div class="back">
+    <div id="restaurant" style="width: 100%;" class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
+        <div class="back pe-5 me-5 ">
            <router-link class="text-decoration-none" :to="{ name: 'home'}"><i class="my-arrow fa-solid fa-reply"></i></router-link> 
         </div>
-        <div class="my-jumbo row card d-flex flex-row  " style="width: 100%;">
+        <div class="my-jumbo row card d-flex flex-row  " style="width: 90%;">
             <div class="col-6 p-0">
                 <div class="img-box">
                     <img class="img-fluid " :src="apiImageUrl + singleRestaurant.img_res"/>
@@ -92,8 +92,8 @@ export default {
 .back{
     position: absolute;
 
-    left: -250px;
-    top: 35px;
+    left: -10px;
+    top: 45px;
 
     .my-arrow{
         font-size: 35px;

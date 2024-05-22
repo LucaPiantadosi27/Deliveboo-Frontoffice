@@ -11,7 +11,7 @@ export default {
 
 <template>
     
-    <div class="load">
+<div class="load">
   <div class="hamburger">
     <div class="top-bun"></div>
     <div class="pickle"></div>
@@ -31,12 +31,6 @@ export default {
 
 
 <style lang="scss">
-/* HTML: <div class="loader"></div> */
-
-
-body {
-  background-color: LightSteelBlue;
-}
 
 .load {
   position: absolute;
