@@ -22,6 +22,7 @@ const router = createRouter({
             name: 'restaurant',
             component: AppPageRestaurant,
         },
+        
     ]
 })
 

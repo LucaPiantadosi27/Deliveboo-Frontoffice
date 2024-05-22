@@ -1,7 +1,9 @@
 <script>
+import AppCart from './AppCart.vue';
 
 export default {
   name: "AppRestaurant",
+  name:"AppCart",
 
   props: {
     restaurants: {

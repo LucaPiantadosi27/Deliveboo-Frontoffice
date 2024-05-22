@@ -3,6 +3,8 @@ import axios from "axios";
 import AppRestaurant from '../components/AppRestaurant.vue';
 import AppLoader from '../components/AppLoader.vue'
 
+
+
 export default {
     name: "AppPageRestaurant",
     
@@ -16,6 +18,7 @@ export default {
             isLoading: true,
             restaurantId: null,
             singleRestaurant:'',
+            Cart:[],
         }
     },
 
@@ -43,6 +46,45 @@ export default {
 
         })
     },
+    methods:{
+        AddItemToCart(plate){
+            const CurrentItem=this.Cart.find((Item)=>Item.id === plate.id)
+
+            if(CurrentItem){
+
+                CurrentItem.quantity++;
+            }
+            else{
+                let Item = plate;
+
+                Item.quantity = 1;
+
+                this.Cart.push(Item);
+
+            }
+
+            console.log(this.Cart);
+        },
+        RemoveItemFromCart(plate){
+            const plateIndex = this.Cart.findIndex((Item)=>Item.id === plate.id)
+
+            if(plateIndex != -1){
+
+                const plate = this.Cart[plateIndex]
+
+                if(plate.quantity > 1){
+
+                    plate.quantity -= 1
+                }
+                else{
+                    this.Cart.splice(plateIndex,1)
+                }
+                
+
+            }
+            console.log(this.Cart)
+    }
+            }
 
 }
 </script>
@@ -69,15 +111,20 @@ export default {
         <div class=" d-flex justify-content-center pt-5">
             <div class="d-flex flex-wrap justify-content-center gap-3 " style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
-                <div v-for="plate in singleRestaurant.plates" class="card " style="width: 14rem;">
-                    <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover"
+                <div v-for="plate in singleRestaurant.plates"  class="card " style="width: 14rem;">
+                    <img  :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover"
                         alt="@" style="height: 170px;">
-                    <div class="card-body">
+                    <div class="card-body" >
                         <h5 class="card-title">{{ plate.name }}</h5>
                         <div class="d-flex justify-content-between">
                             <h6 class="card-text">{{ plate.price }} &euro;</h6>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button  @click="AddItemToCart(plate)">Add</button>
+                      <button  @click="RemoveItemFromCart(plate)">Remove</button>  
+                    </div>
+                    
                 </div>
 
             </div>

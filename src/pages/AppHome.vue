@@ -2,6 +2,8 @@
 import axios from "axios";
 import AppRestaurant from '../components/AppRestaurant.vue';
 import AppLoader from '../components/AppLoader.vue'
+//dichiarazione dello store
+import { store } from "../components/store";
 
 export default {
     name: "AppHome",
@@ -18,6 +20,7 @@ export default {
             Risultato: [],
             ArrayCategory: [],
             isLoading: true,
+            store,
         }
     },
 
