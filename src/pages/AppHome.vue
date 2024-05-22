@@ -116,31 +116,8 @@ export default {
 </template>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../styles/variables' as *;
-
-// .category-wrapper{
-//   overflow-x: hidden;
-//   padding-bottom: 2px;
-
-//   &:hover{
-//     overflow-x: auto;
-//   }
-
-//   &::-webkit-scrollbar {
-//     height: 5px;
-//   }
-  
-//   &::-webkit-scrollbar-track{
-//     margin-top: 5px;
-//   }
-
-//   &::-webkit-scrollbar-thumb{
-//     background-color: rgba($color: #000000, $alpha: 0.2);
-//     border-radius: 30px;
-//     opacity: 0;
-//   }
-// }
 
 .card-wrapper{
   width: calc(100% / 6 - 8px * 6 / 5);

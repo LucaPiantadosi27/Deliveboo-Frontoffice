@@ -250,10 +250,10 @@ export default {
 
     .my-arrow{
         font-size: 35px;
-        color: rgb(130, 148, 196);
+        color: #F6F3E4;
 
         &:hover{
-            color: #F6F3E4;
+            background-color: #8294c4;
         }
     }
 }
@@ -269,7 +269,7 @@ export default {
         text-align: center;
         margin-top: 15px;
         font-family:"Pacifico", cursive;
-        text-shadow:2px 3px rgb(172, 177, 214);
+        text-shadow:2px 3px #acb1d6;
         color: #F6F3E4; 
     }
 }
