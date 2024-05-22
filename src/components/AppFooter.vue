@@ -85,7 +85,7 @@ export default {
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .footer{
     color: #F6F3E4;

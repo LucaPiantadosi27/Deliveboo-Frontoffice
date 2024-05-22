@@ -8,7 +8,7 @@ import AppCart from "../components/AppCart.vue";
 
 export default {
     name: "AppPageRestaurant",
-    
+
     data() {
         return {
             baseApiUrl: "http://127.0.0.1:8000/api/",
@@ -18,8 +18,11 @@ export default {
             ArrayCategory: [],
             isLoading: true,
             restaurantId: null,
-            singleRestaurant:'',
-            Cart:[],
+            singleRestaurant: '',
+            Cart: {
+                items: [],
+                total: 0,
+            },
             showModal: false,
         }
     },
@@ -33,11 +36,11 @@ export default {
     mounted() {
         // se il carrello non è vuoto
         //e se l'id del ristorante del piatto che stiamo aggiungendo non è uguale all'id del ristorante di un piatto gia inserito 
-        
+
 
         this.restaurantId = this.$route.params.id
 
-        axios.get( this.baseApiUrl + 'restaurants/' + this.restaurantId ).then(res => {
+        axios.get(this.baseApiUrl + 'restaurants/' + this.restaurantId).then(res => {
 
             if (res.data.success) {
 
@@ -55,39 +58,48 @@ export default {
         // console.log("carrello",this.Carrello)
 
         // Recupera i dati dal local storage se il carrello è gia pieno se è vuoto procede
-        if(JSON.parse(localStorage.getItem("cart"))!= null){
-            this.Cart=JSON.parse(localStorage.getItem("cart"))
+        if (JSON.parse(localStorage.getItem("cart")) != null) {
+            this.Cart = JSON.parse(localStorage.getItem("cart"))
         }
 
         // this.Cart=JSON.parse(localStorage.getItem("cart"))
     },
-    methods:{
-        AddItemToCart(plate){
+    methods: {
+        AddItemToCart(plate) {
 
             // if( this.Cart == null ){
             //      //stringa inserita per la persistenza dei dati nello storage del browser
             //      localStorage.setItem("cart", JSON.stringify(this.Cart));
             // }
-            
+
             //gestione ricerca id 
-            if( this.Cart.length!=0 && this.Cart.find((Item)=>Item.restaurant_id != plate.restaurant_id)){
+            if (this.Cart.items.length != 0 && this.Cart.items.find((Item) => Item.restaurant_id != plate.restaurant_id)) {
                 console.log("Diverso");
                 this.showModal = true;
-            }else{
-                const CurrentItem=this.Cart.find((Item)=>Item.id === plate.id)
+            } else {
+                const CurrentItem = this.Cart.items.find((Item) => Item.id === plate.id)
 
-                if(CurrentItem){
+                if (CurrentItem) {
 
                     CurrentItem.quantity++;
+                    CurrentItem.subTotal = CurrentItem.price * CurrentItem.quantity
 
-                }else{
+                } else {
 
                     let Item = plate;
 
                     Item.quantity = 1;
+                    Item.restaurant = this.singleRestaurant.name_res
+                    Item.subTotal = Item.price
 
-                    this.Cart.push(Item);
+                    this.Cart.items.push(Item);
                 }
+
+                this.Cart.total = 0
+                this.Cart.items.forEach(item => {
+                    this.Cart.total += Number(item.subTotal)
+                });
+
                 //stringa inserita per la persistenza dei dati nello storage del browser
                 localStorage.setItem("cart", JSON.stringify(this.Cart));
 
@@ -96,26 +108,31 @@ export default {
         },
 
         closeModal() {
-            this.showModal = false; 
+            this.showModal = false;
         },
 
-        RemoveItemFromCart(plate){
-            const plateIndex = this.Cart.findIndex((Item)=>Item.id === plate.id)
+        RemoveItemFromCart(plate) {
+            const plateIndex = this.Cart.items.findIndex((Item) => Item.id === plate.id)
 
-            if(plateIndex != -1){
+            if (plateIndex != -1) {
 
-                const plate = this.Cart[plateIndex]
+                const plate = this.Cart.items[plateIndex]
 
-                if(plate.quantity > 1){
+                if (plate.quantity > 1) {
 
                     plate.quantity -= 1
+                    plate.subTotal = plate.price * plate.quantity
                 }
-                else{
-                    this.Cart.splice(plateIndex,1)
+                else {
+                    this.Cart.items.splice(plateIndex, 1)
                 }
-                
-
             }
+            
+            this.Cart.total = 0
+            this.Cart.items.forEach(item => {
+                this.Cart.total += Number(item.subTotal)
+            });
+
             localStorage.setItem("cart", JSON.stringify(this.Cart));
             // console.log("qualcosa",this.Cart)
             console.log(JSON.parse(localStorage.getItem("cart")));
@@ -123,9 +140,12 @@ export default {
 
         // svuotamento carrello dal modale
         emptyCart() {
-            this.Cart = [];
+            this.Cart = {
+                items: [],
+                total: 0
+            };
             localStorage.removeItem("cart");
-            this.showModal = false; 
+            this.showModal = false;
         },
     },
     // watch: { 
@@ -139,168 +159,185 @@ export default {
 
 
 <template>
-    <div class="d-flex">
-       <div id="restaurant" style="width: 100%;" class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
+    <div id="restaurant" style="width: 100%;"
+        class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
         <div class="back pe-5 me-5 ">
-           <router-link class="text-decoration-none" :to="{ name: 'home'}"><i class="my-arrow fa-solid fa-reply"></i></router-link> 
+            <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
+                    class="my-arrow fa-solid fa-reply"></i></router-link>
         </div>
-        <div class="my-jumbo row card d-flex flex-row  " style="width: 90%;">
+        <div class="my-jumbo row card d-flex flex-row w-100  " style="width: 90%;">
             <div class="col-6 p-0">
                 <div class="img-box">
-                    <img class="img-fluid " :src="apiImageUrl + singleRestaurant.img_res"/>
+                    <img class="img-fluid " :src="apiImageUrl + singleRestaurant.img_res" />
                 </div>
             </div>
-            <div class="col-6 p-0 card-body">
+            <div class="col-6 p-3 card-body">
                 <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
+                <h3>{{ singleRestaurant.address_res }}</h3>
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-light" v-for="tag in singleRestaurant.categories">{{ tag.name }}</span>
+                </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center pt-5">
-            <h2>Menù</h2>
-        </div>
-        <div class=" d-flex justify-content-between   pt-5">
-            <div class="d-flex flex-wrap justify-content-center gap-3 " style="width: calc(100% / 14rem - 1rem/4 * 5);">
+        <div class="d-flex w-100">
+            <div class="w-75">
+                <div class="d-flex justify-content-center pt-5">
+                    <h2>Menù</h2>
+                </div>
+                <div class=" d-flex justify-content-between   pt-5">
+                    <div class="d-flex flex-wrap justify-content-center gap-3 "
+                        style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
-                <div v-for="plate in singleRestaurant.plates"  class="card " style="width: 14rem;">
-                    <img  :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover"
-                        alt="@" style="height: 170px;">
-                    <div class="card-body" >
-                        <h5 class="card-title">{{ plate.name }}</h5>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="card-text">{{ plate.price }} &euro;</h6>
+                        <div v-for="plate in singleRestaurant.plates" class="card " style="width: 14rem;">
+                            <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover" alt="@"
+                                style="height: 170px;">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <h5 class="card-title">{{ plate.name }}</h5>
+                                <p class="fst-italic">{{ plate.ingredients }}</p>
+                                <h6 class="card-text">{{ plate.price }} &euro;</h6>
+
+                            </div>
+                            <div class="d-flex justify-content-center gap-2 pb-2">
+                                <button class="btn btn-outline-light" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
+                                <button class="btn btn-outline-light" @click="AddItemToCart(plate)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center gap-2">
-                        <button  @click="AddItemToCart(plate)">Add</button>
-                        <button  @click="RemoveItemFromCart(plate)">Remove</button>  
+
+                </div>
+                <!-- sezione da prendere -->
+
+                <!-- fine sezione -->
+            </div>
+
+            <div class="w-25" id="Carrello">
+                <h2 class="text-center">Cart</h2>
+                <div class="" v-if="Cart.items.length > 0 && this.singleRestaurant.id == this.Cart.items[0].restaurant_id">
+                    <h3 class="text-center">{{ Cart.items[0].restaurant }}</h3>
+                    <div class="p-3 border-bottom border-white text-start d-flex gap-1 justify-content-between text-white"
+                        v-for="item in Cart.items">
+                        <div>{{ item.quantity }}x</div>
+                        <div>{{ item.name }}</div>
+                        <div>{{ item.subTotal }} &euro;</div>
+                    </div>
+                    <h4 class="p-3 text-end text-white" v-if="Cart.items.length > 0">Total: {{ Cart.total }} &euro;</h4>
+                    <!-- <div class="fs-5 fw-bolder text-decoration-none text-uppercase  " v-for="(item, index) in Cart"
+                        :key="index">
+                        <div class="d-flex flex-column mb-4 ">
+                            <div class="d-flex justify-content-between">
+                                <span>{{ item.name }}</span>
+                                <div class="d-flex justify-content-center align-items-center ">
+                                    <span class="text-danger fw-bold">{{ item.quantity }}</span>
+                                </div>
+
+                            </div>
+                            <span class="text-danger fw-bold">{{ item.price }}€</span>
+                        </div>
+                    </div> -->
+                </div>
+                <p v-else class="fs-5 text-center">Your Cart is Empty</p>
+                <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
+                    style="background: rgba(0, 0, 0, 0.5);">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- modale gestione carrello -->
+                <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
+                    style="background: rgba(0, 0, 0, 0.5);">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Attention</h5>
+                                <button type="button" class="btn-close" @click="closeModal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>You already have items in your cart with {{ Cart.items[0].restaurant }}. Do you wish to empty your cart?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+                                <button type="button" class="btn btn-primary" @click="emptyCart">Empty cart</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- sezione da prendere -->
-           
-            <!-- fine sezione -->
-        </div>   
-       </div>
-    
-        <div class="text-center  " id="Carrello">
-        <h2>Cart</h2>
-        <div class=" lista " v-if="Cart.length > 0">  
-            <div class="fs-5 fw-bolder text-decoration-none text-uppercase  " v-for="(item, index) in Cart" :key="index">
-                <div class="d-flex flex-column mb-4 ">
-                    <div class="d-flex justify-content-between  ">
-                       <span>{{ item.name }}</span>
-                       <div class="d-flex justify-content-center align-items-center ">
-                            <span class="text-danger fw-bold">{{ item.quantity }}</span>
-                       </div>
-                       
-                    </div>
-                    <span class="text-danger fw-bold">{{ item.price }}€</span>
-                </div>
-                
+        </div>
 
-                
-                
-            </div>
-        </div>
-        <p v-else class="fs-5 text-uppercase text-danger fw-bold">Cart is empty</p>  
-        <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
-            <div class="modal-dialog">
-            <div class="modal-content">
-            </div>
-        </div>
-        </div>
-        
-        <!-- modale gestione carrello -->
-        <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Attention</h5>
-                    <button type="button" class="btn-close" @click="closeModal"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you trying to add a plate from a different restaurant, empty your cart first</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-                    <button type="button" class="btn btn-primary" @click="emptyCart">Empty cart</button>
-                </div>
-                </div>
-            </div>
-        </div>
-            </div>
 
-       
-    
+
+
     </div>
-    
-    
-    
-    
+
+
+
+
 </template>
 
 
 <style lang="scss">
 @use '../styles/variables' as *;
 
-.back{
+.back {
     position: absolute;
 
-    left: -10px;
-    top: 45px;
+    left: -10%;
+    top: 4%;
 
-    .my-arrow{
+    .my-arrow {
         font-size: 35px;
         color: rgb(130, 148, 196);
 
-        &:hover{
+        &:hover {
             color: #F6F3E4;
         }
     }
 }
 
-.my-jumbo{
-    
-    .img-box{
+.my-jumbo {
+
+    .img-box {
         height: 100%;
         width: 100%;
     }
 
-    h1{
+    h1 {
         text-align: center;
         margin-top: 15px;
-        font-family:"Pacifico", cursive;
-        text-shadow:2px 3px rgb(172, 177, 214);
-        color: #F6F3E4; 
+        font-family: "Pacifico", cursive;
+        text-shadow: 2px 3px rgb(172, 177, 214);
+        color: #F6F3E4;
     }
 }
 
-.card{
+.card {
     border: solid 1px #F6F3E4;
     background-color: rgb(130, 148, 196);
 }
 
 .modal.show.d-block {
-  display: block;
+    display: block;
 }
 
-#Carrello{
+#Carrello {
     width: 15%;
     border: solid 2px #F6F3E4;
     border-radius: 0.2em;
     height: 100vh;
     margin: 1em 0 1em 0;
-    padding: 2%;
-    .lista{
+    overflow-y: auto;
+    // padding: 1rem;
+
+    .lista {
         list-style: none;
     }
-    h2{
-        font-family:"Pacifico", cursive;
-        text-shadow:2px 3px rgb(172, 177, 214);
-        color: #F6F3E4; 
+
+    h2 {
+        font-family: "Pacifico", cursive;
+        text-shadow: 2px 3px rgb(172, 177, 214);
+        color: #F6F3E4;
     }
-    }
-    
-
-
-
+}
 </style>
