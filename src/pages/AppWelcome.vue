@@ -52,6 +52,8 @@ export default {
             text-shadow:2px 4px rgb(130, 148, 196);
             font-weight: 400;
             font-style: normal;
+
+            z-index: 99;
         }
     }
 
@@ -60,6 +62,7 @@ export default {
   font-size: 30px;
   color: rgb(255, 234, 210);
   text-shadow:2px 3px rgb(130, 148, 196);
+  z-index: 99;
 
   &:hover{
    background-color: rgb(130, 148, 196); 
