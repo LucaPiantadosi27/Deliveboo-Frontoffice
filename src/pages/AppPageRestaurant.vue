@@ -139,7 +139,8 @@ export default {
 
 
 <template>
-    <div id="restaurant" style="width: 100%;" class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
+    <div class="d-flex">
+       <div id="restaurant" style="width: 100%;" class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
         <div class="back pe-5 me-5 ">
            <router-link class="text-decoration-none" :to="{ name: 'home'}"><i class="my-arrow fa-solid fa-reply"></i></router-link> 
         </div>
@@ -156,7 +157,7 @@ export default {
         <div class="d-flex justify-content-center pt-5">
             <h2>Menù</h2>
         </div>
-        <div class=" d-flex justify-content-center pt-5">
+        <div class=" d-flex justify-content-between   pt-5">
             <div class="d-flex flex-wrap justify-content-center gap-3 " style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
                 <div v-for="plate in singleRestaurant.plates"  class="card " style="width: 14rem;">
@@ -174,17 +175,33 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- sezione da prendere -->
+           
+            <!-- fine sezione -->
         </div>   
-    </div>
-    <div class="text-center">
-        <h1>Cart</h1>
-        <ul v-if="Cart.length > 0">  
-            <li class="fs-4 fw-bolder" v-for="(item, index) in Cart" :key="index">
-                {{ item.name }}
-                <span class="text-danger fw-bold">{{ item.quantity }}</span>
-            </li>
-        </ul>
-        <p v-else class="fs-3 text-uppercase text-danger fw-bold">Cart is empty</p>  
+       </div>
+    
+        <div class="text-center  " id="Carrello">
+        <h2>Cart</h2>
+        <div class=" lista " v-if="Cart.length > 0">  
+            <div class="fs-5 fw-bolder text-decoration-none text-uppercase  " v-for="(item, index) in Cart" :key="index">
+                <div class="d-flex flex-column mb-4 ">
+                    <div class="d-flex justify-content-between  ">
+                       <span>{{ item.name }}</span>
+                       <div class="d-flex justify-content-center align-items-center ">
+                            <span class="text-danger fw-bold">{{ item.quantity }}</span>
+                       </div>
+                       
+                    </div>
+                    <span class="text-danger fw-bold">{{ item.price }}€</span>
+                </div>
+                
+
+                
+                
+            </div>
+        </div>
+        <p v-else class="fs-5 text-uppercase text-danger fw-bold">Cart is empty</p>  
         <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
             <div class="modal-dialog">
             <div class="modal-content">
@@ -210,7 +227,15 @@ export default {
                 </div>
             </div>
         </div>
+            </div>
+
+       
+    
     </div>
+    
+    
+    
+    
 </template>
 
 
@@ -257,5 +282,25 @@ export default {
 .modal.show.d-block {
   display: block;
 }
+
+#Carrello{
+    width: 15%;
+    border: solid 2px #F6F3E4;
+    border-radius: 0.2em;
+    height: 100vh;
+    margin: 1em 0 1em 0;
+    padding: 2%;
+    .lista{
+        list-style: none;
+    }
+    h2{
+        font-family:"Pacifico", cursive;
+        text-shadow:2px 3px rgb(172, 177, 214);
+        color: #F6F3E4; 
+    }
+    }
+    
+
+
 
 </style>
