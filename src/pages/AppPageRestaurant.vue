@@ -197,7 +197,7 @@ export default {
                             <button class="btn btn-outline-light" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-white" v-if="Cart.items.length > 0">Total: {{ Cart.total }} &euro;</h4>
+                    <h4 class="p-3 text-end text-white" v-if="Cart.items.length > 0">Total: {{ Cart.total.toFixed(2) }} &euro;</h4>
                 </div>
                 <p v-else class="fs-5 text-center">Your Cart is Empty</p>
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
