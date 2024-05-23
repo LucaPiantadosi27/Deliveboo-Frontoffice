@@ -115,6 +115,15 @@ export default {
     height: 450px;
 }
 
+.small-image{
+    
+       
+      &:hover{
+
+        cursor: pointer;
+       
+    }
+}
 
 .box-icon{
 
