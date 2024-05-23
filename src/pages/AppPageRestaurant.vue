@@ -127,7 +127,7 @@ export default {
                     this.Cart.items.splice(plateIndex, 1)
                 }
             }
-            
+
             this.Cart.total = 0
             this.Cart.items.forEach(item => {
                 this.Cart.total += Number(item.subTotal)
@@ -161,10 +161,14 @@ export default {
 <template>
     <div id="restaurant" style="width: 100%;"
         class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
+
+        <!-- PULSANTE BACK -->
         <div class="back pe-5 me-5 ">
             <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
                     class="my-arrow fa-solid fa-reply"></i></router-link>
         </div>
+
+        <!-- JUMBO RISTO -->
         <div class="my-jumbo row card d-flex flex-row w-100  " style="width: 90%;">
             <div class="col-6 p-0">
                 <div class="img-box">
@@ -179,6 +183,8 @@ export default {
                 </div>
             </div>
         </div>
+
+        <!-- MENU PIATTI -->
         <div class="d-flex w-100">
             <div class="w-75">
                 <div class="d-flex justify-content-center pt-5">
@@ -188,6 +194,7 @@ export default {
                     <div class="d-flex flex-wrap justify-content-center gap-3 "
                         style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
+                        <!-- SINGOLO PIATTO -->
                         <div v-for="plate in singleRestaurant.plates" class="card " style="width: 14rem;">
                             <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover" alt="@"
                                 style="height: 170px;">
@@ -198,21 +205,21 @@ export default {
 
                             </div>
                             <div class="d-flex justify-content-center gap-2 pb-2">
-                                <button class="btn btn-outline-light" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
-                                <button class="btn btn-outline-light" @click="AddItemToCart(plate)"><i class="fa-solid fa-plus"></i></button>
+                                <button class="btn btn-outline-light" @click="RemoveItemFromCart(plate)"><i
+                                        class="fa-solid fa-minus"></i></button>
+                                <button class="btn btn-outline-light" @click="AddItemToCart(plate)"><i
+                                        class="fa-solid fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <!-- sezione da prendere -->
-
-                <!-- fine sezione -->
             </div>
 
+            <!-- CARRELLO -->
             <div class="w-25" id="Carrello">
                 <h2 class="text-center">Cart</h2>
-                <div class="" v-if="Cart.items.length > 0 && this.singleRestaurant.id == this.Cart.items[0].restaurant_id">
+                <div class=""
+                    v-if="Cart.items.length > 0">
                     <h3 class="text-center">{{ Cart.items[0].restaurant }}</h3>
                     <div class="p-3 border-bottom border-white text-start d-flex gap-1 justify-content-between text-white"
                         v-for="item in Cart.items">
@@ -221,19 +228,6 @@ export default {
                         <div>{{ item.subTotal }} &euro;</div>
                     </div>
                     <h4 class="p-3 text-end text-white" v-if="Cart.items.length > 0">Total: {{ Cart.total }} &euro;</h4>
-                    <!-- <div class="fs-5 fw-bolder text-decoration-none text-uppercase  " v-for="(item, index) in Cart"
-                        :key="index">
-                        <div class="d-flex flex-column mb-4 ">
-                            <div class="d-flex justify-content-between">
-                                <span>{{ item.name }}</span>
-                                <div class="d-flex justify-content-center align-items-center ">
-                                    <span class="text-danger fw-bold">{{ item.quantity }}</span>
-                                </div>
-
-                            </div>
-                            <span class="text-danger fw-bold">{{ item.price }}€</span>
-                        </div>
-                    </div> -->
                 </div>
                 <p v-else class="fs-5 text-center">Your Cart is Empty</p>
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
@@ -244,7 +238,7 @@ export default {
                     </div>
                 </div>
 
-                <!-- modale gestione carrello -->
+                <!-- MODALE CONFLITTO PIATTI -->
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
                     style="background: rgba(0, 0, 0, 0.5);">
                     <div class="modal-dialog">
@@ -254,7 +248,8 @@ export default {
                                 <button type="button" class="btn-close" @click="closeModal"></button>
                             </div>
                             <div class="modal-body">
-                                <p>You already have items in your cart with {{ Cart.items[0].restaurant }}. Do you wish to empty your cart?</p>
+                                <p>You already have items in your cart with {{ Cart.items[0].restaurant }}. Do you wish
+                                    to empty your cart?</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
