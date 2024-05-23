@@ -27,7 +27,7 @@ export default {
             </h1>
         </div>
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
-            <router-link :to="{ name: 'home'}" class="btn btn-outline-light">Welcome</router-link>
+            <router-link :to="{ name: 'home'}" class="btn btn-outline-light"><span>Order Now!</span></router-link>
         </div>
         <div class="logo_laravel col-5 d-flex justify-content-end align-items-center ">
             <img class="slide" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
@@ -52,6 +52,8 @@ export default {
             text-shadow:2px 4px rgb(130, 148, 196);
             font-weight: 400;
             font-style: normal;
+
+            z-index: 99;
         }
     }
 
@@ -61,11 +63,23 @@ export default {
   color: rgb(255, 234, 210);
   text-shadow:2px 3px rgb(130, 148, 196);
 
+  
+  z-index: 99;
+
+  span{
+    display: block;
+   }
+
   &:hover{
-   background-color: rgb(130, 148, 196); 
-   color: rgb(255, 234, 210);
-   text-shadow:2px 3px rgb(172, 177, 214);
-   border-color: rgb(130, 148, 196);
+   background-color: rgb(255, 234, 210); 
+   color: #8294c4;
+   text-shadow:2px 3px rgb(173, 178, 215);
+   border-color: rgb(255, 234, 210);
+
+   span{
+    transform: scale(1.7) rotate(-10deg);
+   }
+   
   }
 
 }

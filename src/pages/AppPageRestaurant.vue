@@ -283,7 +283,7 @@ export default {
 
     .my-arrow {
         font-size: 35px;
-        color: rgb(130, 148, 196);
+        color: #F6F3E4;
 
         &:hover {
             color: #F6F3E4;

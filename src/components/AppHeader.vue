@@ -2,6 +2,12 @@
 
 export default {
     name: 'AppHeader',
+
+    data(){
+        return{
+            apiImageUrl: 'http://127.0.0.1:8000/storage/',
+        }
+    }
 }
 
 </script>
@@ -44,18 +50,19 @@ export default {
     </div>
 </nav>
 
+
 </template>
 
 <style lang="scss">
 
 nav{
-    background-color: rgb(130, 148, 196);
+    background-color: #8294c4;
 
     color: #F6F3E4;
     font-size: 25px;
 
     font-family:"Pacifico", cursive;
-    text-shadow:2px 3px rgb(172, 177, 214);
+    text-shadow:2px 3px rgb(173, 178, 215);
     font-weight: 400;
     font-style: normal;
 
@@ -73,8 +80,6 @@ nav{
         }
     }
 
-   
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .all{

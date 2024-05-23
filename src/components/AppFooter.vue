@@ -9,7 +9,7 @@ export default {
 
 
 <template>
-    <footer id="footer" class="fixed-footer text-white">
+    <footer id="footer" class="fixed-footer text-white ">
         <div class="my-footer">
             <div class="row pt-4 text-center  text-md-left text-decoration-none ">
                 <!-- Colonna 1 -->
@@ -60,10 +60,9 @@ export default {
                 <div class="col-4 d-flex justify-content-center align-items-center">
                     <div class="text-center">
                     <p><strong>DOWNLOAD APP</strong></p>
-                    <div>
-                        <img class="small-image" :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
-                   
-                        <img class="small-image" :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
+                    <div class="d-flex gap-3 justify-content-center " >
+                        <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
+                        <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
                     </div>
                     </div>
                 </div>
@@ -71,7 +70,7 @@ export default {
                 <div class="col-6 d-flex flex-column justify-content-start align-items-center ">
                     <div class="text-center ">
                         <p class=""><strong>FOLLOW US</strong></p>
-                        <div class="d-flex justify-content-around gap-4">
+                        <div class="box-icon d-flex justify-content-around gap-4">
                             <i class=" fa-brands fa-square-facebook "></i>
                             <i class=" fa-brands fa-square-x-twitter "></i>
                             <i class=" fa-brands fa-square-instagram "></i>
@@ -91,9 +90,10 @@ export default {
     color: #F6F3E4;
     font-size: 25px;
 
+    width: 100vw;
+
     font-family:"Pacifico", cursive;
     text-shadow:2px 3px rgb(172, 177, 214);
-    
 }
 
 .fixed-footer {
@@ -112,48 +112,39 @@ export default {
 }
 
 .my-footer {
-    height: 400px;
+    height: 450px;
 }
 
-i:nth-of-type(1):hover{
-    background-color: #1877f2;
-}
-i:nth-of-type(2):hover{
-    background-color: #000000;
-}
-i:nth-of-type(3):hover{
-    background-color: rgb(176, 39, 194);
-}
-i:nth-of-type(4):hover{
-    background-color:#0077B5;
-}
-.small-image {
-  width: 120px; 
-  height: auto;
-  border-radius: 5px;
-  border: 2px solid transparent;
 
-    &:hover{
-        border-color: rgba(255, 255, 255, 0.514);
+.box-icon{
+
+    i:nth-of-type(1):hover{
+        color: #1877f2;
+    }
+    i:nth-of-type(2):hover{
    
+        color: #000000;
+    }
+    i:nth-of-type(3):hover{
+        color: rgb(176, 39, 194);
+    }
+    i:nth-of-type(4):hover{
+        color: #0077B5;
+    }
+
+    i {
         cursor: pointer;
-  
-}
-
-
-}
-i {
-    cursor: pointer;
-    font-size: 25px;
-    transition: .2s linear;
-
-    &:hover{
-        
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    border-radius: 3px;
-    transform: scale(1.2);
-
-
+        font-size: 25px;
+        transition: .2s linear;
+    
+        &:hover{
+            
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        border-radius: 3px;
+        transform: scale(1.2);
+    
+    
+    }
 }
 
 

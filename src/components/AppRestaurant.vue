@@ -39,7 +39,7 @@ export default {
   <div class="container py-5">
     <h2 class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</h2>
     <div class="row">
-      <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4">
+      <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4 z-3">
         <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
           <div class="restaurant-card h-100 pb-5">
             <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover" :alt="restaurant.name_res">
@@ -57,21 +57,23 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
   .restaurant-card {
     border: none;
     border-radius: 5px;
-    overflow: hidden;
     padding: 15px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
   }
 
   .card-img-top {
     width: 100%;
     display: block;
     border-radius: 5px 5px 0 0;
+
+
   }
 
   .description {
