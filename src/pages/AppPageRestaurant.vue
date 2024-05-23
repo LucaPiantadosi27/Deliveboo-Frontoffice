@@ -115,7 +115,7 @@ export default {
         
         isItemInCart(plateId) {
             return this.Cart.items.some(item => item.id === plateId);
-        }
+        },
     },
 }
 </script>
@@ -167,7 +167,7 @@ export default {
                             </div>
                             <div class="d-flex justify-content-center pb-2">
                                 <button v-if="!isItemInCart(plate.id)" class="btn btn-outline-light" @click="AddItemToCart(plate)">
-                                    Add to cart
+                                    Add to cart <i class="fa-solid fa-shopping-cart"></i>
                                 </button>
                                 <div class="d-flex gap-3" v-else>
                                     <button class="btn btn-outline-light" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
@@ -182,12 +182,12 @@ export default {
             <!-- CARRELLO -->
             <div class="w-25" id="Carrello">
                 <div v-if="Cart.items.length > 0">
-                    <h2 class="text-center">Cart</h2>
-                    <h3 class="text-center">{{ Cart.items[0].restaurant }}</h3>
+                    <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
+                    <h3 class="text-center fs-1">{{ Cart.items[0].restaurant }}</h3>
                     <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
                         <div class="d-flex justify-content-between align-items-center pb-3">
                             <div>{{ item.quantity }}x {{ item.name }}</div>
-                            <div>{{ item.subTotal.toFixed(2) }} &euro;</div>
+                            <div>{{ item.subTotal }} &euro;</div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center border-bottom border-white pb-3 gap-3">
                             <button class="btn btn-outline-light" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
