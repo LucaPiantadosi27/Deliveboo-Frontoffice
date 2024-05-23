@@ -4,8 +4,6 @@ import AppRestaurant from '../components/AppRestaurant.vue';
 import AppLoader from '../components/AppLoader.vue'
 import AppCart from "../components/AppCart.vue";
 
-
-
 export default {
     name: "AppPageRestaurant",
 
@@ -34,45 +32,24 @@ export default {
     },
 
     mounted() {
-        // se il carrello non è vuoto
-        //e se l'id del ristorante del piatto che stiamo aggiungendo non è uguale all'id del ristorante di un piatto gia inserito 
-
-
         this.restaurantId = this.$route.params.id
 
         axios.get(this.baseApiUrl + 'restaurants/' + this.restaurantId).then(res => {
-
             if (res.data.success) {
-
                 this.singleRestaurant = res.data.results
-
                 console.log(res.data);
-
             } else {
                 this.$router.push({ name: 'home' })
             }
-
-
         })
         console.log(JSON.parse(localStorage.getItem("cart")));
-        // console.log("carrello",this.Carrello)
 
-        // Recupera i dati dal local storage se il carrello è gia pieno se è vuoto procede
         if (JSON.parse(localStorage.getItem("cart")) != null) {
             this.Cart = JSON.parse(localStorage.getItem("cart"))
         }
-
-        // this.Cart=JSON.parse(localStorage.getItem("cart"))
     },
     methods: {
         AddItemToCart(plate) {
-
-            // if( this.Cart == null ){
-            //      //stringa inserita per la persistenza dei dati nello storage del browser
-            //      localStorage.setItem("cart", JSON.stringify(this.Cart));
-            // }
-
-            //gestione ricerca id 
             if (this.Cart.items.length != 0 && this.Cart.items.find((Item) => Item.restaurant_id != plate.restaurant_id)) {
                 console.log("Diverso");
                 this.showModal = true;
@@ -80,18 +57,13 @@ export default {
                 const CurrentItem = this.Cart.items.find((Item) => Item.id === plate.id)
 
                 if (CurrentItem) {
-
                     CurrentItem.quantity++;
                     CurrentItem.subTotal = CurrentItem.price * CurrentItem.quantity
-
                 } else {
-
                     let Item = plate;
-
                     Item.quantity = 1;
                     Item.restaurant = this.singleRestaurant.name_res
                     Item.subTotal = Item.price
-
                     this.Cart.items.push(Item);
                 }
 
@@ -100,9 +72,7 @@ export default {
                     this.Cart.total += Number(item.subTotal)
                 });
 
-                //stringa inserita per la persistenza dei dati nello storage del browser
                 localStorage.setItem("cart", JSON.stringify(this.Cart));
-
                 console.log(JSON.parse(localStorage.getItem("cart")));
             }
         },
@@ -115,15 +85,12 @@ export default {
             const plateIndex = this.Cart.items.findIndex((Item) => Item.id === plate.id)
 
             if (plateIndex != -1) {
-
                 const plate = this.Cart.items[plateIndex]
 
                 if (plate.quantity > 1) {
-
                     plate.quantity -= 1
                     plate.subTotal = plate.price * plate.quantity
-                }
-                else {
+                } else {
                     this.Cart.items.splice(plateIndex, 1)
                 }
             }
@@ -134,11 +101,9 @@ export default {
             });
 
             localStorage.setItem("cart", JSON.stringify(this.Cart));
-            // console.log("qualcosa",this.Cart)
             console.log(JSON.parse(localStorage.getItem("cart")));
         },
 
-        // svuotamento carrello dal modale
         emptyCart() {
             this.Cart = {
                 items: [],
@@ -147,16 +112,13 @@ export default {
             localStorage.removeItem("cart");
             this.showModal = false;
         },
+        
+        isItemInCart(plateId) {
+            return this.Cart.items.some(item => item.id === plateId);
+        }
     },
-    // watch: { 
-    //         Cart(newItems) { 
-    //             localStorage.setItem(Cart(cart), JSON.stringify(newItems)); 
-    //         }, 
-    //     }, 
-
 }
 </script>
-
 
 <template>
     <div id="restaurant" style="width: 100%;"
@@ -202,13 +164,15 @@ export default {
                                 <h5 class="card-title">{{ plate.name }}</h5>
                                 <p class="fst-italic">{{ plate.ingredients }}</p>
                                 <h6 class="card-text">{{ plate.price }} &euro;</h6>
-
                             </div>
-                            <div class="d-flex justify-content-center gap-2 pb-2">
-                                <button class="btn btn-outline-light" @click="RemoveItemFromCart(plate)"><i
-                                        class="fa-solid fa-minus"></i></button>
-                                <button class="btn btn-outline-light" @click="AddItemToCart(plate)"><i
-                                        class="fa-solid fa-plus"></i></button>
+                            <div class="d-flex justify-content-center pb-2">
+                                <button v-if="!isItemInCart(plate.id)" class="btn btn-outline-light" @click="AddItemToCart(plate)">
+                                    Add to cart
+                                </button>
+                                <div v-else>
+                                    <button class="btn btn-outline-light" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
+                                    <button class="btn btn-outline-light" @click="AddItemToCart(plate)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -218,14 +182,20 @@ export default {
             <!-- CARRELLO -->
             <div class="w-25" id="Carrello">
                 <h2 class="text-center">Cart</h2>
-                <div class=""
-                    v-if="Cart.items.length > 0">
+                <div v-if="Cart.items.length > 0">
                     <h3 class="text-center">{{ Cart.items[0].restaurant }}</h3>
-                    <div class="p-3 border-bottom border-white text-start d-flex gap-1 justify-content-between text-white"
+                    <div class="p-3 text-start d-flex gap-1 justify-content-between text-white"
                         v-for="item in Cart.items">
                         <div>{{ item.quantity }}x</div>
                         <div>{{ item.name }}</div>
                         <div>{{ item.subTotal }} &euro;</div>
+                    </div>
+                    <div class="border-bottom border-white d-flex justify-content-center text-white pb-3"
+                        v-for="item in Cart.items">
+                        <div>
+                            <button class="btn btn-outline-light" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
+                            <button class="btn btn-outline-light" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
+                        </div>
                     </div>
                     <h4 class="p-3 text-end text-white" v-if="Cart.items.length > 0">Total: {{ Cart.total }} &euro;</h4>
                 </div>
@@ -260,16 +230,9 @@ export default {
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
-
-
-
-
 </template>
+
 
 
 <style lang="scss">
