@@ -187,7 +187,7 @@ export default {
                     <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
                         <div class="d-flex justify-content-between align-items-center pb-3">
                             <div>{{ item.quantity }}x {{ item.name }}</div>
-                            <div>{{ item.subTotal }} &euro;</div>
+                            <div>{{ item.subTotal.toFixed(2) }} &euro;</div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center border-bottom border-white pb-3 gap-3">
                             <button class="btn btn-outline-light" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
