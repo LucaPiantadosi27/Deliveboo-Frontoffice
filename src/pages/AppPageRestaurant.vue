@@ -169,7 +169,7 @@ export default {
                                 <button v-if="!isItemInCart(plate.id)" class="btn btn-outline-light" @click="AddItemToCart(plate)">
                                     Add to cart
                                 </button>
-                                <div v-else>
+                                <div class="d-flex gap-3" v-else>
                                     <button class="btn btn-outline-light" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
                                     <button class="btn btn-outline-light" @click="AddItemToCart(plate)"><i class="fa-solid fa-plus"></i></button>
                                 </div>
@@ -181,23 +181,20 @@ export default {
 
             <!-- CARRELLO -->
             <div class="w-25" id="Carrello">
-                <h2 class="text-center">Cart</h2>
                 <div v-if="Cart.items.length > 0">
+                    <h2 class="text-center">Cart</h2>
                     <h3 class="text-center">{{ Cart.items[0].restaurant }}</h3>
-                    <div class="p-3 text-start d-flex gap-1 justify-content-between text-white"
-                        v-for="item in Cart.items">
-                        <div>{{ item.quantity }}x</div>
-                        <div>{{ item.name }}</div>
-                        <div>{{ item.subTotal }} &euro;</div>
-                    </div>
-                    <div class="border-bottom border-white d-flex justify-content-center text-white pb-3"
-                        v-for="item in Cart.items">
-                        <div>
+                    <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
+                        <div class="d-flex justify-content-between align-items-center pb-3">
+                            <div>{{ item.quantity }}x {{ item.name }}</div>
+                            <div>{{ item.subTotal.toFixed(2) }} &euro;</div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center border-bottom border-white pb-3 gap-3">
                             <button class="btn btn-outline-light" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
                             <button class="btn btn-outline-light" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-white" v-if="Cart.items.length > 0">Total: {{ Cart.total.toFixed(2) }} &euro;</h4>
+                    <h4 class="p-3 text-end text-white">Total: {{ Cart.total.toFixed(2) }} &euro;</h4>
                 </div>
                 <p v-else class="fs-5 text-center">Your Cart is Empty</p>
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
