@@ -23,33 +23,30 @@ export default {
             </div>
         </a>
 
+        
         <button class="navbar-toggler border-0 my-burger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <i class="fa-solid fa-burger"></i>
         </button>
 
-        <div>
-
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto gap-3 ">
-                    <!-- Authentication Links -->
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'home'}" class="nav-link text-light text-decoration-none">Home</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="http://127.0.0.1:8000/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="http://127.0.0.1:8000/register">Register</a>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i>
-                    </li>
-                </ul>
-                
-            </div>  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto gap-3 ">
+                <!-- Authentication Links -->
+                <li class="nav-item">
+                    <router-link :to="{ name: 'home'}" class="nav-link text-light text-decoration-none">Home</router-link>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="http://127.0.0.1:8000/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="http://127.0.0.1:8000/register">Register</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i>
+                </li>
+            </ul>
             
-        </div>
+        </div>  
 
         
     </div>
@@ -83,6 +80,7 @@ nav{
 
             display: flex;
             align-items: center;
+            justify-content: center;
 
             :hover{
                 transition: .2s linear;
