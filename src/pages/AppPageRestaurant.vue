@@ -59,6 +59,7 @@ export default {
                 if (CurrentItem) {
                     CurrentItem.quantity++;
                     CurrentItem.subTotal = CurrentItem.price * CurrentItem.quantity
+                    plate.subTotal= plate.subTotal.toFixed(2)
                 } else {
                     let Item = plate;
                     Item.quantity = 1;
@@ -71,6 +72,7 @@ export default {
                 this.Cart.items.forEach(item => {
                     this.Cart.total += Number(item.subTotal)
                 });
+                this.Cart.total= this.Cart.total.toFixed(2)
 
                 localStorage.setItem("cart", JSON.stringify(this.Cart));
                 console.log(JSON.parse(localStorage.getItem("cart")));
@@ -90,6 +92,7 @@ export default {
                 if (plate.quantity > 1) {
                     plate.quantity -= 1
                     plate.subTotal = plate.price * plate.quantity
+                    plate.subTotal= plate.subTotal.toFixed(2)
                 } else {
                     this.Cart.items.splice(plateIndex, 1)
                 }
@@ -99,6 +102,7 @@ export default {
             this.Cart.items.forEach(item => {
                 this.Cart.total += Number(item.subTotal)
             });
+            this.Cart.total= this.Cart.total.toFixed(2)
 
             localStorage.setItem("cart", JSON.stringify(this.Cart));
             console.log(JSON.parse(localStorage.getItem("cart")));
@@ -194,7 +198,7 @@ export default {
                             <button class="btn btn-outline-light" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-white">Total: {{ Cart.total.toFixed(2) }} &euro;</h4>
+                    <h4 class="p-3 text-end text-white">Total: {{ Cart.total }} &euro;</h4>
                 </div>
                 <p v-else class="fs-5 text-center">Your Cart is Empty</p>
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
