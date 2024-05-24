@@ -101,6 +101,7 @@ export default {
 
 
 <template>
+
   <!-- jumbo -->
   <div>
     <div class="jumbotron px-5 d-flex align-items-center ">

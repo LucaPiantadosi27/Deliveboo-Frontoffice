@@ -125,6 +125,7 @@ export default {
 </script>
 
 <template>
+    
     <div id="restaurant" style="width: 100%;"
         class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
 

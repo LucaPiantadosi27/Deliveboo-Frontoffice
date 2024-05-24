@@ -29,6 +29,18 @@ export default{
     </div>
 
     <router-view></router-view>
+
+    <!-- offcanvas -->
+    <div class="offcanvas offcanvas-end my-offcanvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title my-title" id="offcanvasScrollingLabel">My Cart</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>Try scrolling the rest of the page to see this option in action.</p>
+        </div>
+    </div>
+    <!-- end offcanvas -->
   </div>
 
   <AppFooter></AppFooter>
@@ -61,6 +73,19 @@ export default{
         
     }
     
+  }
+
+}
+
+
+.my-offcanvas{
+  background-color:rgb(172, 177, 214) ;
+
+  .my-title{
+    font-family:"Pacifico", cursive;
+    text-shadow:2px 3px rgb(130, 148, 196);
+    font-weight: 400;
+    font-style: normal;
   }
 
 }

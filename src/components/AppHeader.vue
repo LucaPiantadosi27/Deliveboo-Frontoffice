@@ -23,31 +23,39 @@ export default {
             </div>
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler border-0 my-burger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <i class="fa-solid fa-burger"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto">
-                
-            </ul>
+        <div>
 
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto gap-3 ">
-                <!-- Authentication Links -->
-                <li class="nav-item">
-                    <router-link :to="{ name: 'home'}" class="nav-link text-light text-decoration-none">Home</router-link>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="http://127.0.0.1:8000/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="http://127.0.0.1:8000/register">Register</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto gap-3 ">
+                    <!-- Authentication Links -->
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'home'}" class="nav-link text-light text-decoration-none">Home</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="http://127.0.0.1:8000/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="http://127.0.0.1:8000/register">Register</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i>
+                    </li>
+                </ul>
+                
+            </div>  
+            
         </div>
+
+        
     </div>
+
+
+    
 </nav>
 
 
@@ -73,6 +81,9 @@ nav{
 
             transition: .2s linear;
 
+            display: flex;
+            align-items: center;
+
             :hover{
                 transition: .2s linear;
                 transform: scale(1.2);
@@ -80,10 +91,15 @@ nav{
         }
     }
 
+    .my-burger{
+        color: #F6F3E4;
+
+        font-size: 30px;
+    }
+
 }
 
 .all{
-    background-color: #3dc4df;
 
     height: calc(100% - 126px);
 }
