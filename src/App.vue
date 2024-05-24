@@ -2,20 +2,30 @@
 
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
+import { store } from "./components/store" 
 
 export default{
 
   data() {
     return{
       apiImageUrl: 'http://127.0.0.1:8000/storage/',
+      store,
+      Carrello:JSON.parse(localStorage.getItem("cart")),
+           
     }
   },
 
 
   components:{
     AppHeader,
-    AppFooter
-  }
+    AppFooter,
+  },
+
+  mounted(){
+        console.log("carrello",this.Carrello)
+        
+    }
+
 }
 </script>
 
@@ -29,18 +39,7 @@ export default{
     </div>
 
     <router-view></router-view>
-
-    <!-- offcanvas -->
-    <div class="offcanvas offcanvas-end my-offcanvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-        <div class="offcanvas-header">
-            <h2 class="offcanvas-title my-title" id="offcanvasScrollingLabel">My Cart</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <p>Try scrolling the rest of the page to see this option in action.</p>
-        </div>
-    </div>
-    <!-- end offcanvas -->
+    
   </div>
 
   <AppFooter></AppFooter>

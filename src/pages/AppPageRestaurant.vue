@@ -2,7 +2,7 @@
 import axios from "axios";
 import AppRestaurant from '../components/AppRestaurant.vue';
 import AppLoader from '../components/AppLoader.vue'
-import AppCart from "../components/AppCart.vue";
+
 
 export default {
     name: "AppPageRestaurant",
@@ -28,7 +28,7 @@ export default {
     components: {
         AppRestaurant,
         AppLoader,
-        AppCart,
+        
     },
 
     mounted() {

@@ -41,8 +41,8 @@ export default {
                 <li class="nav-item">
                     <a class="nav-link text-light" href="http://127.0.0.1:8000/register">Register</a>
                 </li>
-                <li>
-                    <i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i>
+                <li>                    
+                    <router-link :to="{name:'cart'}"><i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i></router-link>
                 </li>
             </ul>
             
