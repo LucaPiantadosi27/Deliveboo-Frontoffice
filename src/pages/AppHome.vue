@@ -175,8 +175,10 @@ export default {
     border: #f8ebde 2px solid;
     z-index: 99;
 
+    
     span {
       display: block;
+      transition: transform .3s ease;
     }
 
     &:hover {
@@ -224,7 +226,7 @@ export default {
 // End jumbo
 
 .card-wrapper{
-  width: calc(100% / 6 - 20px * 6 / 5);
+  width: calc(100% / 6 - 20px * 9 / 5);
 }
 
 section {
@@ -249,9 +251,10 @@ section {
     background-color: #279647;
     text-align: center;
     cursor: pointer;
-    user-select: none;
-    transition: opacity 0.3s ease;    
+    user-select: none;  
     transition: transform .3s ease;
+
+    color:#f8ebde;
     
     .category-img {
       width: 100%;
@@ -266,7 +269,6 @@ section {
   }
 
   .selected .card-category {
-    opacity: 0.4;
     transform: scale(1.1);
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   }

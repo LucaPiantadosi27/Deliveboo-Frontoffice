@@ -35,11 +35,10 @@ export default{
 
   <div class="box">
     <div class="wave-box">
-      <img :src="apiImageUrl + 'branding/svg.png'" alt="">
+      <img class="wave-top" :src="apiImageUrl + 'branding/svg.png'" alt="@">
     </div>
 
     <router-view></router-view>
-    
   </div>
 
   <AppFooter></AppFooter>
@@ -68,15 +67,16 @@ export default{
     left: 0;
     right: 0;
   
-    img{
+    .wave-top{
       width: 100%;
       height: 100%;
       transform: rotate(180deg);
         
     }
+
     
   }
-
+  
 }
 
 </style>

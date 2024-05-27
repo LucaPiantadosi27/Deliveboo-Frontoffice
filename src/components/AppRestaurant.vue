@@ -50,8 +50,8 @@ export default {
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4 z-3">
         <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
           <div class="restaurant-card h-100 pb-5 rounded-5 bg-gradient">
-            <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover rounded-3 bg-light" :alt="restaurant.name_res">
-            <div class="description text-secondary">
+            <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover rounded-top-5 bg-light" :alt="restaurant.name_res">
+            <div class="description">
               <h3 class="text-center">{{ restaurant.name_res }}</h3>
               <h4 class="text-center">{{ restaurant.address_res }}</h4>
               <div class="categories text-center">
@@ -68,23 +68,17 @@ export default {
 <style lang="scss">
 
   .thinking{
-    width: 10%;
+    width: 75%;
   }
 
   .woman{
     transform: scaleX(-1);
   }
 
-  .thinking{
-    width: 500px;
-    height: 500px;
-  }
-
   .restaurant-card {
     border: none;
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #fff;
+    background-color:#279647;
+    
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
   }
@@ -99,6 +93,7 @@ export default {
 
   .description {
     padding: 15px;
+    color:#f8ebde ;
   }
 
   .categories .badge {
