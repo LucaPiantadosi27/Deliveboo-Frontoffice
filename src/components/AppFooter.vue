@@ -52,14 +52,14 @@ export default {
             <div class="row d-flex 100w justify-content-center align-items-center ">
                 <div class="col-6 d-flex justify-content-center align-items-center  ">
                     <div class="text-center">
-                        <p class=""><strong>COPYRIGHT</strong></p>
+                        <h5>COPYRIGHT</h5>
                         <p class="mb-0">© 2024 Deliveboo. Developed by MLMSM</p>
                     </div>
                 </div>
                 
                 <div class="col-4 d-flex justify-content-center align-items-center">
                     <div class="text-center">
-                    <p><strong>DOWNLOAD APP</strong></p>
+                    <h5>DOWNLOAD APP</h5>
                     <div class="d-flex gap-3 justify-content-center " >
                         <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
                         <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
@@ -69,7 +69,7 @@ export default {
 
                 <div class="col-6 d-flex flex-column justify-content-start align-items-center ">
                     <div class="text-center ">
-                        <p class=""><strong>FOLLOW US</strong></p>
+                        <h5>FOLLOW US</h5>
                         <div class="box-icon d-flex justify-content-around gap-4">
                             <i class=" fa-brands fa-square-facebook "></i>
                             <i class=" fa-brands fa-square-x-twitter "></i>
@@ -92,8 +92,6 @@ export default {
 
     width: 100vw;
 
-    font-family:"Pacifico", cursive;
-    text-shadow:2px 3px rgb(172, 177, 214);
 }
 
 .fixed-footer {
@@ -105,6 +103,15 @@ export default {
     background-color: #FFAC5F;
 
     z-index: -1;
+
+    h5{
+        color:#713616;
+
+        font-family: "Chicle", serif;
+        font-weight: 400;
+        font-style: normal;
+        text-align: center; 
+    }
 }
 
 .fixed-footer.show {

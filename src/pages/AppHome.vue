@@ -231,7 +231,7 @@ section {
   padding-bottom: 350px;
   
   .do-you{
-    font-size: 40px;
+    font-size: 60px;
   }
 
   h2{

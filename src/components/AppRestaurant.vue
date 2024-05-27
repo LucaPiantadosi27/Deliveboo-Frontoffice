@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-  <div class="container pt-3">
+  <div class="container pt-5">
     <div class="d-flex justify-content-center" v-if="restaurants.length === 0">
       <div class="col-6">
         <img class="thinking woman " :src="apiImageUrl + 'branding/avatar.svg'" alt="">
