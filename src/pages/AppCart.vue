@@ -111,6 +111,14 @@ export default {
             return this.Cart.items.some(item => item.id === plateId);
         },
 
+        emptyCart() {
+            this.Cart = {
+                items: [],
+                total: 0
+            };
+            localStorage.removeItem("cart");
+        },
+
         // METODI CHECKOUT
         async getClientToken() {
             try {
@@ -159,7 +167,9 @@ export default {
                                 .then(result => {
                                     if (result.data.success) {
                                         this.createOrder();
-                                        router.push({ name: 'checkout' });
+                                        this.emptyCart();
+                                        document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
+                                        // router.push({ name: 'checkout' });
                                     } else {
                                         document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
                                     }
@@ -193,6 +203,17 @@ export default {
     watch: {
         // Il watcher rende solamente l'ogetto cart reattivo in componenti diversi
         'Cart.items'(newItems, oldItems) { },
+    },
+
+    computed: {
+        formIsValid(){
+            if(this.formData.email == '' || this.formData.billingAddress.name == '' || this.formData.billingAddress.surname == '' || this.formData.billingAddress.address == ''){
+                return true
+            }else{
+                return false
+            }
+        }
+
     }
 }
 </script>
@@ -224,40 +245,44 @@ export default {
             <p v-else class="fs-5 text-center">Your Cart is Empty</p>
         </div>
 
+        <div id="checkout-message" class="text-center"></div>
+
         <!-- CHECKOUT -->
-        <form class="mt-5" action="javascript:void(0)">
+        <form v-if="this.Cart.total > 0" class="mt-5" action="javascript:void(0)">
 
             <div>
-                <label class="form-label" for="name">Your name</label>
+                <label class="form-label" for="name">Name*</label>
                 <input class="form-control" type="name" name="name"
                     v-model="formData.billingAddress.name" required>
             </div>
 
             <div>
-                <label class="form-label" for="surname">Your surname</label>
+                <label class="form-label" for="surname">Surname*</label>
                 <input class="form-control" type="surname" name="surname"
                     v-model="formData.billingAddress.surname" required>
             </div>
 
             <div>
-                <label class="form-label" for="email">Your email</label>
+                <label class="form-label" for="email">Email*</label>
                 <input class="form-control" type="email" name="email" v-model="formData.email" required>
             </div>
 
             <div>
-                <label class="form-label" for="address">Your address</label>
+                <label class="form-label" for="address">Address*</label>
                 <input class="form-control" type="text" name="address"
                     v-model="formData.billingAddress.address" required>
             </div>
 
             <div>
-                <label class="form-label" for="phone">Your phone number</label>
+                <label class="form-label" for="phone">Phone Number</label>
                 <input class="form-control" type="text" name="phone"
                     v-model="formData.billingAddress.phoneNumber">
             </div>
 
+            <small>*these fields are required</small>
+
             <div id="dropin-container"></div>
-            <button id="submit_button">Submit payment</button>
+            <button class="btn btn-outline-dark" id="submit_button" :disabled="formIsValid">Submit payment</button>
         </form>
     </div>
 </template>
