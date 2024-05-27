@@ -83,12 +83,12 @@ export default {
             await Promise.all(imagePromises);
         },
 
-          scrollToTarget() {
-        const targetSection = document.getElementById('target');
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
+        scrollToTarget() {
+            const targetSection = document.getElementById('target');
+            if (targetSection) {
+              targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        },
   
 
     },

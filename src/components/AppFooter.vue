@@ -14,37 +14,37 @@ export default {
             <div class="row pt-4 text-center  text-md-left text-decoration-none ">
                 <!-- Colonna 1 -->
                 <div class="col-md-4 mb-4 ">
-                    <h5 class="text-uppercase fw-bold ">Scopri Deliveboo</h5>
+                    <h5 class="text-uppercase fw-bold ">Discover Deliveboo</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none ">Chi siamo</a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Ristoranti</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Who we are</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Restaurants</a></li>
                         <li><a href="#" class="text-white text-decoration-none ">Design</a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Diventa nostro partner</a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Programmazione</a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Lavora con noi</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Become our partner</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Programmig</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Work with us</a></li>
                     </ul>
                 </div>
 
         
                 <!-- Colonna 2 -->
                 <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase fw-bold ">Note Legali</h5>
+                    <h5 class="text-uppercase fw-bold ">Legal Notices</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none ">Termini & Condizioni</a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Informativa sulla privacy</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Temrs and Conditions</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Privacy Police</a></li>
                         <li><a href="#" class="text-white text-decoration-none ">Cookies</a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Classificazione dei partner</a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Richieste da parte delle Autorità </a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Pubbliche</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Classificatio of partners</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Requests from the authorities</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Public</a></li>
                     </ul>
                 </div>
                 <!-- Colonna 3 -->
                 <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase fw-bold ">Aiuto</h5>
+                    <h5 class="text-uppercase fw-bold ">Help</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none ">Contatti</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Contacts</a></li>
                         <li><a href="#" class="text-white text-decoration-none ">FAQ</a></li>
-                        <li><a href="#" class="text-white text-decoration-none ">Tipi di cucina</a></li>
+                        <li><a href="#" class="text-white text-decoration-none ">Types of cuisine</a></li>
                     </ul>
                 </div>
             </div>
