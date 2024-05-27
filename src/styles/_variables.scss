@@ -1,1 +1,31 @@
+// Colori 
+
 $primaryColor: #3dc4df;
+$color-brown: #713616;
+$color-red: #d62300;
+$color-cream: #f8ebde;
+$color-mustard: #ffaa01;
+$color-green: #279647;
+
+
+// Definizione del mixin per utilizzare i colori
+
+@mixin usa-colori($color) {
+    @if $color == primary {
+      color: $primaryColor;
+    } @else if $color == brown {
+      color: $color-brown;
+    } @else if $color == red {
+      color: $color-red;
+    } @else if $color == cream {
+      color: $color-cream;
+    } @else if $color == mustard {
+      color: $color-mustard;
+    } @else if $color == green {
+      color: $color-green;
+    } @else {
+      @warn "Colore sconosciuto: #{$color}";
+      color: inherit;
+    }
+  }
+  

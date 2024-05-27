@@ -17,21 +17,22 @@ export default {
 
 <nav class="navbar navbar-expand-md">
     <div class="container">
+        <!-- Logo a sinistra -->
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="logo_laravel">
                 <img :src="'http://localhost:8000/storage/' + 'branding/deliveboo.svg'" style="width: 100px" alt="">
             </div>
         </a>
 
-        
+        <!-- Bottone del toggler -->
         <button class="navbar-toggler border-0 my-burger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <i class="fa-solid fa-burger"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto gap-3 ">
-                <!-- Authentication Links -->
+        <!-- Elementi di navigazione a destra -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav gap-3">
+                <!-- Link di navigazione -->
                 <li class="nav-item">
                     <router-link :to="{ name: 'home'}" class=" text-decoration-none">Home</router-link>
                 </li>
@@ -41,18 +42,15 @@ export default {
                 <li class="nav-item">
                     <a class="text-decoration-none" href="http://127.0.0.1:8000/register">Register</a>
                 </li>
-                <li>
-                    <router-link :to="{name:'cart'}"><i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i></router-link>
+                <!-- Icona del carrello -->
+                <li class="nav-item">
+                    <router-link :to="{name:'cart'}">
+                        <i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i>
+                    </router-link>
                 </li>
             </ul>
-            
-        </div>  
-
-        
+        </div>
     </div>
-
-
-    
 </nav>
 
 

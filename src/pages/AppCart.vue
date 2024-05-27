@@ -249,6 +249,7 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 
+
 #Carrello {
     // width: 15%;
     border: solid 2px #F6F3E4;
