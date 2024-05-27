@@ -44,9 +44,7 @@ export default {
                 </li>
                 <!-- Icona del carrello -->
                 <li class="nav-item">
-                    <router-link :to="{name:'cart'}">
-                        <i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i>
-                    </router-link>
+                    <router-link :to="{name:'cart'}"><i class="fa-solid fa-cart-shopping"></i></router-link>
                 </li>
             </ul>
         </div>
