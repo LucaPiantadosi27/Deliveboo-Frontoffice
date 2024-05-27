@@ -49,9 +49,9 @@ export default {
     <div class="row">
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4 z-3">
         <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
-          <div class="restaurant-card h-100 pb-5">
-            <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover" :alt="restaurant.name_res">
-            <div class="description text-black">
+          <div class="restaurant-card h-100 pb-5 rounded-5 bg-gradient">
+            <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover rounded-3 bg-light" :alt="restaurant.name_res">
+            <div class="description text-secondary">
               <h3 class="text-center">{{ restaurant.name_res }}</h3>
               <h4 class="text-center">{{ restaurant.address_res }}</h4>
               <div class="categories text-center">
