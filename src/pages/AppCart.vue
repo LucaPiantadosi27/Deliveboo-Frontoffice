@@ -21,14 +21,14 @@ export default {
             token: '',
             baseApiUrl: "http://127.0.0.1:8000/api/",
             form: $('form'),
-            threeDSecureParameters: {
-                amount: 69,
+            formData: {
+                amount: 0,
                 email: '',
                 billingAddress: {
-                    givenName: '',
+                    name: '',
                     surname: '',
                     phoneNumber: '',
-                    streetAddress: '',
+                    address: '',
                 }
             }
         }
@@ -45,7 +45,6 @@ export default {
 
         // recupera token checkout
         this.getClientToken();
-        console.log('test', this.threeDSecureParameters)
 
     },
 
@@ -114,73 +113,88 @@ export default {
 
         // METODI CHECKOUT
         async getClientToken() {
-        try {
-            const res = await axios.get(this.baseApiUrl + "payment/token");
-            console.log(res);
-            this.token = res.data.token;
-            this.initializeBraintree();
-        } catch (error) {
-            console.error("Errore durante il recupero del token:", error);
-        }
-    },
-
-    initializeBraintree() {
-    const button = document.querySelector('#submit_button');
-    if (button) {
-        dropin.create({
-            authorization: this.token,
-            container: '#dropin-container',
-            threeDSecure: true,
-        }, (createErr, instance) => {
-            if (createErr) {
-                console.error('Errore durante la creazione dell\'interfaccia Drop-in:', createErr);
-                return;
+            try {
+                const res = await axios.get(this.baseApiUrl + "payment/token");
+                console.log(res);
+                this.token = res.data.token;
+                this.initializeBraintree();
+            } catch (error) {
+                console.error("Errore durante il recupero del token:", error);
             }
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Imposta l'importo della transazione
-                this.threeDSecureParameters.amount = this.Cart.total;
-                
-                instance.requestPaymentMethod({
-                    threeDSecure: {
-                        amount: this.threeDSecureParameters.amount,
-                        email: this.threeDSecureParameters.email,
-                        billingAddress: this.threeDSecureParameters.billingAddress
-                    }
-                }, (requestPaymentMethodErr, payload) => {
-                    if (requestPaymentMethodErr) {
-                        console.error('Errore durante la richiesta del metodo di pagamento:', requestPaymentMethodErr);
+        },
+
+        initializeBraintree() {
+            const button = document.querySelector('#submit_button');
+            if (button) {
+                dropin.create({
+                    authorization: this.token,
+                    container: '#dropin-container',
+                    threeDSecure: true,
+                }, (createErr, instance) => {
+                    if (createErr) {
+                        console.error('Errore durante la creazione dell\'interfaccia Drop-in:', createErr);
                         return;
                     }
-                    axios.post(this.baseApiUrl + "payment/checkout", { 
-                        paymentMethodNonce: payload.nonce,
-                        amount: this.Cart.total // Passa l'importo totale qui
-                    })
-                    .then(result => {
-                        if (result.data.success) {
-                            router.push({ name: 'checkout' })
-                        } else {
-                            document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Errore durante il checkout:', error);
-                        document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+
+                        // Imposta l'importo della transazione
+                        this.formData.amount = this.Cart.total;
+
+                        instance.requestPaymentMethod({
+                            threeDSecure: {
+                                amount: this.formData.amount,
+                                email: this.formData.email,
+                                billingAddress: this.formData.billingAddress
+                            }
+                        }, (requestPaymentMethodErr, payload) => {
+                            if (requestPaymentMethodErr) {
+                                console.error('Errore durante la richiesta del metodo di pagamento:', requestPaymentMethodErr);
+                                return;
+                            }
+                            axios.post(this.baseApiUrl + "payment/checkout", {
+                                paymentMethodNonce: payload.nonce,
+                                amount: this.Cart.total, // Passa l'importo totale qui
+                            })
+                                .then(result => {
+                                    if (result.data.success) {
+                                        this.createOrder()
+                                        router.push({ name: 'checkout' })
+                                    } else {
+                                        document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Errore durante il checkout:', error);
+                                    document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
+                                });
+                        });
                     });
                 });
-            });
-        });
-    } else {
-        console.error('Pulsante submit non trovato!');
-    }
-},
+            } else {
+                console.error('Pulsante submit non trovato!');
+            }
+        },
+
+        createOrder(){
+            axios.post(this.baseApiUrl + "order",{
+                cart: this.Cart,
+                customerData: this.formData
+            })
+                .then(result => {
+                    console.log(result)
+                })
+                .catch(error =>{
+                    console.error("Errore creando l'/ordine", error);
+                })
+        },
+
+    },
 
     watch: {
         // Il watcher rende solamente l'ogetto cart reattivo in componenti diversi
         'Cart.items'(newItems, oldItems) { },
     }
-}
 }
 </script>
 
@@ -213,29 +227,34 @@ export default {
 
         <!-- CHECKOUT -->
         <form class="mt-5" action="javascript:void(0)">
+
             <div>
                 <label class="form-label" for="name">Your name</label>
-                <input class="form-control" type="name" name="name" :value="threeDSecureParameters.billingAddress.givenName" required>
+                <input class="form-control" type="name" name="name"
+                    v-model="formData.billingAddress.name" required>
             </div>
 
             <div>
                 <label class="form-label" for="surname">Your surname</label>
-                <input class="form-control" type="surname" name="surname" :value="threeDSecureParameters.billingAddress.surname" required>
+                <input class="form-control" type="surname" name="surname"
+                    v-model="formData.billingAddress.surname" required>
             </div>
 
             <div>
                 <label class="form-label" for="email">Your email</label>
-                <input class="form-control" type="email" name="email" :value="threeDSecureParameters.email" required>
+                <input class="form-control" type="email" name="email" v-model="formData.email" required>
             </div>
 
             <div>
                 <label class="form-label" for="address">Your address</label>
-                <input class="form-control" type="text" name="address" :value="threeDSecureParameters.billingAddress.streetAddress" required>                
+                <input class="form-control" type="text" name="address"
+                    v-model="formData.billingAddress.address" required>
             </div>
 
             <div>
                 <label class="form-label" for="phone">Your phone number</label>
-                <input class="form-control" type="text" name="phone" :value="threeDSecureParameters.billingAddress.phoneNumber">    
+                <input class="form-control" type="text" name="phone"
+                    v-model="formData.billingAddress.phoneNumber">
             </div>
 
             <div id="dropin-container"></div>
@@ -248,6 +267,12 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
+
+.my-box{
+    position: relative;
+    z-index: 10;
+    color: black;
+}
 
 #Carrello {
     // width: 15%;
