@@ -20,7 +20,9 @@ export default {
   computed: {
     restaurantText() {
       const count = this.restaurants.length;
-      if (count === 1) {
+      if (count === 0) {
+        return "What do you want to eat?";
+      } else if (count === 1) {
         return "One Restaurant";
       } else if (count > 1) {
         return "Restaurants";
@@ -36,7 +38,7 @@ export default {
 
 <template>
   <div class="container py-5">
-    <h2 class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</h2>
+    <h2 class="text-center mb-3"><strong>{{  }}</strong> {{ restaurantCount }} {{ restaurantText }}</h2>
     <div class="row">
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4 z-3">
         <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >

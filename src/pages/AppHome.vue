@@ -125,8 +125,8 @@ export default {
 <!-- End Jumbo -->
   <section id="target">
     <div class="container pb-5">
-      <AppLoader v-if="isLoading"></AppLoader>
-      <div v-if="!isLoading" class="container py-5">
+      <div class="container py-5">
+        <h3>What do you want to eat?</h3>
         <div class="d-flex gap-2 justify-content-center category-wrapper flex-wrap">
           <div
             @click="AddCategory(category.id)"
@@ -159,10 +159,9 @@ export default {
 
   .welcome_text {
     h1 {
-      font-size: 100px;
-      color: rgb(255, 234, 210);
-      font-family: "Pacifico", cursive;
-      text-shadow: 2px 4px rgb(130, 148, 196);
+      font-size: 120px;
+      color: #D62300;
+      font-family: "Chicle", serif;
       font-weight: 400;
       font-style: normal;
       z-index: 99;
@@ -170,7 +169,7 @@ export default {
   }
 
   .btn {
-    font-family: "Pacifico", cursive;
+    font-family: "Chicle", serif;
     font-size: 30px;
     color: rgb(255, 234, 210);
     text-shadow: 2px 3px rgb(130, 148, 196);

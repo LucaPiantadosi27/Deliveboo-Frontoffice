@@ -267,7 +267,6 @@ export default {
         text-align: center;
         margin-top: 15px;
         font-family: "Pacifico", cursive;
-        text-shadow: 2px 3px rgb(172, 177, 214);
         color: #F6F3E4;
     }
 }

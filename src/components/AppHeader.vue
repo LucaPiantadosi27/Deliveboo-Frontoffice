@@ -19,7 +19,7 @@ export default {
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="logo_laravel">
-                <img :src="'http://localhost:8000/storage/' + 'branding/logo.png'" style="width: 100px" alt="">
+                <img :src="'http://localhost:8000/storage/' + 'branding/deliveboo.svg'" style="width: 100px" alt="">
             </div>
         </a>
 
@@ -33,15 +33,15 @@ export default {
             <ul class="navbar-nav ml-auto gap-3 ">
                 <!-- Authentication Links -->
                 <li class="nav-item">
-                    <router-link :to="{ name: 'home'}" class="nav-link text-light text-decoration-none">Home</router-link>
+                    <router-link :to="{ name: 'home'}" class=" text-decoration-none">Home</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="http://127.0.0.1:8000/login">Login</a>
+                    <a class="text-decoration-none" href="http://127.0.0.1:8000/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="http://127.0.0.1:8000/register">Register</a>
+                    <a class="text-decoration-none" href="http://127.0.0.1:8000/register">Register</a>
                 </li>
-                <li>                    
+                <li>
                     <router-link :to="{name:'cart'}"><i class="fa-solid fa-cart-shopping my-canvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" ></i></router-link>
                 </li>
             </ul>
@@ -61,20 +61,19 @@ export default {
 <style lang="scss">
 
 nav{
-    background-color: #8294c4;
+    background-color: #f8ebde;
 
-    color: #F6F3E4;
+    color: #D62300 !important;
     font-size: 25px;
 
-    font-family:"Pacifico", cursive;
-    text-shadow:2px 3px rgb(173, 178, 215);
+    font-family:sans-serif;
     font-weight: 400;
     font-style: normal;
 
     z-index: 99;
     ul{
-        li{
-            color: #F6F3E4;
+        li, a{
+            color: #D62300 !important;
 
             transition: .2s linear;
 
@@ -95,11 +94,6 @@ nav{
         font-size: 30px;
     }
 
-}
-
-.all{
-
-    height: calc(100% - 126px);
 }
 
 </style>

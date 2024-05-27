@@ -42,9 +42,8 @@ export default {
 h1 {
   text-align: center;
   margin-top: 15px;
-  font-family:"Pacifico", cursive;
-  text-shadow:2px 3px rgb(130, 148, 196);
-  color: white;
+  font-family: "Chicle", serif;
+  color: #D62300;
 }
 
 

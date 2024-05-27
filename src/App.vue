@@ -35,7 +35,7 @@ export default{
 
   <div class="box">
     <div class="wave-box">
-      <img :src="apiImageUrl + 'branding/svg.png' " alt="">
+      <img :src="apiImageUrl + 'branding/svg.png'" alt="">
     </div>
 
     <router-view></router-view>
@@ -54,16 +54,19 @@ export default{
 .box{
 
   margin-bottom: 450px;
-  background-color: rgb(172, 177, 214);
   position: relative;
+  background-color: #f8ebde;
   
   height: 100%;
   min-height: 800px;
   
   .wave-box{
-    background-color: rgb(172, 177, 214);
     position: absolute;
     width: 100%;
+
+    top: -1px;
+    left: 0;
+    right: 0;
   
     img{
       width: 100%;
@@ -76,16 +79,4 @@ export default{
 
 }
 
-
-.my-offcanvas{
-  background-color:rgb(172, 177, 214) ;
-
-  .my-title{
-    font-family:"Pacifico", cursive;
-    text-shadow:2px 3px rgb(130, 148, 196);
-    font-weight: 400;
-    font-style: normal;
-  }
-
-}
 </style>
