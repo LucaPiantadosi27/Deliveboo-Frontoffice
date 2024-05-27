@@ -159,6 +159,8 @@ export default {
                                 .then(result => {
                                     if (result.data.success) {
                                         this.createOrder();
+                                         // funzione per svuotare il carrello
+                                        this.emptyCart();
                                         router.push({ name: 'checkout' });
                                     } else {
                                         document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
@@ -187,7 +189,16 @@ export default {
                 .catch(error => {
                     console.error("Errore creando l'ordine", error);
                 });
-        }
+        },
+
+        // funzione per svuotare il carrello dopo il pagamento
+        emptyCart() {
+            this.Cart = {
+                items: [],
+                total: 0
+            };
+            localStorage.removeItem("cart");
+        },
     },
 
     watch: {
