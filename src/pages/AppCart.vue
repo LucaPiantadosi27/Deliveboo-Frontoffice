@@ -158,8 +158,8 @@ export default {
                             })
                                 .then(result => {
                                     if (result.data.success) {
-                                        this.createOrder()
-                                        router.push({ name: 'checkout' })
+                                        this.createOrder();
+                                        router.push({ name: 'checkout' });
                                     } else {
                                         document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
                                     }
@@ -176,19 +176,18 @@ export default {
             }
         },
 
-        createOrder(){
-            axios.post(this.baseApiUrl + "order",{
+        createOrder() {
+            axios.post(this.baseApiUrl + "order", {
                 cart: this.Cart,
                 customerData: this.formData
             })
                 .then(result => {
-                    console.log(result)
+                    console.log(result);
                 })
-                .catch(error =>{
-                    console.error("Errore creando l'/ordine", error);
-                })
-        },
-
+                .catch(error => {
+                    console.error("Errore creando l'ordine", error);
+                });
+        }
     },
 
     watch: {
