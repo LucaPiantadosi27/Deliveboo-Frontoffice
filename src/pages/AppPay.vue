@@ -1,3 +1,6 @@
+<!-- PAGINA DEPRECATA CHECKOUT SPOSTATO IN APPCART -->
+
+
 <script>
 import axios from 'axios';
 import dropin from 'braintree-web-drop-in';
@@ -38,7 +41,7 @@ export default {
                 console.error('Errore durante la richiesta del metodo di pagamento:', requestPaymentMethodErr);
                 return;
               }
-              axios.post( this.baseApiUrl +"payment/checkout", { paymentMethodNonce: payload.nonce })
+              axios.post(this.baseApiUrl + "payment/checkout", { paymentMethodNonce: payload.nonce })
                 .then(result => {
                   if (result.data.success) {
                     document.getElementById('checkout-message').innerHTML = '<h1>Successo</h1><p>La tua interfaccia Drop-in funziona! Controlla il tuo <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> per le tue transazioni di prova.</p>';
@@ -65,22 +68,18 @@ export default {
 };
 </script>
 <template>
-    <div class="my-box container py-5">
-
-
-
-            <div id="dropin-wrapper">
-                <div id="checkout-message"></div>
-                <div id="dropin-container"></div>
-                <button  id="submit_button">Submit payment</button>
-            </div>
-
+  <div class="my-box container py-5">
+    <div id="dropin-wrapper">
+      <div id="checkout-message"></div>
+      <div id="dropin-container"></div>
+      <button id="submit_button">Submit payment</button>
     </div>
-  </template>
+  </div>
+</template>
 
 <style lang="scss">
 .my-box {
-    position: relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
 }
 </style>
