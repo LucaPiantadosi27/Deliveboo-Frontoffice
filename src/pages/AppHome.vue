@@ -112,7 +112,7 @@ export default {
           </h1>
         </div>
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
-          <button @click="scrollToTarget()" class="btn btn-outline-light"><span>Order Now!</span></button>
+          <button @click="scrollToTarget()" class="btn"><span>Order Now!</span></button>
         </div>
         <div class="logo_laravel col-5 d-flex justify-content-end align-items-center ">
           <img class="slide" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
@@ -124,17 +124,17 @@ export default {
   </div> 
 <!-- End Jumbo -->
   <section id="target">
-    <div class="container pb-5">
+    <div class="container">
       <div class="container py-5">
-        <h3>What do you want to eat?</h3>
-        <div class="d-flex gap-2 justify-content-center category-wrapper flex-wrap">
+        <h2 class="do-you">What do you want to eat?</h2>
+        <div class="d-flex gap-4 justify-content-center category-wrapper flex-wrap">
           <div
             @click="AddCategory(category.id)"
             v-for="category in categories"
             :key="category.id"
             :class="{'selected': ArrayCategory.includes(category.id)}"
             class="d-flex gap-2 align-items-center card-wrapper">
-            <div class="card-category card h-100 rounded-4 border-0">
+            <div class="card-category card h-100 rounded-4">
               <img class="category-img rounded-4" :src="'http://localhost:8000/storage/' + category.image" alt="">
               <div>{{ category.name }}</div>
             </div>
@@ -170,9 +170,9 @@ export default {
 
   .btn {
     font-family: "Chicle", serif;
-    font-size: 30px;
-    color: rgb(255, 234, 210);
-    text-shadow: 2px 3px rgb(130, 148, 196);
+    font-size: 35px;
+    color: #D62300;
+    border: #f8ebde 2px solid;
     z-index: 99;
 
     span {
@@ -180,10 +180,9 @@ export default {
     }
 
     &:hover {
-      background-color: rgb(255, 234, 210);
-      color: #8294c4;
-      text-shadow: 2px 3px rgb(173, 178, 215);
-      border-color: rgb(255, 234, 210);
+      background-color: #f8ebde;
+      color: #D62300;
+      border-color: #f8ebde;
 
       span {
         transform: scale(1.7) rotate(-10deg);
@@ -225,27 +224,51 @@ export default {
 // End jumbo
 
 .card-wrapper{
-  width: calc(100% / 6 - 8px * 6 / 5);
+  width: calc(100% / 6 - 20px * 6 / 5);
 }
 
 section {
   padding-bottom: 350px;
+  
+  .do-you{
+    font-size: 40px;
+  }
+
+  h2{
+    padding-left: 10px;
+    color: #D62300;
+
+    font-family: "Chicle", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
   .card-category {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #279647;
     text-align: center;
     cursor: pointer;
     user-select: none;
-    transition: opacity 0.3s ease;
-
+    transition: opacity 0.3s ease;    
+    transition: transform .3s ease;
+    
     .category-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+    
+    &:hover{
+      transform: scale(1.1);
+      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    }
   }
 
   .selected .card-category {
     opacity: 0.4;
+    transform: scale(1.1);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   }
 
 

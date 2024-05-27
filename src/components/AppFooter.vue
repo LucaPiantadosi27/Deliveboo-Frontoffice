@@ -102,7 +102,7 @@ export default {
     right: 0;
     left: 0;
 
-    background-color: rgb(130, 148, 196);
+    background-color: #FFAC5F;
 
     z-index: -1;
 }
