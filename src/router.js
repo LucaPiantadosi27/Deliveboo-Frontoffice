@@ -3,11 +3,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import AppHome from './pages/AppHome.vue';
 
 import AppCart from './pages/AppCart.vue';
-
-import AppPay from "./pages/AppPay.vue";
-
-
 import AppPageRestaurant from "./pages/AppPageRestaurant.vue";
+import PaymentCheckout from "./pages/PaymentCheckout.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -30,9 +27,9 @@ const router = createRouter({
             component: AppCart,
         },
         {
-            path: '/pay',
-            name: 'pay',
-            component: AppPay,
+            path: '/checkout',
+            name: 'checkout',
+            component: PaymentCheckout,
         }
         
     ]

@@ -34,9 +34,9 @@ export default{
   <AppHeader></AppHeader>
 
   <div class="box">
-    <div class="wave-box">
+    <!-- <div class="wave-box">
       <img :src="apiImageUrl + 'branding/svg.png' " alt="">
-    </div>
+    </div> -->
 
     <router-view></router-view>
     
