@@ -267,6 +267,11 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 
+.my-box{
+    position: relative;
+    z-index: 10;
+    color: black;
+}
 
 #Carrello {
     // width: 15%;
