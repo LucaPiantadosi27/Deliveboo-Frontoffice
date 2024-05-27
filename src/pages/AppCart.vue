@@ -207,7 +207,7 @@ export default {
 
     computed: {
         formIsValid(){
-            if(this.formData.email == '' || this.formData.billingAddress.name == '' || this.formData.billingAddress.surname == '' || this.formData.billingAddress.address == ''){
+            if(this.formData.email == '' || this.formData.billingAddress.name == '' || this.formData.billingAddress.surname == '' || this.formData.billingAddress.address == '' || this.formData.billingAddress.phoneNumber == ''){
                 return true
             }else{
                 return false
@@ -274,7 +274,7 @@ export default {
             </div>
 
             <div>
-                <label class="form-label" for="phone">Phone Number</label>
+                <label class="form-label" for="phone">Phone Number*</label>
                 <input class="form-control" type="text" name="phone"
                     v-model="formData.billingAddress.phoneNumber">
             </div>
