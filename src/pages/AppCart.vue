@@ -169,16 +169,13 @@ export default {
                                 .then(result => {
                                     if (result.data.success) {
                                         this.createOrder();
-                                        // this.emptyCart(); DISABLED FOR TESTING
+                                        this.emptyCart();
                                         document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
                                         // router.push({ name: 'checkout' });
                                         console.log('info', result)
                                     } else {
                                         document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1>';
                                         console.log('apiErrors',result);
-                                        // for(let item in result.data.error){
-                                        //     this.formErrors.push(item)
-                                        // }
                                         this.formErrors = result.data.error
                                         console.log('jsErrors', this.formErrors)
                                     }
