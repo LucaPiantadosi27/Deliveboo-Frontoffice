@@ -33,7 +33,7 @@ export default {
 
     mounted() {
         document.documentElement.scrollTop = 0
-        
+
         this.restaurantId = this.$route.params.id
 
         axios.get(this.baseApiUrl + 'restaurants/' + this.restaurantId).then(res => {
@@ -141,7 +141,7 @@ export default {
         <div class="my-jumbo row card d-flex flex-row w-100  " style="width: 90%;">
             <div class="col-6 p-0">
                 <div class="img-box">
-                    <img class="img-fluid " :src="apiImageUrl + singleRestaurant.img_res" />
+                    <img class="img-fluid rounded-start-1" :src="apiImageUrl + singleRestaurant.img_res" />
                 </div>
             </div>
             <div class="col-6 p-3 card-body">
