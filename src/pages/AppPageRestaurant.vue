@@ -138,13 +138,14 @@ export default {
         </div>
 
         <!-- JUMBO RISTO -->
-        <div class="my-jumbo row card d-flex flex-row w-100  " style="width: 90%;">
-            <div class="col-6 p-0">
+        <div class="my-jumbo row card d-flex flex-row w-100 rounded-5 " style="width: 90%;">
+            <div class="col-8 p-0">
                 <div class="img-box">
-                    <img class="img-fluid rounded-start-1" :src="apiImageUrl + singleRestaurant.img_res" />
+                    <img class="img-fluid rounded-start-5 " :src="apiImageUrl + singleRestaurant.img_res" />
                 </div>
             </div>
-            <div class="col-6 p-3 card-body">
+            <div class="col-4 p-3 card-body position-relative">
+                <img :src="apiImageUrl + 'branding/wave-restaurant.png'" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
                 <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
                 <h3>{{ singleRestaurant.address_res }}</h3>
                 <div class="d-flex gap-2">
@@ -154,17 +155,17 @@ export default {
         </div>
 
         <!-- MENU PIATTI -->
-        <div class="d-flex w-100">
-            <div class="w-75">
+        <div class="d-flex justify-content-between w-100">
+            <div class="w-50">
                 <div class="d-flex justify-content-center pt-5">
                     <h2>Menù</h2>
                 </div>
                 <div class=" d-flex justify-content-between   pt-5">
-                    <div class="d-flex flex-wrap justify-content-center gap-3 "
+                    <div class="d-flex flex-wrap justify-content-start gap-3 "
                         style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
                         <!-- SINGOLO PIATTO -->
-                        <div v-for="plate in singleRestaurant.plates" class="card " style="width: 14rem;">
+                        <div v-for="plate in singleRestaurant.plates" class="my-card card rounded-3" style="width: 100%;">
                             <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover" alt="@"
                                 style="height: 170px;">
                             <div class="card-body d-flex flex-column justify-content-between">
@@ -187,7 +188,7 @@ export default {
             </div>
 
             <!-- CARRELLO -->
-            <div class="w-25" id="Carrello">
+            <div class="w-25 rounded-5" id="Carrello">
                 <div v-if="Cart.items.length > 0">
                     <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
                     <h3 class="text-center fs-1">{{ Cart.items[0].restaurant }}</h3>
@@ -268,8 +269,13 @@ export default {
     h1 {
         text-align: center;
         margin-top: 15px;
-        font-family: "Pacifico", cursive;
+        font-family: "Chicle", cursive;
         color: #d62300;
+    }
+
+    .wave-restaurant{
+        top: 0;
+        left: -49%;
     }
 }
 
@@ -280,27 +286,39 @@ export default {
   
 }
 
+.my-card{
+    
+    border: solid 1px #d38f4a;
+    color: #d38f4a;
+}
+
 .modal.show.d-block {
     display: block;
 }
 
+h2 {
+        font-family: "chicle", cursive;
+        color: #d62300;
+    }
+
 #Carrello {
     width: 15%;
-    border: solid 2px #F6F3E4;
+    border: solid 2px #d38f4a;
+    
     border-radius: 0.2em;
-    height: 100vh;
+    height: 50%;
     margin: 1em 0 1em 0;
     overflow-y: auto;
     // padding: 1rem;
 
     .lista {
         list-style: none;
+        color: #d38f4a;
     }
 
     h2 {
-        font-family: "Pacifico", cursive;
-        text-shadow: 2px 3px rgb(172, 177, 214);
-        color: #F6F3E4;
+        font-family: "chicle", cursive;
+        color: #d62300;
     }
 }
 </style>
