@@ -32,6 +32,8 @@ export default {
     },
 
     mounted() {
+        document.documentElement.scrollTop = 0
+        
         this.restaurantId = this.$route.params.id
 
         axios.get(this.baseApiUrl + 'restaurants/' + this.restaurantId).then(res => {
