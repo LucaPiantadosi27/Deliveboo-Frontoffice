@@ -18,11 +18,11 @@ export default {
 <nav class="navbar navbar-expand-md">
     <div class="container">
         <!-- Logo a sinistra -->
-        <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+        <div class="navbar-brand d-flex align-items-center">
             <div class="logo_laravel">
                 <img :src="'http://localhost:8000/storage/' + 'branding/deliveboo.svg'" style="width: 100px" alt="">
             </div>
-        </a>
+        </div>
 
         <!-- Bottone del toggler -->
         <button class="navbar-toggler border-0 my-burger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -66,7 +66,8 @@ nav{
     font-weight: 400;
     font-style: normal;
 
-    z-index: 99;
+    z-index: 99;  
+
     ul{
         li, a{
             color: #D62300 !important;
@@ -85,7 +86,7 @@ nav{
     }
 
     .my-burger{
-        color: #F6F3E4;
+        color: #d62300;
 
         font-size: 30px;
     }
