@@ -138,7 +138,7 @@ export default {
         </div>
 
         <!-- JUMBO RISTO -->
-        <div class="my-jumbo row card d-flex flex-row w-100 rounded-5 " style="width: 90%;">
+        <div class="my-jumbo row card d-flex flex-row w-100 rounded-5 shadow-lg " style="width: 90%;">
             <div class="col-8 p-0">
                 <div class="img-box">
                     <img class="img-fluid rounded-start-5 " :src="apiImageUrl + singleRestaurant.img_res" />
@@ -155,7 +155,7 @@ export default {
         </div>
 
         <!-- MENU PIATTI -->
-        <div class="d-flex justify-content-between w-100 pb-3">
+        <div class="d-flex justify-content-between w-100 pb-3 shadow-lg">
             <div class="w-50">
                 <!-- <div class="d-flex justify-content-center pt-5">
                     <h2>Menù</h2>
@@ -189,11 +189,12 @@ export default {
 
             <!-- CARRELLO -->
             
-            <div class="w-25 rounded-5" id="Carrello">
+            <div class="w-25 rounded-5 shadow-lg" id="Carrello">
                 
                 <div v-if="Cart.items.length > 0">
-                    <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart"></i></h2>
-                    <h3 class="text-center fs-1">{{ Cart.items[0].restaurant }}</h3>
+                    <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
+                    <h3 class="text-center fs-1 fw-bold">{{ Cart.items[0].restaurant }}</h3>
+                    <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Riepilogo ordine:</p>
                     <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
                         <div class="d-flex justify-content-between align-items-center pb-3 text-black">
                             <div>{{ item.quantity }}x {{ item.name }}</div>
@@ -204,8 +205,10 @@ export default {
                             <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-white text-bg-success text-center">Total: {{ Cart.total }} &euro;</h4>
-                    
+                    <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ Cart.total }} &euro;</h4>
+                    <div class="text-center mt-3 pb-3">
+                        <button class="btn btn-success p-2" @click="goToPayment">Vai al pagamento</button>
+                    </div>
                 </div>
                 <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
            
