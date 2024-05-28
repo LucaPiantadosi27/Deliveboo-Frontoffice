@@ -44,7 +44,7 @@ export default {
                 </li>
                 <!-- Icona del carrello -->
                 <li class="nav-item">
-                    <router-link :to="{name:'cart'}"><i class="fa-solid fa-cart-shopping"></i></router-link>
+                    <router-link :to="{name:'cart'}" class="text-decoration-none"><i class="fa-solid fa-cart-shopping"></i></router-link>
                 </li>
             </ul>
         </div>
