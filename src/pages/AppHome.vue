@@ -269,6 +269,7 @@ section {
   }
 
   .selected .card-category {
+    opacity: .6;
     transform: scale(1.1);
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   }
