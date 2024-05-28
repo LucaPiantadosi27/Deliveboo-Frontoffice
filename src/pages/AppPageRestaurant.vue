@@ -269,13 +269,15 @@ export default {
         text-align: center;
         margin-top: 15px;
         font-family: "Pacifico", cursive;
-        color: #F6F3E4;
+        color: #d62300;
     }
 }
 
 .card {
     border: solid 1px #F6F3E4;
-    background-color: rgb(130, 148, 196);
+    background-color: #f8ebde;
+    color: #d62300;
+  
 }
 
 .modal.show.d-block {
