@@ -163,15 +163,18 @@ export default {
                             axios.post(this.baseApiUrl + "payment/checkout", {
                                 paymentMethodNonce: payload.nonce,
                                 amount: this.Cart.total, // Passa l'importo totale qui
+                                formData: this.formData
                             })
                                 .then(result => {
                                     if (result.data.success) {
                                         this.createOrder();
-                                        this.emptyCart();
+                                        // this.emptyCart(); DISABLED FOR TESTING
                                         document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
                                         // router.push({ name: 'checkout' });
+                                        console.log('info', result)
                                     } else {
                                         document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
+                                        console.log(result)
                                     }
                                 })
                                 .catch(error => {
