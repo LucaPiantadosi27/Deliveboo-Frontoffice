@@ -30,7 +30,8 @@ export default {
                     phoneNumber: '',
                     address: '',
                 }
-            }
+            },
+            formErrors: {},
         }
     },
 
@@ -163,15 +164,23 @@ export default {
                             axios.post(this.baseApiUrl + "payment/checkout", {
                                 paymentMethodNonce: payload.nonce,
                                 amount: this.Cart.total, // Passa l'importo totale qui
+                                formData: this.formData
                             })
                                 .then(result => {
                                     if (result.data.success) {
                                         this.createOrder();
-                                        this.emptyCart();
+                                        // this.emptyCart(); DISABLED FOR TESTING
                                         document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
                                         // router.push({ name: 'checkout' });
+                                        console.log('info', result)
                                     } else {
-                                        document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
+                                        document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1>';
+                                        console.log('apiErrors',result);
+                                        // for(let item in result.data.error){
+                                        //     this.formErrors.push(item)
+                                        // }
+                                        this.formErrors = result.data.error
+                                        console.log('jsErrors', this.formErrors)
                                     }
                                 })
                                 .catch(error => {
@@ -221,6 +230,12 @@ export default {
             }else{
                 return false
             }
+        },
+
+        formHasError(input){
+            if(this.formErrors.hasOwnProperty(input)){
+                return 'border border-danger'
+            }
         }
 
     }
@@ -263,29 +278,34 @@ export default {
                 <label class="form-label" for="name">Name*</label>
                 <input class="form-control" type="name" name="name"
                     v-model="formData.billingAddress.name" required>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.name')">Please input your name</div>
             </div>
 
             <div>
                 <label class="form-label" for="surname">Surname*</label>
                 <input class="form-control" type="surname" name="surname"
                     v-model="formData.billingAddress.surname" required>
+                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.surname')">Please input your surname</div>
             </div>
 
             <div>
                 <label class="form-label" for="email">Email*</label>
                 <input class="form-control" type="email" name="email" v-model="formData.email" required>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.email')">Please input a valid email</div>
             </div>
 
             <div>
                 <label class="form-label" for="address">Address*</label>
                 <input class="form-control" type="text" name="address"
                     v-model="formData.billingAddress.address" required>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.address')">Please input your address</div>
             </div>
 
             <div>
                 <label class="form-label" for="phone">Phone Number*</label>
                 <input class="form-control" type="text" name="phone"
                     v-model="formData.billingAddress.phoneNumber">
+                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.phoneNumber')">Please input your phone Number</div>
             </div>
 
             <small>*these fields are required</small>
