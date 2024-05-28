@@ -71,10 +71,6 @@ export default {
     width: 75%;
   }
 
-  .woman{
-    transform: scaleX(-1);
-  }
-
   .restaurant-card {
     padding: 1px;
     background-color:#279647;

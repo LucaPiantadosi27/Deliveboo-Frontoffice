@@ -44,10 +44,10 @@ export default {
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="authDropdown">
-                        <li>
+                        <li class="d-down">
                             <a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a>
                         </li>
-                        <li>
+                        <li class="d-down">
                             <a class="dropdown-item" href="http://127.0.0.1:8000/register">Become our partner</a>
                         </li>
                     </ul>
@@ -83,6 +83,8 @@ nav{
         li, a{
             color: #D62300 !important;
 
+            font-weight: bold;
+
             transition: .2s linear;
 
             display: flex;
@@ -93,6 +95,28 @@ nav{
                 transition: .2s linear;
                 transform: scale(1.2);
             }
+
+            .dropdown-menu{
+                background-color: rgb(251, 211, 171);
+                border: 1px solid #713616;
+    
+                transform: none;
+        
+            }
+        
+            .d-down ,a.dropdown-item{
+                background-color: rgb(251, 211, 171);
+                font-weight: bold;
+                
+                transition: none !important;
+                transform: none !important;
+        
+                &:hover {
+                    transform: none !important;
+                    background-color: rgb(251, 195, 138);
+                }
+                    
+            }
         }
     }
 
@@ -102,21 +126,5 @@ nav{
         font-size: 30px;
     }
 
-ul.dropdown-menu{
-    background-color: rgb(251, 211, 171);
-    border: 1px solid #D62300;
-
-}
-a.dropdown-item{
-    background-color: rgb(251, 211, 171);
-    
-    transition: none !important;
-    transform: none !important;
-
-    :hover {
-        transform: none !important;
-    }
-        
-}
 }
 </style>
