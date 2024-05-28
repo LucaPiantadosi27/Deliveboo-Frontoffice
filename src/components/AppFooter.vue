@@ -13,7 +13,7 @@ export default {
         <div class="my-footer">
             <div class="row pt-4 text-center  text-md-left text-decoration-none ">
                 <!-- Colonna 1 -->
-                <div class="col-md-4 mb-4 ">
+                <div class="my-col col-md-4 mb-4 ">
                     <h5 class="text-uppercase fw-bold ">Discover Deliveboo</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Who we are</a></li>
@@ -27,7 +27,7 @@ export default {
 
         
                 <!-- Colonna 2 -->
-                <div class="col-md-4 mb-4">
+                <div class="my-col col-md-4 mb-4">
                     <h5 class="text-uppercase fw-bold ">Legal Notices</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Temrs and Conditions</a></li>
@@ -39,7 +39,7 @@ export default {
                     </ul>
                 </div>
                 <!-- Colonna 3 -->
-                <div class="col-md-4 mb-4">
+                <div class="my-col col-md-4 mb-4">
                     <h5 class="text-uppercase fw-bold ">Help</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Contacts</a></li>
@@ -50,14 +50,14 @@ export default {
             </div>
 
             <div class="row d-flex 100w justify-content-center align-items-center ">
-                <div class="col-6 d-flex justify-content-center align-items-center  ">
+                <div class="my-col col-6 d-flex justify-content-center align-items-center  ">
                     <div class="text-center">
                         <h5>COPYRIGHT</h5>
                         <p class="mb-0">© 2024 Deliveboo. Developed by MLMSM</p>
                     </div>
                 </div>
                 
-                <div class="col-4 d-flex justify-content-center align-items-center">
+                <div class="my-col col-4 d-flex justify-content-center align-items-center">
                     <div class="text-center">
                     <h5>DOWNLOAD APP</h5>
                     <div class="d-flex gap-3 justify-content-center " >
@@ -67,7 +67,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="col-6 d-flex flex-column justify-content-start align-items-center ">
+                <div class="my-col col-6 d-flex flex-column justify-content-start align-items-center ">
                     <div class="text-center ">
                         <h5>FOLLOW US</h5>
                         <div class="box-icon d-flex justify-content-around gap-4">
@@ -112,6 +112,7 @@ export default {
         font-style: normal;
         text-align: center; 
     }
+
 }
 
 .fixed-footer.show {

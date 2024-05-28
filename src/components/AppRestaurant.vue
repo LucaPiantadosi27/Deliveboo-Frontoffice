@@ -45,7 +45,7 @@ export default {
       </div>
       
     </div>
-    <h2 class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</h2>
+    <strong class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</strong>
     <div class="row">
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4 z-3">
         <router-link @click="scrollToTarget()" :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
@@ -76,7 +76,7 @@ export default {
   }
 
   .restaurant-card {
-    border: none;
+    padding: 1px;
     background-color:#279647;
     
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);

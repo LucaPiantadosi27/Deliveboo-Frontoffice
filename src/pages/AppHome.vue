@@ -135,7 +135,7 @@ export default {
             :class="{'selected': ArrayCategory.includes(category.id)}"
             class="d-flex gap-2 align-items-center card-wrapper">
             <div class="card-category card h-100 rounded-4">
-              <img class="category-img rounded-4" :src="'http://localhost:8000/storage/' + category.image" alt="">
+              <img class="category-img rounded-4 rounded-bottom-0" :src="'http://localhost:8000/storage/' + category.image" alt="">
               <div>{{ category.name }}</div>
             </div>
           </div>
@@ -161,6 +161,7 @@ export default {
     h1 {
       font-size: 120px;
       color: #D62300;
+      text-shadow: #713616 2px 5px;
       font-family: "Chicle", serif;
       font-weight: 400;
       font-style: normal;
@@ -172,6 +173,7 @@ export default {
     font-family: "Chicle", serif;
     font-size: 35px;
     color: #D62300;
+    text-shadow: #713616 2px 2px;
     border: #f8ebde 2px solid;
     z-index: 99;
 
@@ -236,9 +238,24 @@ section {
     font-size: 60px;
   }
 
+  strong{
+    color: #D62300;
+    text-shadow: #713616 2px 2px;
+    font-family: "Chicle", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 20px;  
+    font-size: 40px;
+
+    text-align: center;
+    display: block;
+  }
+
   h2{
     padding-left: 10px;
     color: #D62300;
+    text-shadow: #713616 2px 5px;
 
     font-family: "Chicle", serif;
     font-weight: 400;
