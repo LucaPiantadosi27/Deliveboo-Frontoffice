@@ -32,18 +32,29 @@ export default {
         <!-- Elementi di navigazione a destra -->
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav gap-3">
+
                 <!-- Link di navigazione -->
                 <li class="nav-item">
-                    <router-link :to="{ name: 'home'}" class=" text-decoration-none">Home</router-link>
+                    <router-link :to="{ name: 'home'}" class=" text-decoration-none small">Home</router-link>
                 </li>
-                <li class="nav-item">
-                    <a class="text-decoration-none" href="http://127.0.0.1:8000/login">Login</a>
+
+                <li class="nav-item dropdown small">
+                    <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Partner
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="authDropdown">
+                        <li>
+                            <a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="http://127.0.0.1:8000/register">Become our partner</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="text-decoration-none" href="http://127.0.0.1:8000/register">Register</a>
-                </li>
+
                 <!-- Icona del carrello -->
-                <li class="nav-item">
+                <li class="nav-item small">
                     <router-link :to="{name:'cart'}" class="text-decoration-none"><i class="fa-solid fa-cart-shopping"></i></router-link>
                 </li>
             </ul>
@@ -90,6 +101,21 @@ nav{
         font-size: 30px;
     }
 
-}
+ul.dropdown-menu{
+    background-color: rgb(251, 211, 171);
+    border: 1px solid #D62300;
 
+}
+a.dropdown-item{
+    background-color: rgb(251, 211, 171);
+    
+    transition: none !important;
+    transform: none !important;
+
+    :hover {
+        transform: none !important;
+    }
+        
+}
+}
 </style>
