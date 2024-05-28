@@ -155,12 +155,12 @@ export default {
         </div>
 
         <!-- MENU PIATTI -->
-        <div class="d-flex justify-content-between w-100">
+        <div class="d-flex justify-content-between w-100 pb-3">
             <div class="w-50">
-                <div class="d-flex justify-content-center pt-5">
+                <!-- <div class="d-flex justify-content-center pt-5">
                     <h2>Menù</h2>
-                </div>
-                <div class=" d-flex justify-content-between   pt-5">
+                </div> -->
+                <div class=" d-flex justify-content-between pt-5">
                     <div class="d-flex flex-wrap justify-content-start gap-3 "
                         style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
@@ -168,18 +168,18 @@ export default {
                         <div v-for="plate in singleRestaurant.plates" class="my-card card rounded-3" style="width: 100%;">
                             <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover" alt="@"
                                 style="height: 170px;">
-                            <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="card-body d-flex flex-column justify-content-between text-black border-black">
                                 <h5 class="card-title">{{ plate.name }}</h5>
                                 <p class="fst-italic">{{ plate.ingredients }}</p>
                                 <h6 class="card-text">{{ plate.price }} &euro;</h6>
                             </div>
                             <div class="d-flex justify-content-center pb-2">
-                                <button v-if="!isItemInCart(plate.id)" class="btn btn-outline-light" @click="AddItemToCart(plate)">
+                                <button v-if="!isItemInCart(plate.id)" class="btn btn-success" @click="AddItemToCart(plate)">
                                     Add to cart <i class="fa-solid fa-shopping-cart"></i>
                                 </button>
                                 <div class="d-flex gap-3" v-else>
-                                    <button class="btn btn-outline-light" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
-                                    <button class="btn btn-outline-light" @click="AddItemToCart(plate)"><i class="fa-solid fa-plus"></i></button>
+                                    <button class="btn btn-outline-danger" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
+                                    <button class="btn btn-outline-success" @click="AddItemToCart(plate)"><i class="fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -188,23 +188,27 @@ export default {
             </div>
 
             <!-- CARRELLO -->
+            
             <div class="w-25 rounded-5" id="Carrello">
+                
                 <div v-if="Cart.items.length > 0">
-                    <h2 class="text-center pt-2">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
+                    <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart"></i></h2>
                     <h3 class="text-center fs-1">{{ Cart.items[0].restaurant }}</h3>
                     <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
                         <div class="d-flex justify-content-between align-items-center pb-3 text-black">
                             <div>{{ item.quantity }}x {{ item.name }}</div>
                             <div>{{ item.subTotal }} &euro;</div>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center border-bottom border-white pb-3 gap-3">
-                            <button class="btn btn-outline-success" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
+                        <div class="d-flex justify-content-center align-items-center border-bottom border-black pb-3 gap-3">
+                            <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
                             <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-white text-bg-success">Total: {{ Cart.total }} &euro;</h4>
+                    <h4 class="p-3 text-end text-white text-bg-success text-center">Total: {{ Cart.total }} &euro;</h4>
+                    
                 </div>
-                <p v-else class="fs-5 text-center">Your Cart is Empty</p>
+                <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
+           
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
                     style="background: rgba(0, 0, 0, 0.5);">
                     <div class="modal-dialog">
@@ -288,8 +292,8 @@ export default {
 
 .my-card{
     
-    border: solid 1px #d38f4a;
-    color: #d38f4a;
+    border: solid 1px #9c999983;
+    
 }
 
 .modal.show.d-block {
