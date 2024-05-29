@@ -169,11 +169,11 @@ export default {
                     <h2>Menù</h2>
                 </div> -->
                 <div class=" d-flex justify-content-between pt-5 ">
-                    <div class="d-flex flex-wrap justify-content-start gap-3 shadow-lg rounded-2"
+                    <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
                         style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
                         <!-- SINGOLO PIATTO -->
-                        <div v-for="plate in singleRestaurant.plates" class="my-card card rounded-3" style="width: 100%;">
+                        <div v-for="plate in singleRestaurant.plates" class="my-card card rounded-3 shadow-lg" style="width: 100%;">
                             <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover" alt="@"
                                 style="height: 170px;">
                             <div class="card-body d-flex flex-column justify-content-between text-black border-black">
@@ -202,7 +202,7 @@ export default {
                 <div v-if="Cart.items.length > 0">
                     <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
                     <h3 class="text-center fs-1 fw-bold">{{ Cart.items[0].restaurant }}</h3>
-                    <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Riepilogo ordine:</p>
+                    <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
                     <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
                         <div class="d-flex justify-content-between align-items-center pb-3 text-black">
                             <div>{{ item.quantity }}x {{ item.name }}</div>
@@ -215,7 +215,7 @@ export default {
                     </div>
                     <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ Cart.total }} &euro;</h4>
                     <div class="text-center mt-3 pb-3">
-                        <button class="btn btn-success p-2" @click="goToPayment">Vai al pagamento</button>
+                        <router-Link class="btn btn-success p-2" :to="{ name: 'cart'}">Go to Checkout</router-Link>
                     </div>
                 </div>
                 <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
