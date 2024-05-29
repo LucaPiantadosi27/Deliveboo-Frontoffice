@@ -16,7 +16,7 @@ export default {
 
     data() {
         return {
-            isloader:true,
+            isloader:false,
             store,
             token: '',
             baseApiUrl: "http://127.0.0.1:8000/api/",
@@ -129,14 +129,12 @@ export default {
                 const res = await axios.get(this.baseApiUrl + "payment/token");
                 console.log(res);
 
-                // funzione per funzionamento loader
-                setTimeout(()=>{
-                    this.isloader=false;
-                },1500)
-                //  funzione per funzionamento loader
+                
 
                 this.token = res.data.token;
                 this.initializeBraintree();
+
+                
             } catch (error) {
                 console.error("Errore durante il recupero del token:", error);
             }
@@ -155,7 +153,19 @@ export default {
                         return;
                     }
                     button.addEventListener('click', (e) => {
+
                         e.preventDefault();
+
+                        
+
+                        setTimeout(() => {
+                            this.isloader=true;
+                        }, 1500);
+
+                       
+                           
+                         
+                    
 
                         // Imposta l'importo della transazione
                         this.formData.amount = this.store.Cart.total;
@@ -169,28 +179,49 @@ export default {
                         }, (requestPaymentMethodErr, payload) => {
                             if (requestPaymentMethodErr) {
                                 console.error('Errore durante la richiesta del metodo di pagamento:', requestPaymentMethodErr);
+                                this.isloader=false;
+                                //da cambiare
                                 return;
                             }
                             axios.post(this.baseApiUrl + "payment/checkout", {
+                                
+
                                 paymentMethodNonce: payload.nonce,
                                 amount: this.store.Cart.total, // Passa l'importo totale qui
                                 formData: this.formData
+
                             })
                                 .then(result => {
                                     if (result.data.success) {
                                         this.createOrder();
                                         this.emptyCart();
-                                        document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
+                                        setTimeout(() => {
+                                            this.isloader=true;
+                                        }, 1500);
+                                        setTimeout(() => {
+                                            this.isloader = false;
+                                            document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
+                                        }, 1500);
+                                        // document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
                                         // router.push({ name: 'checkout' });
                                         console.log('info', result)
+                                        
+                                        
                                     } else {
+                                        this.isloader = false;
+
+
                                         document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1>';
                                         console.log('apiErrors', result);
                                         this.formErrors = result.data.error
                                         console.log('jsErrors', this.formErrors)
                                     }
+
                                 })
                                 .catch(error => {
+                                    this.isloader = false;
+
+
                                     console.error('Errore durante il checkout:', error);
                                     document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
                                 });
@@ -253,7 +284,7 @@ export default {
 
 <template>
     <AppLoader v-if="isloader"></AppLoader>
-    <div  v-if="!isloader" class="my-box container py-4 col-8">
+    <div  v-else class="my-box container py-4 col-8">
 
         <!-- Pulsante Back -->
         <div v-if="store.Cart.items.length > 0">
