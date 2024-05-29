@@ -67,8 +67,9 @@ export default {
                 } else {
                     let Item = plate;
                     Item.quantity = 1;
-                    Item.restaurant = this.singleRestaurant.name_res
-                    Item.subTotal = Item.price
+                    Item.restaurant = this.singleRestaurant.name_res;
+                    Item.restaurant_id = plate.restaurant_id; // Assicurati che questo campo esista nei dati del piatto
+                    Item.subTotal = Item.price;
                     this.Cart.items.push(Item);
                 }
 
@@ -244,24 +245,29 @@ export default {
 <template>
     <div class="my-box container py-4">
 
+        <!-- Pulsante Back -->
+        <div v-if="Cart.items.length > 0">
+            <router-link :to="{ name: 'restaurant', params: { id: Cart.items[0].restaurant_id } }" class="my-arrow fa-solid fa-reply text-decoration-none"></router-link>
+        </div>
+
         <!-- CARRELLO -->
-        <div class=" rounded-5 " id="Carrello">
+        <div class=" rounded-5 col-6 m-auto shadow-lg" id="Carrello">
             <div v-if="Cart.items.length > 0">
-                <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
-                <h3 class="text-center fs-1">{{ Cart.items[0].restaurant }}</h3>
+                <h2 class="text-center "><i class="fa-solid fa-shopping-cart"></i></h2>
+                <h3 class="text-center fs-1 fw-bolder">{{ Cart.items[0].restaurant }}</h3>
                 <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-black">
                     <div class="d-flex justify-content-around align-items-center pb-3 text-black fw-bolder">
                         <div>{{ item.quantity }}x {{ item.name }}</div>
                         <div>{{ item.subTotal }} &euro;</div>
                     </div>
-                    <div class="d-flex justify-content-center align-items-center border-bottom border-white pb-3 gap-3">
+                    <div class="d-flex justify-content-center align-items-center border-bottom border-black pb-3 gap-3">
                         <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i
                                 class="fa-solid fa-minus"></i></button>
                         <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i
                                 class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
-                <h4 class="p-3 text-end text-black text-center text-bg-primary fw-bolder">Total: {{ Cart.total }} &euro;</h4>
+                <h4 class="p-3 text-end text-white text-center text-bg-primary fw-bolder">Total: {{ Cart.total }} &euro;</h4>
             </div>
             <p v-else class="fs-5 text-center">Your Cart is Empty</p>
         </div>
@@ -282,7 +288,7 @@ export default {
                 <label class="form-label" for="surname">Surname*</label>
                 <input class="form-control" type="surname" name="surname"
                     v-model="formData.billingAddress.surname" required>
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.surname')">Please input your surname</div>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.surname')">Please input your surname</div>
             </div>
 
             <div>
@@ -302,13 +308,13 @@ export default {
                 <label class="form-label" for="phone">Phone Number*</label>
                 <input class="form-control" type="text" name="phone"
                     v-model="formData.billingAddress.phoneNumber">
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.phoneNumber')">Please input your phone Number</div>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.phoneNumber')">Please input your phone Number</div>
             </div>
 
             <small>*these fields are required</small>
 
             <div id="dropin-container"></div>
-            <button class="btn btn-outline-dark" id="submit_button" :disabled="formIsValid">Submit payment</button>
+            <button class="btn btn-success" id="submit_button" :disabled="formIsValid">Submit payment</button>
         </form>
     </div>
 </template>
@@ -322,6 +328,18 @@ export default {
     position: relative;
     z-index: 10;
     color: black;
+
+    .my-arrow {
+        font-size: 35px;
+        color: #F6F3E4;
+        position: relative;
+        right: 150px;
+        bottom: -20px;
+
+        &:hover {
+            color: #F6F3E4;
+        }
+    }
 }
 
 #Carrello {
@@ -342,8 +360,23 @@ export default {
 
     h2 {
         font-family: "Pacifico", cursive;
-        text-shadow: 2px 3px rgb(172, 177, 214);
-        color: #F6F3E4;
+        
+        color: #d62300;
+    }
+
+    h3{
+        font-family: "Pacifico", cursive;
+        
+        color: #d62300;
+    }
+}
+form{
+    border: 2px solid $color-text-primary;
+    border-radius: 0.2em;
+    padding: 2%;
+    input{
+        color: black;
+        background-color: #F8EBDE;
     }
 }
 </style>
