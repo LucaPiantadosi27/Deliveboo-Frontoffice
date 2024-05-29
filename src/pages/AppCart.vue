@@ -240,7 +240,7 @@ export default {
 
 
 <template>
-    <div class="my-box container py-4">
+    <div class="my-box container py-4 col-8">
 
         <!-- Pulsante Back -->
         <div v-if="store.Cart.items.length > 0">
@@ -248,32 +248,33 @@ export default {
         </div>
 
         <!-- CARRELLO -->
+
         <div class=" rounded-5 col-7 m-auto shadow-lg " id="Carrello">
             <div v-if="store.Cart.items.length > 0">
                 <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
-                <div class="d-flex justify-content-between align-items-center pb-3">
-                    <h3 class="text-center fs-1 fw-bolder">{{ store.Cart.items[0].restaurant }}</h3>
+                <h3 class="text-center fs-1 fw-bolder">{{ store.Cart.items[0].restaurant }}</h3>
+
+                <div class=" justify-content-between align-items-center pb-3">
                     <div v-for="item in store.Cart.items" :key="item.id" class="p-3 text-start text-black">
                         <div class="d-flex justify-content-around align-items-center pb-3 text-black fw-bolder">
                             <div>{{ item.quantity }}x {{ item.name }}</div>
                             <div>{{ item.subTotal }} &euro;</div>
                         </div>
                         <div
-                            class="d-flex justify-content-center align-items-center border-bottom border-white pb-3 gap-3">
+                            class="d-flex justify-content-center align-items-center border-bottom border-black pb-3 gap-3">
                             <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i
                                     class="fa-solid fa-minus"></i></button>
                             <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i
                                     class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-white text-center text-bg-primary fw-bolder">Total: {{ store.Cart.total
-                        }} &euro;</h4>
+                    <h4 class="p-3 text-end text-white text-center text-bg-primary fw-bolder">Total: {{ store.Cart.total}} &euro;</h4>
                 </div>
             </div>
             <p v-else class="fs-5 text-center">Your Cart is Empty</p>
 
             <div id="checkout-message" class="text-center"></div>
-
+    </div>
         <!-- CHECKOUT -->
         <form v-if="this.store.Cart.total > 0" class="mt-5 col-7 m-auto shadow-lg" action="javascript:void(0)">
 
@@ -317,10 +318,14 @@ export default {
             <small class="fw-bolder">*these fields are required</small>
 
                 <div id="dropin-container"></div>
-                <button class="btn btn-outline-dark" id="submit_button" :disabled="formIsValid">Submit payment</button>
+
+                <div class=" d-flex justify-content-center">
+                    <button class="btn  btn-outline-success" id="submit_button" :disabled="formIsValid">Submit payment</button>
+                </div>
             </form>
         </div>
-    </div>
+    
+
 </template>
 
 
