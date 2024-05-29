@@ -120,7 +120,7 @@ export default {
           </h1>
         </div>
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
-          <button @click="scrollToTarget()" class="btn"><span>ORDER NOW!</span></button>
+          <button @click="scrollToTarget()" class="my-btn"><i class="fa-solid fa-down-long"></i></button>
         </div>
         <div class="logo_laravel col-5 d-flex justify-content-end align-items-center ">
           <img class="slide" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
@@ -175,27 +175,35 @@ export default {
     }
   }
 
-  .btn {
-    font-family: $mibery-font;
+  .my-btn {
+    padding: 10px 20px;
+    border-radius: 50%;
     font-size: 25px;
     color: #D62300;
     border: #f8ebde 2px solid;
+    background-color:  #f8ebde;
     z-index: 99;
-
-    
-    span {
-      display: block;
-      transition: transform .3s ease;
+ 
+    i {
+      font-size: 1.5em;
     }
 
     &:hover {
       background-color: #f8ebde;
       color: #D62300;
       border-color: #f8ebde;
+      animation: pulse 1s infinite;
+      animation-timing-function: linear;   
 
-      span {
-        transform: scale(1.7) rotate(-10deg);
-      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { 
+        transform: scale(1.1);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      };
+      100% { transform: scale(1); }
     }
   }
 
@@ -244,14 +252,12 @@ section {
   }
 
   strong{
-    color: #D62300;
-    text-shadow: #713616 2px 2px;
-    font-family: "Chicle", serif;
-    font-weight: 400;
+    color: $color-green;
+    font-family:'Open Sans', sans-serif;
+    font-weight: bold;
     font-style: normal;
-    text-align: center;
     margin-bottom: 20px;  
-    font-size: 40px;
+    font-size: 30px;
 
     text-align: center;
     display: block;
