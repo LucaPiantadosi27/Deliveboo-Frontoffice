@@ -162,11 +162,11 @@ export default {
                     <h2>Menù</h2>
                 </div> -->
                 <div class=" d-flex justify-content-between pt-5 ">
-                    <div class="d-flex flex-wrap justify-content-start gap-3 shadow-lg rounded-2"
+                    <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
                         style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
                         <!-- SINGOLO PIATTO -->
-                        <div v-for="plate in singleRestaurant.plates" class="my-card card rounded-3" style="width: 100%;">
+                        <div v-for="plate in singleRestaurant.plates" class="my-card card rounded-3 shadow-lg" style="width: 100%;">
                             <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover" alt="@"
                                 style="height: 170px;">
                             <div class="card-body d-flex flex-column justify-content-between text-black border-black">
