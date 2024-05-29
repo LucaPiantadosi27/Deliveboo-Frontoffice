@@ -135,7 +135,7 @@ export default {
 
     <div id="restaurant" style="width: 100%;"
         class="position-relative d-flex justify-content-center align-items-center  flex-column  pt-5 ">
-        <div class="container position-relative">
+        <div class="container position-relative mb-5">
             <!-- PULSANTE BACK -->
             <div @click="scrollToTarget()" class="back pe-5 me-5 ">
                 <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
