@@ -214,7 +214,7 @@ export default {
                                 <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
                             </div>
                         </div>
-                        <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ store.Cart.total }} &euro;</h4>
+                        <h4 class="p-3 text-end text-white text text-center text-bg-primary rounded-5 m-3">Total: {{ store.Cart.total }} &euro;</h4>
                         <div class="text-center mt-3 pb-3">
                             <router-Link class="btn btn-success p-2" :to="{ name: 'cart'}">Go to Checkout</router-Link>
                         </div>

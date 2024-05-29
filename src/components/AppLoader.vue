@@ -10,8 +10,8 @@ export default {
 
 
 <template>
-    
-<div class="load">
+
+  <div class="load">
   <div class="hamburger">
     <div class="top-bun"></div>
     <div class="pickle"></div>
@@ -25,6 +25,8 @@ export default {
   </div>
   <h1>Loading...</h1>
 </div>
+ 
+
 
 
 </template>
@@ -32,7 +34,9 @@ export default {
 
 <style lang="scss">
 
+
 .load {
+  
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
