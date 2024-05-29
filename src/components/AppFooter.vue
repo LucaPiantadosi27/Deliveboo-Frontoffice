@@ -14,7 +14,7 @@ export default {
             <div class="row pt-4 text-center  text-md-left text-decoration-none ">
                 <!-- Colonna 1 -->
                 <div class="my-col col-md-4 mb-4 ">
-                    <h5 class="text-uppercase fw-bold ">Discover Deliveboo</h5>
+                    <h5 class="text-uppercase">Discover Deliveboo</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Who we are</a></li>
                         <li><a href="#" class="text-white text-decoration-none ">Restaurants</a></li>
@@ -28,7 +28,7 @@ export default {
         
                 <!-- Colonna 2 -->
                 <div class="my-col col-md-4 mb-4">
-                    <h5 class="text-uppercase fw-bold ">Legal Notices</h5>
+                    <h5 class="text-uppercase">Legal Notices</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Temrs and Conditions</a></li>
                         <li><a href="#" class="text-white text-decoration-none ">Privacy Police</a></li>
@@ -40,7 +40,7 @@ export default {
                 </div>
                 <!-- Colonna 3 -->
                 <div class="my-col col-md-4 mb-4">
-                    <h5 class="text-uppercase fw-bold ">Help</h5>
+                    <h5 class="text-uppercase">Help</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Contacts</a></li>
                         <li><a href="#" class="text-white text-decoration-none ">FAQ</a></li>
@@ -52,14 +52,14 @@ export default {
             <div class="row d-flex 100w justify-content-center align-items-center ">
                 <div class="my-col col-6 d-flex justify-content-center align-items-center  ">
                     <div class="text-center">
-                        <h5>COPYRIGHT</h5>
+                        <h5 class="text-uppercase">COPYRIGHT</h5>
                         <p class="mb-0">© 2024 Deliveboo. Developed by MLMSM</p>
                     </div>
                 </div>
                 
                 <div class="my-col col-4 d-flex justify-content-center align-items-center">
                     <div class="text-center">
-                    <h5>DOWNLOAD APP</h5>
+                    <h5 class="text-uppercase">DOWNLOAD APP</h5>
                     <div class="d-flex gap-3 justify-content-center " >
                         <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
                         <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
@@ -69,7 +69,7 @@ export default {
 
                 <div class="my-col col-6 d-flex flex-column justify-content-start align-items-center ">
                     <div class="text-center ">
-                        <h5>FOLLOW US</h5>
+                        <h5 class="text-uppercase">FOLLOW US</h5>
                         <div class="box-icon d-flex justify-content-around gap-4">
                             <i class=" fa-brands fa-square-facebook "></i>
                             <i class=" fa-brands fa-square-x-twitter "></i>
@@ -85,6 +85,7 @@ export default {
 
 
 <style lang="scss" scoped>
+@use '../styles/variables' as *;
 
 .footer{
     color: #F6F3E4;
@@ -104,15 +105,7 @@ export default {
 
     z-index: -1;
 
-    h5{
-        color:#713616;
-
-        font-family: "Chicle", serif;
-        font-weight: 400;
-        font-style: normal;
-        text-align: center; 
-    }
-
+    
 }
 
 .fixed-footer.show {
@@ -121,6 +114,21 @@ export default {
 
 .my-footer {
     height: 450px;
+
+    h5{
+        color:#713616;
+    
+        // font-family: "Open Sans", sans-serif;
+        // font-optical-sizing: auto;
+        // font-weight: 400;
+        font-family: $mibery-font;
+        text-align: center; 
+    }
+    
+    a, p{
+        font-family: "Open Sans", sans-serif;
+        font-optical-sizing: auto;
+    }
 }
 
 .small-image{
