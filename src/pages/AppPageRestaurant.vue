@@ -122,6 +122,13 @@ export default {
         isItemInCart(plateId) {
             return this.Cart.items.some(item => item.id === plateId);
         },
+
+        scrollToTarget() {
+            const targetSection = document.getElementById('target');
+            if (targetSection) {
+              targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        },
     },
 }
 </script>
@@ -132,7 +139,7 @@ export default {
         class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
 
         <!-- PULSANTE BACK -->
-        <div class="back pe-5 me-5 ">
+        <div @click="scrollToTarget()" class="back pe-5 me-5 ">
             <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
                     class="my-arrow fa-solid fa-reply"></i></router-link>
         </div>
