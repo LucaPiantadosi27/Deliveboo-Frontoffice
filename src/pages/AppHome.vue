@@ -131,7 +131,11 @@ export default {
 
   </div> 
 <!-- End Jumbo -->
-  <section id="target">
+<!-- <AppLoader v-if="isLoading"></AppLoader> -->
+<!-- start loader -->
+
+<!-- end loader -->
+  <section v-if="!isLoading" id="target">
     <div class="container">
       <div class="container py-5">
         <h2 class="do-you">WHAT DO YOU WANT EAT?</h2>
@@ -300,5 +304,8 @@ section {
   }
 
 
+}
+Apploader{
+  display: inline-block;
 }
 </style>

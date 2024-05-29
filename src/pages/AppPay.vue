@@ -5,9 +5,12 @@
 import axios from 'axios';
 import dropin from 'braintree-web-drop-in';
 
+
 export default {
   data() {
+    
     return {
+      
       token: '',
       baseApiUrl: "http://127.0.0.1:8000/api/",
     };
@@ -18,6 +21,8 @@ export default {
       try {
         const res = await axios.get(this.baseApiUrl + "payment/token");
         console.log(res);
+        
+        
         this.token = res.data.token;
         this.initializeBraintree();
       } catch (error) {
@@ -42,7 +47,7 @@ export default {
                 return;
               }
               axios.post(this.baseApiUrl + "payment/checkout", { paymentMethodNonce: payload.nonce })
-                .then(result => {
+                .then(result => {              
                   if (result.data.success) {
                     document.getElementById('checkout-message').innerHTML = '<h1>Successo</h1><p>La tua interfaccia Drop-in funziona! Controlla il tuo <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> per le tue transazioni di prova.</p>';
                   } else {
@@ -68,13 +73,18 @@ export default {
 };
 </script>
 <template>
-  <div class="my-box container py-5">
+  
+
+
+  <div  class="my-box container py-5">
     <div id="dropin-wrapper">
       <div id="checkout-message"></div>
       <div id="dropin-container"></div>
       <button id="submit_button">Submit payment</button>
     </div>
   </div>
+
+
 </template>
 
 <style lang="scss">

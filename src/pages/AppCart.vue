@@ -2,20 +2,24 @@
 import axios from 'axios';
 import dropin from 'braintree-web-drop-in';
 import { router } from '../router';
+import AppLoader from '../components/AppLoader.vue';
 
 
 export default {
     name: "AppCart",
 
     components: {
+        AppLoader
 
     },
 
     data() {
         return {
+            isloading:true,
             Cart: {
                 items: [],
-                total: 0
+                total: 0,
+                
             },
 
             token: '',
@@ -125,6 +129,13 @@ export default {
         async getClientToken() {
             try {
                 const res = await axios.get(this.baseApiUrl + "payment/token");
+
+                // funzione timeout loader
+                setTimeout(()=>{
+                    this.isloading=false;
+                },1500)
+                // fine funzione
+
                 console.log(res);
                 this.token = res.data.token;
                 this.initializeBraintree();
@@ -243,15 +254,18 @@ export default {
 
 
 <template>
-    <div class="my-box container py-4">
+    <AppLoader v-if="isloading"></AppLoader>
+    <div v-if="!isloading" class="my-box container py-4">
 
         <!-- Pulsante Back -->
         <div v-if="Cart.items.length > 0">
             <router-link :to="{ name: 'restaurant', params: { id: Cart.items[0].restaurant_id } }" class="my-arrow fa-solid fa-reply text-decoration-none"></router-link>
         </div>
 
+
+        
         <!-- CARRELLO -->
-        <div class=" rounded-5 col-7 m-auto shadow-lg" id="Carrello">
+        <div  class=" rounded-5 col-7 m-auto shadow-lg" id="Carrello">
             <div v-if="Cart.items.length > 0">
                 <h2 class="text-center "><i class="fa-solid fa-shopping-cart"></i></h2>
                 <h3 class="text-center fs-1 fw-bolder">{{ Cart.items[0].restaurant }}</h3>
