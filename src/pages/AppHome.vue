@@ -176,7 +176,7 @@ export default {
   }
 
   .my-btn {
-    padding: 10px 20px;
+    padding: 10px 18px;
     border-radius: 50%;
     font-size: 25px;
     color: #D62300;
@@ -185,6 +185,7 @@ export default {
     z-index: 99;
  
     i {
+      display: block;
       font-size: 1.5em;
     }
 

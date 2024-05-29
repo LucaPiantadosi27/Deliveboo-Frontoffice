@@ -59,7 +59,7 @@ export default {
                 if (CurrentItem) {
                     CurrentItem.quantity++;
                     CurrentItem.subTotal = CurrentItem.price * CurrentItem.quantity
-                    plate.subTotal= plate.subTotal.toFixed(2)
+                    CurrentItem.subTotal= CurrentItem.subTotal.toFixed(2)
                 } else {
                     let Item = plate;
                     Item.quantity = 1;
