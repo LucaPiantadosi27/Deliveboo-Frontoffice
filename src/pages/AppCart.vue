@@ -370,4 +370,13 @@ export default {
         color: #d62300;
     }
 }
+form{
+    border: 2px solid $color-text-primary;
+    border-radius: 0.2em;
+    padding: 2%;
+    input{
+        color: black;
+        background-color: #F8EBDE;
+    }
+}
 </style>
