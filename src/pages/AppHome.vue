@@ -104,16 +104,6 @@ export default {
             this.CallCategory();
         }
     },
-
-    // unmounted() {
-    //     this.ArrayCategory = [],
-    //     sessionStorage.setItem('categoryPermanent', JSON.stringify(this.ArrayCategory))
-    // },
-
-    watch: {
-        'ArrayCategory'(newItems, oldItems) {
-         },
-    },
 }
 </script>
 
@@ -126,11 +116,11 @@ export default {
       <div class="container-fluid d-flex justify-content-between flex-wrap px-5">
         <div class="welcome_text d-flex align-items-center ps-3 col-5 ">
           <h1 class="display-5 fw-bold">
-            Welcome to<br> DeliveBoo!
+            WELCOME TO<br> DELIVEBOO!
           </h1>
         </div>
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
-          <button @click="scrollToTarget()" class="btn"><span>Order Now!</span></button>
+          <button @click="scrollToTarget()" class="btn"><span>ORDER NOW!</span></button>
         </div>
         <div class="logo_laravel col-5 d-flex justify-content-end align-items-center ">
           <img class="slide" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
@@ -144,7 +134,7 @@ export default {
   <section id="target">
     <div class="container">
       <div class="container py-5">
-        <h2 class="do-you">What do you want to eat?</h2>
+        <h2 class="do-you">WHAT DO YOU WANT EAT?</h2>
         <div class="d-flex gap-4 justify-content-center category-wrapper flex-wrap">
           <div
             @click="AddCategory(category.id)"
@@ -177,21 +167,18 @@ export default {
 
   .welcome_text {
     h1 {
-      font-size: 120px;
+      font-size: 80px;
       color: #D62300;
-      text-shadow: #713616 2px 5px;
-      font-family: "Chicle", serif;
-      font-weight: 400;
+      font-family: $mibery-font;
       font-style: normal;
       z-index: 99;
     }
   }
 
   .btn {
-    font-family: "Chicle", serif;
-    font-size: 35px;
+    font-family: $mibery-font;
+    font-size: 25px;
     color: #D62300;
-    text-shadow: #713616 2px 2px;
     border: #f8ebde 2px solid;
     z-index: 99;
 
@@ -272,12 +259,9 @@ section {
 
   h2{
     padding-left: 10px;
-    color: #D62300;
-    text-shadow: #713616 2px 5px;
-
-    font-family: "Chicle", serif;
-    font-weight: 400;
-    font-style: normal;
+    color: $color-green;
+    font-size: 28px;
+    font-family: $mibery-font;
     text-align: center;
     margin-bottom: 20px;
   }
