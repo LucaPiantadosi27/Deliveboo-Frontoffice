@@ -1,13 +1,32 @@
 <script>
+import { store } from './store'
 
 export default {
     name: 'AppHeader',
 
     data(){
         return{
+            store,
             apiImageUrl: 'http://127.0.0.1:8000/storage/',
+
         }
-    }
+    },
+
+    mounted(){
+        if (JSON.parse(localStorage.getItem("cart")) != null) {
+            this.store.Cart = JSON.parse(localStorage.getItem("cart"))
+        }
+    },
+
+    methods: {
+        cartSize(){
+            let size = 0
+            this.store.Cart.items.forEach(item => {
+                size += 1 * item.quantity
+            });
+            return size
+        }
+    },
 }
 
 </script>
@@ -55,7 +74,12 @@ export default {
 
                 <!-- Icona del carrello -->
                 <li class="nav-item small">
-                    <router-link :to="{name:'cart'}" class="text-decoration-none"><i class="fa-solid fa-cart-shopping"></i></router-link>
+                    <router-link v-if="store.Cart.items.length > 0" :to="{name:'cart'}" class="text-decoration-none">
+                        <div class="my_badge d-flex align-items-center gap-2 rounded-1 py-2 px-3">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>{{ cartSize() }}</span>
+                        </div>
+                    </router-link>
                 </li>
             </ul>
         </div>
@@ -66,6 +90,7 @@ export default {
 </template>
 
 <style lang="scss">
+@use '../styles/_variables' as *;
 
 nav{
     background-color: #f8ebde;
@@ -116,6 +141,11 @@ nav{
                     background-color: rgb(251, 195, 138);
                 }
                     
+            }
+
+            .my_badge{
+                border: 2px solid $color-red;
+                border-radius: 20px;
             }
         }
     }
