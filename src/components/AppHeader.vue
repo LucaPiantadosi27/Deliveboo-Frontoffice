@@ -73,9 +73,8 @@ nav{
     color: #D62300 !important;
     font-size: 25px;
 
-    font-family:sans-serif;
-    font-weight: 400;
-    font-style: normal;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
 
     z-index: 99;  
 
