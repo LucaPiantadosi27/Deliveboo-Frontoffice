@@ -251,7 +251,7 @@ export default {
         </div>
 
         <!-- CARRELLO -->
-        <div class=" rounded-5 col-6 m-auto shadow-lg" id="Carrello">
+        <div class=" rounded-5 col-7 m-auto shadow-lg" id="Carrello">
             <div v-if="Cart.items.length > 0">
                 <h2 class="text-center "><i class="fa-solid fa-shopping-cart"></i></h2>
                 <h3 class="text-center fs-1 fw-bolder">{{ Cart.items[0].restaurant }}</h3>
@@ -275,7 +275,7 @@ export default {
         <div id="checkout-message" class="text-center"></div>
 
         <!-- CHECKOUT -->
-        <form v-if="this.Cart.total > 0" class="mt-5" action="javascript:void(0)">
+        <form v-if="this.Cart.total > 0" class="mt-5 col-7 m-auto shadow-lg" action="javascript:void(0)">
 
             <div>
                 <label class="form-label" for="name">Name*</label>
@@ -311,10 +311,12 @@ export default {
                 <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.phoneNumber')">Please input your phone Number</div>
             </div>
 
-            <small>*these fields are required</small>
+            <small class="fw-bolder">*these fields are required</small>
 
             <div id="dropin-container"></div>
-            <button class="btn btn-success" id="submit_button" :disabled="formIsValid">Submit payment</button>
+            <div class=" d-flex justify-content-center">
+            <button class="btn btn-success p-3" id="submit_button" :disabled="formIsValid">Submit payment</button>
+            </div>
         </form>
     </div>
 </template>
@@ -371,12 +373,20 @@ export default {
     }
 }
 form{
-    border: 2px solid $color-text-primary;
-    border-radius: 0.2em;
-    padding: 2%;
+    border: solid 1px #3b3b3b52;
+    border-radius:10px;
+    padding: 1.5%;
+    background-color: #F8EBDE;
+
     input{
         color: black;
-        background-color: #F8EBDE;
+        background-color: rgba(128, 128, 128, 0.226);
+
+        
     }
+
+
 }
+
+
 </style>
