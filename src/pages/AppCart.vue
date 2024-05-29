@@ -245,23 +245,23 @@ export default {
     <div class="my-box container py-4">
 
         <!-- CARRELLO -->
-        <div class=" rounded-5 " id="Carrello">
+        <div class=" rounded-5 col-6 m-auto shadow-lg" id="Carrello">
             <div v-if="Cart.items.length > 0">
-                <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
-                <h3 class="text-center fs-1">{{ Cart.items[0].restaurant }}</h3>
+                <h2 class="text-center ">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
+                <h3 class="text-center fs-1 fw-bolder">{{ Cart.items[0].restaurant }}</h3>
                 <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-black">
                     <div class="d-flex justify-content-around align-items-center pb-3 text-black fw-bolder">
                         <div>{{ item.quantity }}x {{ item.name }}</div>
                         <div>{{ item.subTotal }} &euro;</div>
                     </div>
-                    <div class="d-flex justify-content-center align-items-center border-bottom border-white pb-3 gap-3">
+                    <div class="d-flex justify-content-center align-items-center border-bottom border-black pb-3 gap-3">
                         <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i
                                 class="fa-solid fa-minus"></i></button>
                         <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i
                                 class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
-                <h4 class="p-3 text-end text-black text-center text-bg-primary fw-bolder">Total: {{ Cart.total }} &euro;</h4>
+                <h4 class="p-3 text-end text-white text-center text-bg-primary fw-bolder">Total: {{ Cart.total }} &euro;</h4>
             </div>
             <p v-else class="fs-5 text-center">Your Cart is Empty</p>
         </div>
@@ -342,8 +342,14 @@ export default {
 
     h2 {
         font-family: "Pacifico", cursive;
-        text-shadow: 2px 3px rgb(172, 177, 214);
-        color: #F6F3E4;
+        
+        color: #d62300;
+    }
+
+    h3{
+        font-family: "Pacifico", cursive;
+        
+        color: #d62300;
     }
 }
 </style>
