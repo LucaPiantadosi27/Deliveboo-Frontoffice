@@ -196,11 +196,11 @@ export default {
                 
                 <div class=" w-25 rounded-5 shadow-lg" id="Carrello">
                     
-                    <div v-if="Cart.items.length > 0">
+                    <div v-if="store.Cart.items.length > 0">
                         <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
                         <h3 class="text-center fs-1 fw-bold">{{ Cart.items[0].restaurant }}</h3>
                         <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
-                        <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
+                        <div v-for="item in store.Cart.items" :key="item.id" class="p-3 text-start text-white">
                             <div class="d-flex justify-content-between align-items-center pb-3 text-black">
                                 <div>{{ item.quantity }}x {{ item.name }}</div>
                                 <div>{{ item.subTotal }} &euro;</div>
@@ -210,7 +210,7 @@ export default {
                                 <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
                             </div>
                         </div>
-                        <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ Cart.total }} &euro;</h4>
+                        <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ store.Cart.total }} &euro;</h4>
                         <div class="text-center mt-3 pb-3">
                             <router-Link class="btn btn-success p-2" :to="{ name: 'cart'}">Go to Checkout</router-Link>
                         </div>
@@ -235,7 +235,7 @@ export default {
                                     <button type="button" class="btn-close" @click="closeModal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>You already have items in your cart with {{ Cart.items[0].restaurant }}. Do you wish
+                                    <p>You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
                                         to empty your cart?</p>
                                 </div>
                                 <div class="modal-footer">
