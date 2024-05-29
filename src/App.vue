@@ -10,7 +10,6 @@ export default{
     return{
       apiImageUrl: 'http://127.0.0.1:8000/storage/',
       store,
-      Carrello:JSON.parse(localStorage.getItem("cart")),
            
     }
   },
@@ -22,7 +21,7 @@ export default{
   },
 
   mounted(){
-        console.log("carrello",this.Carrello)
+
         
     }
 

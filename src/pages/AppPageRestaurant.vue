@@ -2,6 +2,7 @@
 import axios from "axios";
 import AppRestaurant from '../components/AppRestaurant.vue';
 import AppLoader from '../components/AppLoader.vue'
+import { store } from "../components/store";
 
 
 export default {
@@ -9,6 +10,7 @@ export default {
 
     data() {
         return {
+            store,
             baseApiUrl: "http://127.0.0.1:8000/api/",
             apiImageUrl: 'http://127.0.0.1:8000/storage/',
             categories: [],
@@ -17,10 +19,6 @@ export default {
             isLoading: true,
             restaurantId: null,
             singleRestaurant: '',
-            Cart: {
-                items: [],
-                total: 0,
-            },
             showModal: false,
         }
     },
@@ -47,16 +45,16 @@ export default {
         console.log(JSON.parse(localStorage.getItem("cart")));
 
         if (JSON.parse(localStorage.getItem("cart")) != null) {
-            this.Cart = JSON.parse(localStorage.getItem("cart"))
+            this.store.Cart = JSON.parse(localStorage.getItem("cart"))
         }
     },
     methods: {
         AddItemToCart(plate) {
-            if (this.Cart.items.length != 0 && this.Cart.items.find((Item) => Item.restaurant_id != plate.restaurant_id)) {
+            if (this.store.Cart.items.length != 0 && this.store.Cart.items.find((Item) => Item.restaurant_id != plate.restaurant_id)) {
                 console.log("Diverso");
                 this.showModal = true;
             } else {
-                const CurrentItem = this.Cart.items.find((Item) => Item.id === plate.id)
+                const CurrentItem = this.store.Cart.items.find((Item) => Item.id === plate.id)
 
                 if (CurrentItem) {
                     CurrentItem.quantity++;
@@ -67,16 +65,16 @@ export default {
                     Item.quantity = 1;
                     Item.restaurant = this.singleRestaurant.name_res
                     Item.subTotal = Item.price
-                    this.Cart.items.push(Item);
+                    this.store.Cart.items.push(Item);
                 }
 
-                this.Cart.total = 0
-                this.Cart.items.forEach(item => {
-                    this.Cart.total += Number(item.subTotal)
+                this.store.Cart.total = 0
+                this.store.Cart.items.forEach(item => {
+                    this.store.Cart.total += Number(item.subTotal)
                 });
-                this.Cart.total= this.Cart.total.toFixed(2)
+                this.store.Cart.total= this.store.Cart.total.toFixed(2)
 
-                localStorage.setItem("cart", JSON.stringify(this.Cart));
+                localStorage.setItem("cart", JSON.stringify(this.store.Cart));
                 console.log(JSON.parse(localStorage.getItem("cart")));
             }
         },
@@ -86,32 +84,32 @@ export default {
         },
 
         RemoveItemFromCart(plate) {
-            const plateIndex = this.Cart.items.findIndex((Item) => Item.id === plate.id)
+            const plateIndex = this.store.Cart.items.findIndex((Item) => Item.id === plate.id)
 
             if (plateIndex != -1) {
-                const plate = this.Cart.items[plateIndex]
+                const plate = this.store.Cart.items[plateIndex]
 
                 if (plate.quantity > 1) {
                     plate.quantity -= 1
                     plate.subTotal = plate.price * plate.quantity
                     plate.subTotal= plate.subTotal.toFixed(2)
                 } else {
-                    this.Cart.items.splice(plateIndex, 1)
+                    this.store.Cart.items.splice(plateIndex, 1)
                 }
             }
 
-            this.Cart.total = 0
-            this.Cart.items.forEach(item => {
-                this.Cart.total += Number(item.subTotal)
+            this.store.Cart.total = 0
+            this.store.Cart.items.forEach(item => {
+                this.store.Cart.total += Number(item.subTotal)
             });
-            this.Cart.total= this.Cart.total.toFixed(2)
+            this.store.Cart.total= this.store.Cart.total.toFixed(2)
 
-            localStorage.setItem("cart", JSON.stringify(this.Cart));
+            localStorage.setItem("cart", JSON.stringify(this.store.Cart));
             console.log(JSON.parse(localStorage.getItem("cart")));
         },
 
         emptyCart() {
-            this.Cart = {
+            this.store.Cart = {
                 items: [],
                 total: 0
             };
@@ -120,7 +118,7 @@ export default {
         },
         
         isItemInCart(plateId) {
-            return this.Cart.items.some(item => item.id === plateId);
+            return this.store.Cart.items.some(item => item.id === plateId);
         },
 
         scrollToTarget() {
@@ -199,9 +197,9 @@ export default {
             
             <div class=" w-25 rounded-5 shadow-lg" id="Carrello">
                 
-                <div v-if="Cart.items.length > 0">
+                <div v-if="store.Cart.items.length > 0">
                     <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
-                    <h3 class="text-center fs-1 fw-bold">{{ Cart.items[0].restaurant }}</h3>
+                    <h3 class="text-center fs-1 fw-bold">{{ store.Cart.items[0].restaurant }}</h3>
                     <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
                     <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
                         <div class="d-flex justify-content-between align-items-center pb-3 text-black">
@@ -213,7 +211,7 @@ export default {
                             <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ Cart.total }} &euro;</h4>
+                    <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ store.Cart.total }} &euro;</h4>
                     <div class="text-center mt-3 pb-3">
                         <router-Link class="btn btn-success p-2" :to="{ name: 'cart'}">Go to Checkout</router-Link>
                     </div>
