@@ -216,7 +216,7 @@ export default {
     },
 
     watch: {
-        // Il watcher rende solamente l'ogetto cart reattivo in componenti diversi
+        // Il watcher rende solamente l'oggetto cart reattivo in componenti diversi
         'Cart.items'(newItems, oldItems) { },
     },
 

@@ -63,6 +63,9 @@ export default {
 
             this.CallCategory();
             console.log(this.ArrayCategory);
+
+            localStorage.setItem('categoryPermanent', JSON.stringify(this.ArrayCategory))
+            console.log('Categorie cliccate',JSON.parse(localStorage.getItem("categoryPermanent")));
         },
 
         loadImage(src) {
@@ -95,6 +98,16 @@ export default {
 
     mounted() {
         this.apiCall();
+
+        if (JSON.parse(localStorage.getItem("categoryPermanent")) != null) {
+            this.ArrayCategory = JSON.parse(localStorage.getItem("categoryPermanent"))
+            this.CallCategory();
+        }
+    },
+
+    watch: {
+        'ArrayCategory'(newItems, oldItems) {
+         },
     },
 }
 </script>
