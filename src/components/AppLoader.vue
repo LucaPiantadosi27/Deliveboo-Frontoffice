@@ -11,19 +11,24 @@ export default {
 
 <template>
 
-  <div class="load">
-  <div class="hamburger">
-    <div class="top-bun"></div>
-    <div class="pickle"></div>
-    <div class="pickle"></div>
-    <div class="tomato"><div></div></div>
-    <div class="tomato"><div></div></div>
-    <div class="cheese"></div>
-    <div class="cheese"></div>
-    <div class="beef"></div>
-    <div class="bottom-bun"></div>
+  <div class="my-background">
+
+    <div class="load">
+    <div class="hamburger">
+      <div class="top-bun"></div>
+      <div class="pickle"></div>
+      <div class="pickle"></div>
+      <div class="tomato"><div></div></div>
+      <div class="tomato"><div></div></div>
+      <div class="cheese"></div>
+      <div class="cheese"></div>
+      <div class="beef"></div>
+      <div class="bottom-bun"></div>
+    </div>
+    <h1>Loading...</h1>
+
   </div>
-  <h1>Loading...</h1>
+
 </div>
  
 
@@ -33,6 +38,17 @@ export default {
 
 
 <style lang="scss">
+@use '../styles/variables' as *;
+
+.my-background{
+  width: calc(100vw - 17px);
+  height: 100vh;
+
+  position: relative;
+  
+  overflow: hidden;
+  background-color: $color-cream;
+}
 
 
 .load {
@@ -46,7 +62,7 @@ export default {
 h1 {
   text-align: center;
   margin-top: 15px;
-  font-family: "Chicle", serif;
+  font-family:$mibery-font;
   color: #D62300;
 }
 

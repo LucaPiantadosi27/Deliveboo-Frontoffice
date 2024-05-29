@@ -75,7 +75,7 @@ export default {
                 <!-- Icona del carrello -->
                 <li class="nav-item small">
                     <router-link v-if="store.Cart.items.length > 0" :to="{name:'cart'}" class="text-decoration-none">
-                        <div class="my_badge d-flex align-items-center gap-2 rounded-1 py-2 px-3">
+                        <div class="my_badge d-flex align-items-center gap-2 rounded-2 py-1 px-2">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span>{{ cartSize() }}</span>
                         </div>
@@ -117,7 +117,7 @@ nav{
 
             :hover{
                 transition: .2s linear;
-                transform: scale(1.2);
+                transform: scale(1.1);
             }
 
             .dropdown-menu{
@@ -150,6 +150,10 @@ nav{
             .my_badge{
                 border: 2px solid $color-red;
                 border-radius: 20px;
+
+                i, span{
+                    transform: none;
+                }
             }
         }
     }

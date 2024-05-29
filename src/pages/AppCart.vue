@@ -37,6 +37,8 @@ export default {
 
     mounted() {
 
+        document.documentElement.scrollTop = 0
+
         console.log(JSON.parse(localStorage.getItem("cart")));
 
         // recupera carrello
