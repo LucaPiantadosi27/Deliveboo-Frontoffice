@@ -242,26 +242,26 @@ export default {
 
 
 <template>
-    <div class="my-box container py-5">
+    <div class="my-box container py-4">
 
         <!-- CARRELLO -->
-        <div class="" id="Carrello">
+        <div class=" rounded-5 " id="Carrello">
             <div v-if="Cart.items.length > 0">
                 <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
                 <h3 class="text-center fs-1">{{ Cart.items[0].restaurant }}</h3>
-                <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
-                    <div class="d-flex justify-content-between align-items-center pb-3">
+                <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-black">
+                    <div class="d-flex justify-content-around align-items-center pb-3 text-black fw-bolder">
                         <div>{{ item.quantity }}x {{ item.name }}</div>
                         <div>{{ item.subTotal }} &euro;</div>
                     </div>
                     <div class="d-flex justify-content-center align-items-center border-bottom border-white pb-3 gap-3">
-                        <button class="btn btn-outline-light" @click="RemoveItemFromCart(item)"><i
+                        <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i
                                 class="fa-solid fa-minus"></i></button>
-                        <button class="btn btn-outline-light" @click="AddItemToCart(item)"><i
+                        <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i
                                 class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
-                <h4 class="p-3 text-end text-white">Total: {{ Cart.total }} &euro;</h4>
+                <h4 class="p-3 text-end text-black text-center text-bg-primary fw-bolder">Total: {{ Cart.total }} &euro;</h4>
             </div>
             <p v-else class="fs-5 text-center">Your Cart is Empty</p>
         </div>
@@ -325,8 +325,9 @@ export default {
 }
 
 #Carrello {
+    background-color: #f8ebde;
     // width: 15%;
-    border: solid 2px #F6F3E4;
+    border: solid 1px #3b3b3b52;
     border-radius: 0.2em;
     // height: 100vh;
     margin: 1em 0 1em 0;
