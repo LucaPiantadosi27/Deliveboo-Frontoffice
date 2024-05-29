@@ -192,7 +192,7 @@ export default {
       background-color: #f8ebde;
       color: #D62300;
       border-color: #f8ebde;
-      animation: pulse 1s infinite;
+      animation: pulse .8s infinite;
       animation-timing-function: linear;   
 
     }
