@@ -247,7 +247,7 @@ export default {
         <!-- CARRELLO -->
         <div class=" rounded-5 col-6 m-auto shadow-lg" id="Carrello">
             <div v-if="Cart.items.length > 0">
-                <h2 class="text-center ">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
+                <h2 class="text-center "><i class="fa-solid fa-shopping-cart"></i></h2>
                 <h3 class="text-center fs-1 fw-bolder">{{ Cart.items[0].restaurant }}</h3>
                 <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-black">
                     <div class="d-flex justify-content-around align-items-center pb-3 text-black fw-bolder">
@@ -308,7 +308,7 @@ export default {
             <small>*these fields are required</small>
 
             <div id="dropin-container"></div>
-            <button class="btn btn-outline-dark" id="submit_button" :disabled="formIsValid">Submit payment</button>
+            <button class="btn btn-success" id="submit_button" :disabled="formIsValid">Submit payment</button>
         </form>
     </div>
 </template>
