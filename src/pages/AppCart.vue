@@ -67,8 +67,9 @@ export default {
                 } else {
                     let Item = plate;
                     Item.quantity = 1;
-                    Item.restaurant = this.singleRestaurant.name_res
-                    Item.subTotal = Item.price
+                    Item.restaurant = this.singleRestaurant.name_res;
+                    Item.restaurant_id = plate.restaurant_id; // Assicurati che questo campo esista nei dati del piatto
+                    Item.subTotal = Item.price;
                     this.Cart.items.push(Item);
                 }
 
@@ -244,6 +245,11 @@ export default {
 <template>
     <div class="my-box container py-4">
 
+        <!-- Pulsante Back -->
+        <div v-if="Cart.items.length > 0">
+            <router-link :to="{ name: 'restaurant', params: { id: Cart.items[0].restaurant_id } }" class="my-arrow fa-solid fa-reply text-decoration-none"></router-link>
+        </div>
+
         <!-- CARRELLO -->
         <div class=" rounded-5 col-6 m-auto shadow-lg" id="Carrello">
             <div v-if="Cart.items.length > 0">
@@ -282,7 +288,7 @@ export default {
                 <label class="form-label" for="surname">Surname*</label>
                 <input class="form-control" type="surname" name="surname"
                     v-model="formData.billingAddress.surname" required>
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.surname')">Please input your surname</div>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.surname')">Please input your surname</div>
             </div>
 
             <div>
@@ -302,7 +308,7 @@ export default {
                 <label class="form-label" for="phone">Phone Number*</label>
                 <input class="form-control" type="text" name="phone"
                     v-model="formData.billingAddress.phoneNumber">
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.phoneNumber')">Please input your phone Number</div>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.phoneNumber')">Please input your phone Number</div>
             </div>
 
             <small>*these fields are required</small>
@@ -322,6 +328,18 @@ export default {
     position: relative;
     z-index: 10;
     color: black;
+
+    .my-arrow {
+        font-size: 35px;
+        color: #F6F3E4;
+        position: relative;
+        right: 150px;
+        bottom: -20px;
+
+        &:hover {
+            color: #F6F3E4;
+        }
+    }
 }
 
 #Carrello {
