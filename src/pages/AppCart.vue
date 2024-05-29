@@ -3,17 +3,20 @@ import axios from 'axios';
 import dropin from 'braintree-web-drop-in';
 import { router } from '../router';
 import { store } from '../components/store';
+import AppLoader from '../components/AppLoader.vue';
 
 
 export default {
     name: "AppCart",
 
     components: {
+        AppLoader
 
     },
 
     data() {
         return {
+            isloader:true,
             store,
             token: '',
             baseApiUrl: "http://127.0.0.1:8000/api/",
@@ -123,6 +126,13 @@ export default {
             try {
                 const res = await axios.get(this.baseApiUrl + "payment/token");
                 console.log(res);
+
+                // funzione per funzionamento loader
+                setTimeout(()=>{
+                    this.isloader=false;
+                },1500)
+                //  funzione per funzionamento loader
+
                 this.token = res.data.token;
                 this.initializeBraintree();
             } catch (error) {
@@ -240,7 +250,8 @@ export default {
 
 
 <template>
-    <div class="my-box container py-4 col-8">
+    <AppLoader v-if="isloader"></AppLoader>
+    <div  v-if="!isloader" class="my-box container py-4 col-8">
 
         <!-- Pulsante Back -->
         <div v-if="store.Cart.items.length > 0">
