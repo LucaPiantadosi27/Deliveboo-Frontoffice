@@ -156,13 +156,13 @@ export default {
         </div>
 
         <!-- MENU PIATTI -->
-        <div class="d-flex justify-content-between w-100 pb-3 shadow-lg">
-            <div class="w-50">
+        <div class="d-flex justify-content-between w-100 pb-3" id= menu >
+            <div class="w-50 ">
                 <!-- <div class="d-flex justify-content-center pt-5">
                     <h2>Menù</h2>
                 </div> -->
-                <div class=" d-flex justify-content-between pt-5">
-                    <div class="d-flex flex-wrap justify-content-start gap-3 "
+                <div class=" d-flex justify-content-between pt-5 ">
+                    <div class="d-flex flex-wrap justify-content-start gap-3 shadow-lg rounded-2"
                         style="width: calc(100% / 14rem - 1rem/4 * 5);">
 
                         <!-- SINGOLO PIATTO -->
@@ -190,7 +190,7 @@ export default {
 
             <!-- CARRELLO -->
             
-            <div class="w-25 rounded-5 shadow-lg" id="Carrello">
+            <div class=" w-25 rounded-5 shadow-lg" id="Carrello">
                 
                 <div v-if="Cart.items.length > 0">
                     <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
@@ -309,7 +309,13 @@ h2 {
         color: #d62300;
     }
 
+
+#menu{
+    margin-top: 40px;
+
+}
 #Carrello {
+    margin-top: 40px;
     width: 15%;
     border: solid 1px #9c999983;
     background-color: #f8ebde;
@@ -318,7 +324,7 @@ h2 {
     
     border-radius: 0.2em;
     height: 50%;
-    margin: 1em 0 1em 0;
+    // margin: 1em 0 1em 0;
     overflow-y: auto;
     // padding: 1rem;
 
