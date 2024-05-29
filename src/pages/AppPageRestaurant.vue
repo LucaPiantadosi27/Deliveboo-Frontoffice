@@ -134,59 +134,115 @@ export default {
 </script>
 
 <template>
-    
+
     <div id="restaurant" style="width: 100%;"
-        class="container  position-relative d-flex justify-content-center align-items-center  flex-column   pt-5 ">
-
-        <!-- PULSANTE BACK -->
-        <div @click="scrollToTarget()" class="back pe-5 me-5 ">
-            <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
-                    class="my-arrow fa-solid fa-reply"></i></router-link>
-        </div>
-
-        <!-- JUMBO RISTO -->
-        <div class="my-jumbo row card d-flex flex-row w-100 rounded-5 shadow-lg  " style="width: 90%;">
-            <div class="col-7 p-0 position-relative">
-                <div class="img-box">
-                    <img class="img-fluid rounded-start-5 " :src="apiImageUrl + singleRestaurant.img_res" />
-                </div>
-                <img :src="apiImageUrl + 'branding/wave-restaurant.png'" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+        class="position-relative d-flex justify-content-center align-items-center  flex-column  pt-5 ">
+        <div class="container position-relative">
+            <!-- PULSANTE BACK -->
+            <div @click="scrollToTarget()" class="back pe-5 me-5 ">
+                <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
+                        class="my-arrow fa-solid fa-reply"></i></router-link>
             </div>
-            <div class="col-4 p-3 card-body position-relative">
-                <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
-                <h3>{{ singleRestaurant.address_res }}</h3>
-                <div class="d-flex gap-2">
-                    <span class="badge text-bg-light" v-for="tag in singleRestaurant.categories">{{ tag.name }}</span>
+    
+            <!-- JUMBO RISTO -->
+            <div class="my-jumbo p-0 row card d-flex flex-row w-100 rounded-5 shadow-lg  " style="width: 90%;">
+                <div class="col-7 p-0 position-relative">
+                    <div class="img-box">
+                        <img class="img-fluid rounded-start-5 " :src="apiImageUrl + singleRestaurant.img_res" />
+                    </div>
+                    <img :src="apiImageUrl + 'branding/wave-restaurant.png'" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+                </div>
+                <div class="col-4 p-3 card-body position-relative">
+                    <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
+                    <h3>{{ singleRestaurant.address_res }}</h3>
+                    <div class="d-flex gap-2">
+                        <span class="badge text-bg-light" v-for="tag in singleRestaurant.categories">{{ tag.name }}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- MENU PIATTI -->
-        <div class="d-flex justify-content-between w-100 pb-3" id= menu >
-            <div class="w-50 ">
-                <!-- <div class="d-flex justify-content-center pt-5">
-                    <h2>Menù</h2>
-                </div> -->
-                <div class=" d-flex justify-content-between pt-5 ">
-                    <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
-                        style="width: calc(100% / 14rem - 1rem/4 * 5);">
-
-                        <!-- SINGOLO PIATTO -->
-                        <div v-for="plate in singleRestaurant.plates" class="my-card card rounded-3 shadow-lg" style="width: 100%;">
-                            <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover" alt="@"
-                                style="height: 170px;">
-                            <div class="card-body d-flex flex-column justify-content-between text-black border-black">
-                                <h5 class="card-title">{{ plate.name }}</h5>
-                                <p class="fst-italic">{{ plate.ingredients }}</p>
-                                <h6 class="card-text">{{ plate.price }} &euro;</h6>
+    
+            <!-- MENU PIATTI -->
+            <div class="d-flex justify-content-between w-100 pb-3" id= menu >
+                <div class="w-50 ">
+                    <!-- <div class="d-flex justify-content-center pt-5">
+                        <h2>Menù</h2>
+                    </div> -->
+                    <div class=" d-flex justify-content-between pt-5 ">
+                        <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
+                            style="width: calc(100% / 14rem - 1rem/4 * 5);">
+    
+                            <!-- SINGOLO PIATTO -->
+                            <div v-for="plate in singleRestaurant.plates" class="my-card card rounded-4 shadow-lg" style="width: 100%;">
+                                <img :src="apiImageUrl + plate.image" class="card-img-top object-fit-cover rounded-top-4" alt="@"
+                                    style="height: 170px;">
+                                <div class="card-body d-flex flex-column justify-content-between text-black border-black">
+                                    <h5 class="card-title">{{ plate.name }}</h5>
+                                    <p class="fst-italic">{{ plate.ingredients }}</p>
+                                    <h6 class="card-text">{{ plate.price }} &euro;</h6>
+                                </div>
+                                <div class="d-flex justify-content-center pb-2">
+                                    <button v-if="!isItemInCart(plate.id)" class="btn btn-success" @click="AddItemToCart(plate)">
+                                        Add to cart <i class="fa-solid fa-shopping-cart"></i>
+                                    </button>
+                                    <div class="d-flex gap-3" v-else>
+                                        <button class="btn btn-outline-danger" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
+                                        <button class="btn btn-outline-success" @click="AddItemToCart(plate)"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="d-flex justify-content-center pb-2">
-                                <button v-if="!isItemInCart(plate.id)" class="btn btn-success" @click="AddItemToCart(plate)">
-                                    Add to cart <i class="fa-solid fa-shopping-cart"></i>
-                                </button>
-                                <div class="d-flex gap-3" v-else>
-                                    <button class="btn btn-outline-danger" @click="RemoveItemFromCart(plate)"><i class="fa-solid fa-minus"></i></button>
-                                    <button class="btn btn-outline-success" @click="AddItemToCart(plate)"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- CARRELLO -->
+                
+                <div class=" w-25 rounded-5 shadow-lg" id="Carrello">
+                    
+                    <div v-if="Cart.items.length > 0">
+                        <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
+                        <h3 class="text-center fs-1 fw-bold">{{ Cart.items[0].restaurant }}</h3>
+                        <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
+                        <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
+                            <div class="d-flex justify-content-between align-items-center pb-3 text-black">
+                                <div>{{ item.quantity }}x {{ item.name }}</div>
+                                <div>{{ item.subTotal }} &euro;</div>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center border-bottom border-black pb-3 gap-3">
+                                <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
+                                <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ Cart.total }} &euro;</h4>
+                        <div class="text-center mt-3 pb-3">
+                            <router-Link class="btn btn-success p-2" :to="{ name: 'cart'}">Go to Checkout</router-Link>
+                        </div>
+                    </div>
+                    <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
+               
+                    <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
+                        style="background: rgba(0, 0, 0, 0.5);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- MODALE CONFLITTO PIATTI -->
+                    <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
+                        style="background: rgba(0, 0, 0, 0.5);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Attention</h5>
+                                    <button type="button" class="btn-close" @click="closeModal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>You already have items in your cart with {{ Cart.items[0].restaurant }}. Do you wish
+                                        to empty your cart?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+                                    <button type="button" class="btn btn-primary" @click="emptyCart">Empty cart</button>
                                 </div>
                             </div>
                         </div>
@@ -194,60 +250,6 @@ export default {
                 </div>
             </div>
 
-            <!-- CARRELLO -->
-            
-            <div class=" w-25 rounded-5 shadow-lg" id="Carrello">
-                
-                <div v-if="Cart.items.length > 0">
-                    <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
-                    <h3 class="text-center fs-1 fw-bold">{{ Cart.items[0].restaurant }}</h3>
-                    <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
-                    <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
-                        <div class="d-flex justify-content-between align-items-center pb-3 text-black">
-                            <div>{{ item.quantity }}x {{ item.name }}</div>
-                            <div>{{ item.subTotal }} &euro;</div>
-                        </div>
-                        <div class="d-flex justify-content-center align-items-center border-bottom border-black pb-3 gap-3">
-                            <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
-                            <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </div>
-                    <h4 class="p-3 text-end text-white text text-center text-bg-primary">Total: {{ Cart.total }} &euro;</h4>
-                    <div class="text-center mt-3 pb-3">
-                        <router-Link class="btn btn-success p-2" :to="{ name: 'cart'}">Go to Checkout</router-Link>
-                    </div>
-                </div>
-                <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
-           
-                <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
-                    style="background: rgba(0, 0, 0, 0.5);">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MODALE CONFLITTO PIATTI -->
-                <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
-                    style="background: rgba(0, 0, 0, 0.5);">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Attention</h5>
-                                <button type="button" class="btn-close" @click="closeModal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>You already have items in your cart with {{ Cart.items[0].restaurant }}. Do you wish
-                                    to empty your cart?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-                                <button type="button" class="btn btn-primary" @click="emptyCart">Empty cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -257,6 +259,10 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 
+#restaurant{
+    background-color: #f8ebde;
+}
+
 .back {
     position: absolute;
 
@@ -265,11 +271,7 @@ export default {
 
     .my-arrow {
         font-size: 35px;
-        color: #F6F3E4;
-
-        &:hover {
-            color: #F6F3E4;
-        }
+        color: #ff0800;
     }
 }
 
