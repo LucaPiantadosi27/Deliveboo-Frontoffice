@@ -247,9 +247,7 @@ export default {
 
         <!-- Pulsante Back -->
         <div v-if="Cart.items.length > 0">
-            <router-link :to="{ name: 'restaurant', params: { id: Cart.items[0].restaurant_id } }" class="btn btn-outline-primary mb-3">
-                Torna al Ristorante
-            </router-link>
+            <router-link :to="{ name: 'restaurant', params: { id: Cart.items[0].restaurant_id } }" class="my-arrow fa-solid fa-reply text-decoration-none"></router-link>
         </div>
 
         <!-- CARRELLO -->
@@ -330,6 +328,15 @@ export default {
     position: relative;
     z-index: 10;
     color: black;
+
+    .my-arrow {
+        font-size: 35px;
+        color: #F6F3E4;
+
+        &:hover {
+            color: #F6F3E4;
+        }
+    }
 }
 
 #Carrello {
