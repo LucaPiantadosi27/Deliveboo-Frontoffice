@@ -2,6 +2,7 @@
 import axios from "axios";
 import AppRestaurant from '../components/AppRestaurant.vue';
 import AppLoader from '../components/AppLoader.vue'
+import { store } from "../components/store";
 
 
 export default {
@@ -9,6 +10,7 @@ export default {
 
     data() {
         return {
+            store,
             baseApiUrl: "http://127.0.0.1:8000/api/",
             apiImageUrl: 'http://127.0.0.1:8000/storage/',
             categories: [],
@@ -17,10 +19,6 @@ export default {
             isLoading: true,
             restaurantId: null,
             singleRestaurant: '',
-            Cart: {
-                items: [],
-                total: 0,
-            },
             showModal: false,
         }
     },
@@ -47,16 +45,16 @@ export default {
         console.log(JSON.parse(localStorage.getItem("cart")));
 
         if (JSON.parse(localStorage.getItem("cart")) != null) {
-            this.Cart = JSON.parse(localStorage.getItem("cart"))
+            this.store.Cart = JSON.parse(localStorage.getItem("cart"))
         }
     },
     methods: {
         AddItemToCart(plate) {
-            if (this.Cart.items.length != 0 && this.Cart.items.find((Item) => Item.restaurant_id != plate.restaurant_id)) {
+            if (this.store.Cart.items.length != 0 && this.store.Cart.items.find((Item) => Item.restaurant_id != plate.restaurant_id)) {
                 console.log("Diverso");
                 this.showModal = true;
             } else {
-                const CurrentItem = this.Cart.items.find((Item) => Item.id === plate.id)
+                const CurrentItem = this.store.Cart.items.find((Item) => Item.id === plate.id)
 
                 if (CurrentItem) {
                     CurrentItem.quantity++;
@@ -67,16 +65,16 @@ export default {
                     Item.quantity = 1;
                     Item.restaurant = this.singleRestaurant.name_res
                     Item.subTotal = Item.price
-                    this.Cart.items.push(Item);
+                    this.store.Cart.items.push(Item);
                 }
 
-                this.Cart.total = 0
-                this.Cart.items.forEach(item => {
-                    this.Cart.total += Number(item.subTotal)
+                this.store.Cart.total = 0
+                this.store.Cart.items.forEach(item => {
+                    this.store.Cart.total += Number(item.subTotal)
                 });
-                this.Cart.total= this.Cart.total.toFixed(2)
+                this.store.Cart.total= this.store.Cart.total.toFixed(2)
 
-                localStorage.setItem("cart", JSON.stringify(this.Cart));
+                localStorage.setItem("cart", JSON.stringify(this.store.Cart));
                 console.log(JSON.parse(localStorage.getItem("cart")));
             }
         },
@@ -86,32 +84,32 @@ export default {
         },
 
         RemoveItemFromCart(plate) {
-            const plateIndex = this.Cart.items.findIndex((Item) => Item.id === plate.id)
+            const plateIndex = this.store.Cart.items.findIndex((Item) => Item.id === plate.id)
 
             if (plateIndex != -1) {
-                const plate = this.Cart.items[plateIndex]
+                const plate = this.store.Cart.items[plateIndex]
 
                 if (plate.quantity > 1) {
                     plate.quantity -= 1
                     plate.subTotal = plate.price * plate.quantity
                     plate.subTotal= plate.subTotal.toFixed(2)
                 } else {
-                    this.Cart.items.splice(plateIndex, 1)
+                    this.store.Cart.items.splice(plateIndex, 1)
                 }
             }
 
-            this.Cart.total = 0
-            this.Cart.items.forEach(item => {
-                this.Cart.total += Number(item.subTotal)
+            this.store.Cart.total = 0
+            this.store.Cart.items.forEach(item => {
+                this.store.Cart.total += Number(item.subTotal)
             });
-            this.Cart.total= this.Cart.total.toFixed(2)
+            this.store.Cart.total= this.store.Cart.total.toFixed(2)
 
-            localStorage.setItem("cart", JSON.stringify(this.Cart));
+            localStorage.setItem("cart", JSON.stringify(this.store.Cart));
             console.log(JSON.parse(localStorage.getItem("cart")));
         },
 
         emptyCart() {
-            this.Cart = {
+            this.store.Cart = {
                 items: [],
                 total: 0
             };
@@ -120,7 +118,7 @@ export default {
         },
         
         isItemInCart(plateId) {
-            return this.Cart.items.some(item => item.id === plateId);
+            return this.store.Cart.items.some(item => item.id === plateId);
         },
 
         scrollToTarget() {
