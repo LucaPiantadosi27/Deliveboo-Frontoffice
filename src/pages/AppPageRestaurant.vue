@@ -153,7 +153,6 @@ export default {
                 <img :src="apiImageUrl + 'branding/wave-restaurant.png'" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
             </div>
             <div class="col-4 p-3 card-body position-relative">
-                
                 <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
                 <h3>{{ singleRestaurant.address_res }}</h3>
                 <div class="d-flex gap-2">
@@ -284,7 +283,8 @@ export default {
     h1 {
         text-align: center;
         margin-top: 15px;
-        font-family: "Chicle", cursive;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: bold;
         color: #d62300;
     }
 
