@@ -138,7 +138,7 @@ export default {
   <section v-if="!isLoading" id="target">
     <div class="container">
       <div class="container py-5">
-        <h2 class="do-you">WHAT DO YOU WANT EAT?</h2>
+        <h2 class="do-you pt-3">WHAT DO YOU WANT EAT?</h2>
         <div class="d-flex gap-4 justify-content-center category-wrapper flex-wrap">
           <div
             @click="AddCategory(category.id)"
@@ -305,8 +305,5 @@ section {
   }
 
 
-}
-Apploader{
-  display: inline-block;
 }
 </style>

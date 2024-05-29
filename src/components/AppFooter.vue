@@ -121,16 +121,14 @@ export default {
     .my-col{
         border-radius: 25px;
         box-shadow: -10px -10px 30px 0 #fec57f,10px 10px 30px 0 #cc894c;
+        border: 1px solid #f3ad6c ;
 
         
     }
 
     h5{
         color:#713616;
-    
-        // font-family: "Open Sans", sans-serif;
-        // font-optical-sizing: auto;
-        // font-weight: 400;
+
         font-family: $mibery-font;
         text-align: center; 
     }
@@ -186,46 +184,3 @@ export default {
 
 }
 </style>
-
-/* CSS */
-.button-67 {
-  align-items: center;
-  background: #f5f5fa;
-  border: 0;
-  border-radius: 8px;
-
-  box-sizing: border-box;
-  color: #2a1f62;
-  cursor: pointer;
-  display: flex;
-  font-family: "Cascadia Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
-  font-size: 1rem;
-  justify-content: center;
-  line-height: 1.5rem;
-  padding: 15px;
-  position: relative;
-  text-align: left;
-  transition: .2s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: pre;
-  width: max-content;
-  word-break: normal;
-  word-spacing: normal;
-}
-
-.button-67:hover {
-  background: #f8f8ff;
-  box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
-}
-
-@media (min-width: 768px) {
-  .button-67 {
-    padding: 24px;
-  }
-}
-        
-
-/* Parent background */
-#F5F5FA

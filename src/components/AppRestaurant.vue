@@ -47,15 +47,16 @@ export default {
     </div>
     <strong class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</strong>
     <div class="row">
-      <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4 z-3">
+      <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-3 mb-4 z-3">
         <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
-          <div class="restaurant-card h-100 pb-5 rounded-5 bg-gradient">
+          <div class="restaurant-card h-100 pb-5 rounded-5">
             <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover rounded-top-5 bg-light" :alt="restaurant.name_res">
-            <div class="description">
-              <h3 class="text-center">{{ restaurant.name_res }}</h3>
-              <h4 class="text-center">{{ restaurant.address_res }}</h4>
-              <div class="categories text-center">
-                <span v-for="category in restaurant.categories" :key="category.id" class="badge bg-secondary">{{ category.name }}</span>
+            <div class="description position-relative">
+              <h3 class="pt-3">{{ restaurant.name_res }}</h3>
+              <span>adress: {{ restaurant.address_res }}</span>
+              <div class="categories text-center position-absolute">
+                <div class="square position-absolute"></div>
+                <span v-for="category in restaurant.categories" :key="category.id" class="badge">{{ category.name }}</span>
               </div>
             </div>
           </div>
@@ -66,6 +67,7 @@ export default {
 </template>
 
 <style lang="scss">
+@use '../styles/variables' as *;
 
   .thinking{
     width: 75%;
@@ -75,7 +77,7 @@ export default {
     padding: 1px;
     background-color:#279647;
     
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
   }
 
@@ -92,7 +94,44 @@ export default {
     color:#f8ebde ;
   }
 
-  .categories .badge {
-    margin-right: 5px;
+  .categories{
+    background-color: $color-red;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    transition: width .2s linear;
+
+    height: 20px;
+    width: 25px;
+    right: 0;
+    top: 5px;
+
+    .square{
+      background-color: #279647;
+      height: 16px;
+      width: 16px;
+      position: relative;
+
+      left: -7px;
+      transform: rotate(45deg);
+    }
+
+    .badge {
+      margin-left: 5px;
+      display: none;
+    }
+
+    &:hover{
+      width: 90%;
+
+      .badge{
+        display: inline;
+      }
+    }
   }
+  
 </style>

@@ -384,14 +384,10 @@ export default {
 
     .my-arrow {
         font-size: 35px;
-        color: #F6F3E4;
+        color: #ff0800;
         position: relative;
         right: 150px;
         bottom: -20px;
-
-        &:hover {
-            color: #F6F3E4;
-        }
     }
 }
 
