@@ -96,8 +96,13 @@ nav{
             }
 
             .dropdown-menu{
-                background-color: rgb(251, 211, 171);
+                // background-color: rgb(251, 211, 171);
+                background-color: red;
+                position: absolute !important; 
+                top: 70% !important;
+                left: 60% !important;
                 border: 1px solid #713616;
+
     
                 transform: none;
         
