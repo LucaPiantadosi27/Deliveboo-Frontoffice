@@ -10,10 +10,11 @@ export default {
 
 <template>
     <footer id="footer" class="fixed-footer text-white ">
-        <div class="my-footer">
-            <div class="row pt-4 text-center  text-md-left text-decoration-none ">
+        <div class="my-footer d-flex align-items-center justify-content-center flex-column">
+            <div class="row w-100 pt-4 d-flex justify-content-center gap-3">
+
                 <!-- Colonna 1 -->
-                <div class="my-col col-md-4 mb-4 ">
+                <div class="my-col col-2 p-3 text-center mb-4 ">
                     <h5 class="text-uppercase">Discover Deliveboo</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Who we are</a></li>
@@ -25,9 +26,8 @@ export default {
                     </ul>
                 </div>
 
-        
                 <!-- Colonna 2 -->
-                <div class="my-col col-md-4 mb-4">
+                <div class="my-col col-2 p-3 text-center mb-4">
                     <h5 class="text-uppercase">Legal Notices</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Temrs and Conditions</a></li>
@@ -38,8 +38,9 @@ export default {
                         <li><a href="#" class="text-white text-decoration-none ">Public</a></li>
                     </ul>
                 </div>
+
                 <!-- Colonna 3 -->
-                <div class="my-col col-md-4 mb-4">
+                <div class="my-col col-2 p-3 text-center mb-4">
                     <h5 class="text-uppercase">Help</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Contacts</a></li>
@@ -47,27 +48,29 @@ export default {
                         <li><a href="#" class="text-white text-decoration-none ">Types of cuisine</a></li>
                     </ul>
                 </div>
+
+                <!-- colonna 4 -->
+                <div class="my-col col-2 p-3 text-center mb-4 d-flex justify-content-center">
+                    <div class="text-center">
+                        <h5 class="text-uppercase">DOWNLOAD APP</h5>
+                        <div class="d-flex gap-3 flex-column align-items-center " >
+                            <img class="small-image w-50  " :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
+                            <img class="small-image w-50  " :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="row d-flex 100w justify-content-center align-items-center ">
-                <div class="my-col col-6 d-flex justify-content-center align-items-center  ">
+            <div class="row d-flex w-100 justify-content-center align-items-center ">
+                <div class="col-6 pt-4 d-flex justify-content-center align-items-center  ">
                     <div class="text-center">
                         <h5 class="text-uppercase">COPYRIGHT</h5>
                         <p class="mb-0">© 2024 Deliveboo. Developed by MLMSM</p>
                     </div>
                 </div>
                 
-                <div class="my-col col-4 d-flex justify-content-center align-items-center">
-                    <div class="text-center">
-                    <h5 class="text-uppercase">DOWNLOAD APP</h5>
-                    <div class="d-flex gap-3 justify-content-center " >
-                        <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/appstore.png'" alt="App Store">
-                        <img class="small-image w-25  " :src="'http://localhost:8000/storage/' + 'download_images/playstore.png'" alt="App Store">
-                    </div>
-                    </div>
-                </div>
-
-                <div class="my-col col-6 d-flex flex-column justify-content-start align-items-center ">
+                <div class="col-6 pt-4 d-flex flex-column justify-content-start align-items-center ">
                     <div class="text-center ">
                         <h5 class="text-uppercase">FOLLOW US</h5>
                         <div class="box-icon d-flex justify-content-around gap-4">
@@ -114,6 +117,13 @@ export default {
 
 .my-footer {
     height: 450px;
+
+    .my-col{
+        border-radius: 25px;
+        box-shadow: -10px -10px 30px 0 #fec57f,10px 10px 30px 0 #cc894c;
+
+        
+    }
 
     h5{
         color:#713616;
@@ -177,3 +187,45 @@ export default {
 }
 </style>
 
+/* CSS */
+.button-67 {
+  align-items: center;
+  background: #f5f5fa;
+  border: 0;
+  border-radius: 8px;
+
+  box-sizing: border-box;
+  color: #2a1f62;
+  cursor: pointer;
+  display: flex;
+  font-family: "Cascadia Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+  font-size: 1rem;
+  justify-content: center;
+  line-height: 1.5rem;
+  padding: 15px;
+  position: relative;
+  text-align: left;
+  transition: .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+  width: max-content;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+.button-67:hover {
+  background: #f8f8ff;
+  box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+}
+
+@media (min-width: 768px) {
+  .button-67 {
+    padding: 24px;
+  }
+}
+        
+
+/* Parent background */
+#F5F5FA
