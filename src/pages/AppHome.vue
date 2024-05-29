@@ -104,16 +104,6 @@ export default {
             this.CallCategory();
         }
     },
-
-    // unmounted() {
-    //     this.ArrayCategory = [],
-    //     sessionStorage.setItem('categoryPermanent', JSON.stringify(this.ArrayCategory))
-    // },
-
-    watch: {
-        'ArrayCategory'(newItems, oldItems) {
-         },
-    },
 }
 </script>
 
