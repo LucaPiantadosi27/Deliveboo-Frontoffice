@@ -151,7 +151,6 @@ export default {
                 <img :src="apiImageUrl + 'branding/wave-restaurant.png'" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
             </div>
             <div class="col-4 p-3 card-body position-relative">
-                
                 <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
                 <h3>{{ singleRestaurant.address_res }}</h3>
                 <div class="d-flex gap-2">
@@ -201,7 +200,7 @@ export default {
                     <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
                     <h3 class="text-center fs-1 fw-bold">{{ store.Cart.items[0].restaurant }}</h3>
                     <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
-                    <div v-for="item in Cart.items" :key="item.id" class="p-3 text-start text-white">
+                    <div v-for="item in store.Cart.items" :key="item.id" class="p-3 text-start text-white">
                         <div class="d-flex justify-content-between align-items-center pb-3 text-black">
                             <div>{{ item.quantity }}x {{ item.name }}</div>
                             <div>{{ item.subTotal }} &euro;</div>
@@ -282,7 +281,8 @@ export default {
     h1 {
         text-align: center;
         margin-top: 15px;
-        font-family: "Chicle", cursive;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: bold;
         color: #d62300;
     }
 

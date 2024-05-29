@@ -64,8 +64,9 @@ export default {
                 } else {
                     let Item = plate;
                     Item.quantity = 1;
-                    Item.restaurant = this.singleRestaurant.name_res
-                    Item.subTotal = Item.price
+                    Item.restaurant = this.singleRestaurant.name_res;
+                    Item.restaurant_id = plate.restaurant_id; // Assicurati che questo campo esista nei dati del piatto
+                    Item.subTotal = Item.price;
                     this.store.Cart.items.push(Item);
                 }
 
@@ -241,12 +242,17 @@ export default {
 <template>
     <div class="my-box container py-4">
 
+        <!-- Pulsante Back -->
+        <div v-if="store.Cart.items.length > 0">
+            <router-link :to="{ name: 'restaurant', params: { id: store.Cart.items[0].restaurant_id } }" class="my-arrow fa-solid fa-reply text-decoration-none"></router-link>
+        </div>
+
         <!-- CARRELLO -->
-        <div class=" rounded-5 " id="Carrello">
+        <div class=" rounded-5 col-7 m-auto shadow-lg " id="Carrello">
             <div v-if="store.Cart.items.length > 0">
                 <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
                 <div class="d-flex justify-content-between align-items-center pb-3">
-                    <h3 class="text-center fs-1">{{ store.Cart.items[0].restaurant }}</h3>
+                    <h3 class="text-center fs-1 fw-bolder">{{ store.Cart.items[0].restaurant }}</h3>
                     <div v-for="item in store.Cart.items" :key="item.id" class="p-3 text-start text-black">
                         <div class="d-flex justify-content-around align-items-center pb-3 text-black fw-bolder">
                             <div>{{ item.quantity }}x {{ item.name }}</div>
@@ -260,7 +266,7 @@ export default {
                                     class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-black text-center text-bg-primary fw-bolder">Total: {{ store.Cart.total
+                    <h4 class="p-3 text-end text-white text-center text-bg-primary fw-bolder">Total: {{ store.Cart.total
                         }} &euro;</h4>
                 </div>
             </div>
@@ -268,8 +274,8 @@ export default {
 
             <div id="checkout-message" class="text-center"></div>
 
-            <!-- CHECKOUT -->
-            <form v-if="this.store.Cart.total > 0" class="mt-5" action="javascript:void(0)">
+        <!-- CHECKOUT -->
+        <form v-if="this.store.Cart.total > 0" class="mt-5 col-7 m-auto shadow-lg" action="javascript:void(0)">
 
                 <div>
                     <label class="form-label" for="name">Name*</label>
@@ -308,7 +314,7 @@ export default {
                         Please input your phone Number</div>
                 </div>
 
-                <small>*these fields are required</small>
+            <small class="fw-bolder">*these fields are required</small>
 
                 <div id="dropin-container"></div>
                 <button class="btn btn-outline-dark" id="submit_button" :disabled="formIsValid">Submit payment</button>
@@ -326,6 +332,18 @@ export default {
     position: relative;
     z-index: 10;
     color: black;
+
+    .my-arrow {
+        font-size: 35px;
+        color: #F6F3E4;
+        position: relative;
+        right: 150px;
+        bottom: -20px;
+
+        &:hover {
+            color: #F6F3E4;
+        }
+    }
 }
 
 #Carrello {
@@ -346,8 +364,31 @@ export default {
 
     h2 {
         font-family: "Pacifico", cursive;
-        text-shadow: 2px 3px rgb(172, 177, 214);
-        color: #F6F3E4;
+        
+        color: #d62300;
+    }
+
+    h3{
+        font-family: "Pacifico", cursive;
+        
+        color: #d62300;
     }
 }
+form{
+    border: solid 1px #3b3b3b52;
+    border-radius:10px;
+    padding: 1.5%;
+    background-color: #F8EBDE;
+
+    input{
+        color: black;
+        background-color: rgba(128, 128, 128, 0.226);
+
+        
+    }
+
+
+}
+
+
 </style>
