@@ -261,10 +261,6 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 
-#restaurant{
-    background-color: #f8ebde;
-}
-
 .back {
     position: absolute;
 

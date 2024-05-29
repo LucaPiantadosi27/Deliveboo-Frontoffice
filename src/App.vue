@@ -23,7 +23,7 @@ export default{
   mounted(){
 
         
-    }
+  }
 
 }
 </script>
@@ -33,7 +33,7 @@ export default{
   <AppHeader></AppHeader>
 
   <div class="box">
-    <div class="wave-box">
+    <div v-if="$route.path ==  '/'" class="wave-box">
       <img class="wave-top" :src="apiImageUrl + 'branding/svg.png'" alt="@">
     </div>
 
