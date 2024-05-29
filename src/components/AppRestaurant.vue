@@ -48,7 +48,7 @@ export default {
     <strong class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</strong>
     <div class="row">
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 mb-4 z-3">
-        <router-link @click="scrollToTarget()" :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
+        <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
           <div class="restaurant-card h-100 pb-5 rounded-5 bg-gradient">
             <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover rounded-top-5 bg-light" :alt="restaurant.name_res">
             <div class="description">
