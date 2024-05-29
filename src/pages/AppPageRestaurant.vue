@@ -198,7 +198,7 @@ export default {
                     
                     <div v-if="store.Cart.items.length > 0">
                         <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
-                        <h3 class="text-center fs-1 fw-bold">{{ Cart.items[0].restaurant }}</h3>
+                        <h3 class="text-center fs-1 fw-bold">{{ store.Cart.items[0].restaurant }}</h3>
                         <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
                         <div v-for="item in store.Cart.items" :key="item.id" class="p-3 text-start text-white">
                             <div class="d-flex justify-content-between align-items-center pb-3 text-black">
