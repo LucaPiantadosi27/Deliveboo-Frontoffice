@@ -138,14 +138,15 @@ export default {
         </div>
 
         <!-- JUMBO RISTO -->
-        <div class="my-jumbo row card d-flex flex-row w-100 rounded-5 shadow-lg " style="width: 90%;">
-            <div class="col-8 p-0 ">
+        <div class="my-jumbo row card d-flex flex-row w-100 rounded-5 shadow-lg  " style="width: 90%;">
+            <div class="col-7 p-0 position-relative">
                 <div class="img-box">
                     <img class="img-fluid rounded-start-5 " :src="apiImageUrl + singleRestaurant.img_res" />
                 </div>
-            </div>
-            <div class="col-4 p-3 card-body position-relative ">
                 <img :src="apiImageUrl + 'branding/wave-restaurant.png'" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+            </div>
+            <div class="col-4 p-3 card-body position-relative">
+                
                 <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
                 <h3>{{ singleRestaurant.address_res }}</h3>
                 <div class="d-flex gap-2">
@@ -282,7 +283,7 @@ export default {
 
     .wave-restaurant{
         top: 0;
-        left: -49%;
+        right: 0%;
     }
 }
 
