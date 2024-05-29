@@ -268,7 +268,7 @@ export default {
                                     class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    <h4 class="p-3 text-end text-white text-center text-bg-primary fw-bolder">Total: {{ store.Cart.total}} &euro;</h4>
+                    <h4 class="p-3 text-end text-white text-center text-bg-primary fw-bolder rounded-5 m-3">Total: {{ store.Cart.total}} &euro;</h4>
                 </div>
             </div>
             <p v-else class="fs-5 text-center">Your Cart is Empty</p>
