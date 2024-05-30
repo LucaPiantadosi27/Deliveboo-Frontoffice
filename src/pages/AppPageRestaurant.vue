@@ -148,8 +148,8 @@ export default {
                 <div class="col-7 p-0 img-box position-relative">
                     <!-- <div class=""> -->
                         <Transition name="fade" mode="out-in">
-                            <img v-if="imageReady" class="img-fluid rounded-start-5 risto-img" :src="apiImageUrl + singleRestaurant.img_res" />
-                            <img v-else class="img-fluid rounded-start-5 risto-img" src="/src/assets/fallback.svg" alt="fallback">
+                            <img v-if="imageReady" class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover risto-img" :src="apiImageUrl + singleRestaurant.img_res" />
+                            <img v-else class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover risto-img" src="/src/assets/fallback.svg" alt="fallback">
                         </Transition>
                         <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
                     <!-- </div> -->
@@ -174,8 +174,10 @@ export default {
                             <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg" style="width: 75%;">
                                 <div class="d-flex flex-wrap">
                                     <div class="my-plate rounded-top-4 object-fit-cover" style="height: 100px ;width: 200px;">
-                                        <img :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 object-fit-covers" alt="@">
-
+                                        <Transition name="fade" mode="out-in">
+                                            <img v-if="imageReady" :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 object-fit-cover" alt="@">
+                                            <img v-else class="h-100 w-100 rounded-4 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
+                                        </Transition>
                                     </div>
                                         
                                     <div class="card-body d-flex flex-column  text-black border-black">
@@ -278,18 +280,13 @@ export default {
 }
 
 .my-jumbo {
+    background-color: #f3d9bf;
 
     .img-box {
         max-height: 300px;
         width: 50%;
-
-        .risto-img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
     }
-
+    
     h1 {
         text-align: center;
         margin-top: 15px;
@@ -297,7 +294,7 @@ export default {
         font-weight: bold;
         color: #d62300;
     }
-
+    
     .wave-restaurant{
         top: 0;
         right: 0%;
