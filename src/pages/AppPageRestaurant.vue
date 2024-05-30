@@ -163,7 +163,7 @@ export default {
             </div>
     
             <!-- MENU PIATTI -->
-            <div class="d-flex flex-column-reverse align-items-center w-100 pb-3 flex-md-row" id= menu >
+            <div class="d-flex flex-column-reverse align-items-start w-100 pb-3 flex-md-row" id= menu >
                 <div class="w-75 ">
                     <div class=" d-flex justify-content-between pt-5 ">
                         <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
