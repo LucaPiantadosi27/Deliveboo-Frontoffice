@@ -47,7 +47,7 @@ export default {
     </div>
     <strong class="text-center mb-3">{{ restaurantCount }} {{ restaurantText }}</strong>
     <div class="row">
-      <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-3 mb-4 z-3">
+      <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-6 col-lg-4 mb-4 z-3">
         <router-link :to="{ name: 'restaurant', params: { id: restaurant.id }}" class="text-decoration-none" >
           <div class="restaurant-card h-100 pb-5 rounded-5">
             <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover rounded-top-5 bg-light" :alt="restaurant.name_res">
@@ -75,9 +75,10 @@ export default {
 
   .restaurant-card {
     padding: 1px;
-    background-color:#279647;
+    background-color:$color-cream;
+    border: #d5c9c0eb 1px solid;
     
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: -10px -10px 30px 0 #fff9f3,10px 10px 30px 0 #a29992;
 
   }
 
@@ -91,7 +92,7 @@ export default {
 
   .description {
     padding: 15px;
-    color:#f8ebde ;
+    color:$color-green ;
   }
 
   .categories{
@@ -111,7 +112,7 @@ export default {
     top: 5px;
 
     .square{
-      background-color: #279647;
+      background-color: $color-cream;
       height: 16px;
       width: 16px;
       position: relative;
