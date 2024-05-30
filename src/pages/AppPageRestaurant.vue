@@ -146,13 +146,11 @@ export default {
             <!-- JUMBO RISTO -->
             <div class="my-jumbo p-0 row card d-flex flex-row w-100 rounded-5 shadow-lg  " style="width: 90%;">
                 <div class="col-7 p-0 img-box position-relative">
-                    <!-- <div class=""> -->
                         <Transition name="fade" mode="out-in">
-                            <img v-if="imageReady" class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover risto-img" :src="apiImageUrl + singleRestaurant.img_res" />
-                            <img v-else class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover risto-img" src="/src/assets/fallback.svg" alt="fallback">
+                            <img v-if="imageReady" class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" :src="apiImageUrl + singleRestaurant.img_res" />
+                            <img v-else class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
                         </Transition>
                         <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
-                    <!-- </div> -->
                 </div>
                 <div class="col-4 p-3 card-body position-relative">
                     <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
