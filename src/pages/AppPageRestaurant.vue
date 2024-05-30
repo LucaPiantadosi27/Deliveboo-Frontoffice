@@ -126,6 +126,7 @@ export default {
             const targetSection = document.getElementById('target');
             if (targetSection) {
               targetSection.scrollIntoView({ behavior: 'smooth' });
+              console.log('scrolla')
             }
         },
     },
@@ -138,7 +139,7 @@ export default {
         class="position-relative d-flex justify-content-center align-items-center  flex-column  pt-5 ">
         <div class="container position-relative mb-5">
             <!-- PULSANTE BACK -->
-            <div @click="scrollToTarget()" class="back pe-5 me-5 ">
+            <div @click="scrollToTarget()" class="back pe-5 me-5">
                 <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
                         class="my-arrow fa-solid fa-reply"></i></router-link>
             </div>
@@ -150,7 +151,7 @@ export default {
                             <img v-if="imageReady" class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" :src="apiImageUrl + singleRestaurant.img_res" />
                             <img v-else class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
                         </Transition>
-                        <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+                        <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute d-none d-sm-block " alt="@">
                 </div>
                 <div class="col-4 p-3 card-body position-relative">
                     <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
@@ -162,18 +163,18 @@ export default {
             </div>
     
             <!-- MENU PIATTI -->
-            <div class="d-flex flex-column-reverse align-items-center w-100 pb-3 flex-md-row" id= menu >
+            <div class="d-flex flex-column-reverse align-items-start w-100 pb-3 flex-md-row" id= menu >
                 <div class="w-75 ">
                     <div class=" d-flex justify-content-between pt-5 ">
                         <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
                             style="width: calc(100% / 14rem - 1rem/4 * 5);">
     
                             <!-- SINGOLO PIATTO -->
-                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg w-75 w-md-100 " >
-                                <div class="d-flex flex-wrap">
+                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg w-75  " >
+                                <div class="d-flex flex-wrap modificabile">
                                     <div class="my-plate rounded-top-4 object-fit-cover" style="height: 100px ;width: 200px;">
                                         <Transition name="fade" mode="out-in">
-                                            <img v-if="imageReady" :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 object-fit-cover" alt="@">
+                                            <img v-if="imageReady" :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 img-fluid " alt="@">
                                             <img v-else class="h-100 w-100 rounded-4 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
                                         </Transition>
                                     </div>
@@ -234,28 +235,25 @@ export default {
                     </div>
     
                     <!-- MODALE CONFLITTO PIATTI -->
-                    <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
-                        style="background: rgba(0, 0, 0, 0.5);">
+                    <div v-if="showModal" class="modal fade show d-block" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Attention</h5>
-                                    <button type="button" class="btn-close" @click="closeModal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
+                                    <p class="fw-bold">You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
                                         to empty your cart?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-                                    <button type="button" class="btn btn-primary" @click="emptyCart">Empty cart</button>
+                                    <button type="button" class="btn" id="button-close" @click="closeModal">Close</button>
+                                    <button type="button" class="btn" id="button-empty" @click="emptyCart">Empty cart</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -310,7 +308,31 @@ export default {
 .my-card{
     
     border: solid 1px #9c999983;
+    @media (max-width: 767.98px) {
+
+        width: 100% !important ; 
+
+    }
     
+}
+.modificabile{
+    @media (max-width: 767.98px) { /* Fino a sm (mobile) */
+  
+    justify-content: center !important;
+    // width: 100% !important;
+    // height: 100% !important;
+  
+}
+.my-plate{
+    @media (max-width: 767.98px) { /* Fino a sm (mobile) */
+  
+  
+  width: 100% !important;
+
+  height: 10em !important;
+
+}
+}
 }
 
 .modal.show.d-block {
@@ -376,5 +398,36 @@ h2 {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+// modale
+.modal-dialog{
+    background-color: $color-cream;
+
+    .modal-content{
+        background-color: $color-cream; 
+        color: $color-text-primary;
+        border-top: 0px;
+        font-family: 'Open Sans', sans-serif;
+
+        .modal-header{
+            h5{
+                font-family: 'Mibery', sans-serif;
+                color: $color-mustard;
+            }
+        }
+
+        .modal-title{
+            color: $color-primary;
+        }
+
+        #button-close{
+            background-color: $color-support;
+        }
+
+        #button-empty{
+            background-color: $color-green;
+        }
+    }
 }
 </style>

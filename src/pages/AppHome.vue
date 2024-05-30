@@ -20,7 +20,6 @@ export default {
             categories: [],
             Risultato: [],
             ArrayCategory: [],
-            isLoading: true,
             store,
         }
     },
@@ -92,8 +91,6 @@ export default {
               targetSection.scrollIntoView({ behavior: 'smooth' });
             }
         },
-  
-
     },
 
     mounted() {
@@ -131,11 +128,9 @@ export default {
 
   </div> 
 <!-- End Jumbo -->
-<!-- <AppLoader v-if="isLoading"></AppLoader> -->
-<!-- start loader -->
 
-<!-- end loader -->
-  <section v-if="!isLoading" id="target">
+
+  <section id="target">
     <div class="container">
       <div class="container p-0 py-5">
         <h2 class="do-you">WHAT DO YOU WANT EAT?</h2>
@@ -236,8 +231,8 @@ export default {
           transform: translateX(100vw);
         }
         100% {
-          -webkit-transform: translateX(0px);
-          transform: translateX(0px);
+          -webkit-transform: translateX(-180px);
+          transform: translateX(-180px);
         }
       }
     }
