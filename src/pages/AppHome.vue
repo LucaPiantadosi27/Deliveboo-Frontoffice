@@ -112,17 +112,17 @@ export default {
 
   <!-- jumbo -->
   <div>
-    <div class="jumbotron px-5 d-flex align-items-center ">
-      <div class="container-fluid d-flex justify-content-between flex-wrap px-5">
-        <div class="welcome_text d-flex align-items-center ps-3 col-5 ">
-          <h1 class="display-5 fw-bold">
+    <div class="jumbotron d-flex align-items-start pt-5 p-lg-0 align-items-lg-center ">
+      <div class="container-fluid d-flex justify-content-center justify-content-lg-between flex-wrap px-5">
+        <div class="welcome_text d-flex align-items-center justify-content-center ps-3 col-12 col-lg-5 ">
+          <h1>
             WELCOME TO<br> DELIVEBOO!
           </h1>
         </div>
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
           <button @click="scrollToTarget()" class="my-btn"><i class="fa-solid fa-down-long"></i></button>
         </div>
-        <div class="logo_laravel col-5 d-flex justify-content-end align-items-center ">
+        <div class="logo_laravel col-5 d-none d-lg-flex d-flex justify-content-end align-items-center ">
           <img class="slide" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
         </div>
       </div>
@@ -166,12 +166,12 @@ export default {
 // jumbo
 .jumbotron {
   overflow-x: hidden;
-  height: calc(100vh - 126px);
+  height: calc(100vh - 80px);
   position: relative;
 
   .welcome_text {
     h1 {
-      font-size: 80px;
+      font-size: 70px;
       color: #D62300;
       font-family: $mibery-font;
       font-style: normal;
@@ -184,7 +184,8 @@ export default {
     border-radius: 50%;
     font-size: 25px;
     color: #D62300;
-    border: #f8ebde 2px solid;
+
+    border: #D62300 2px solid;
     background-color:  #f8ebde;
     z-index: 99;
  
@@ -196,7 +197,7 @@ export default {
     &:hover {
       background-color: #f8ebde;
       color: #D62300;
-      border-color: #f8ebde;
+      border-color: #D62300;
       animation: pulse .8s infinite;
       animation-timing-function: linear;   
 
@@ -303,6 +304,51 @@ section {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   }
 
+
+}
+
+// ----------------------------------------------------
+
+
+@media (max-width: 576px) {
+  .jumbotron{
+    height: 100%;
+    padding-top: 25px;
+    .welcome_text{
+      h1{
+        font-size: 35px;
+      }
+    }
+    
+    .my-btn{
+      margin: 20px;
+      padding: 7px 13px;
+      font-size: 18px;
+
+      display: none;
+    }
+  }
+}
+
+
+@media (max-width: 320px) {
+  .jumbotron{
+    height: 100%;
+    padding-top: 25px;
+    .welcome_text{
+      h1{
+        font-size: 25px ;
+      }
+    }
+
+    .my-btn{
+      margin: 20px;
+      padding: 7px 13px;
+      font-size: 18px;
+
+      display: none;
+    }
+  }
 
 }
 </style>

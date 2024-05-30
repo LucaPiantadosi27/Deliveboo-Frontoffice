@@ -162,14 +162,14 @@ export default {
             </div>
     
             <!-- MENU PIATTI -->
-            <div class="d-flex justify-content-between w-100 pb-3" id= menu >
+            <div class="d-flex flex-column-reverse align-items-center w-100 pb-3 flex-md-row" id= menu >
                 <div class="w-75 ">
                     <div class=" d-flex justify-content-between pt-5 ">
                         <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
                             style="width: calc(100% / 14rem - 1rem/4 * 5);">
     
                             <!-- SINGOLO PIATTO -->
-                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg" style="width: 75%;">
+                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg w-75 w-md-100 " >
                                 <div class="d-flex flex-wrap">
                                     <div class="my-plate rounded-top-4 object-fit-cover" style="height: 100px ;width: 200px;">
                                         <Transition name="fade" mode="out-in">
@@ -202,7 +202,7 @@ export default {
     
                 <!-- CARRELLO -->
                 
-                <div class="w-25 rounded-5 shadow-lg" id="Carrello">
+                <div class="rounded-5 shadow-lg" id="Carrello" style="width: 25%;">
                     
                     <div v-if="store.Cart.items.length > 0">
                         <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
@@ -266,13 +266,14 @@ export default {
 @use '../styles/variables' as *;
 
 .back {
-    position: absolute;
-
-    left: -10%;
-    top: 4%;
+    position: relative; /* Cambiato da 'absolute' a 'relative' */
+    left: 0; /* Posizione relativa al contenitore */
+    top: 0; /* Posizione relativa al contenitore */
+    margin-left: 2%; /* Margine sinistro del 2% rispetto al contenitore */
+    margin-top: 2%; /* Margine superiore del 2% rispetto al contenitore */
 
     .my-arrow {
-        font-size: 35px;
+        font-size: 2.6em;
         color: #ff0800;
     }
 }
@@ -287,7 +288,7 @@ export default {
     
     h1 {
         text-align: center;
-        margin-top: 15px;
+        margin-top: 5%;
         font-family: 'Open Sans', sans-serif;
         font-weight: bold;
         color: #d62300;
@@ -351,6 +352,11 @@ h2 {
     overflow-y: auto;
     // padding: 1rem;
 
+    @media (max-width: 768px) {
+
+    width: 75% !important ; 
+  
+}
     .lista {
         list-style: none;
         color: #d38f4a;
