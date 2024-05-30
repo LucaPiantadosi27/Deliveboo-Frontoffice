@@ -37,10 +37,10 @@ export default {
 <template>
   <div class="container pt-5">
     <div class="d-flex justify-content-center" v-if="restaurants.length === 0">
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <img class="thinking woman " :src="apiImageUrl + 'branding/avatar.svg'" alt="">
       </div>
-      <div class="col-6 d-flex justify-content-end ">
+      <div class="col-6 col-md-6 d-none d-md-flex justify-content-end ">
         <img class="thinking man " :src="apiImageUrl + 'branding/avatar1.svg'" alt="">
       </div>
       
