@@ -150,7 +150,7 @@ export default {
                             <img v-if="imageReady" class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" :src="apiImageUrl + singleRestaurant.img_res" />
                             <img v-else class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
                         </Transition>
-                        <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+                        <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute d-none d-sm-block " alt="@">
                 </div>
                 <div class="col-4 p-3 card-body position-relative">
                     <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
@@ -169,11 +169,11 @@ export default {
                             style="width: calc(100% / 14rem - 1rem/4 * 5);">
     
                             <!-- SINGOLO PIATTO -->
-                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg w-75 w-md-100 " >
-                                <div class="d-flex flex-wrap">
+                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg w-75  " >
+                                <div class="d-flex flex-wrap modificabile">
                                     <div class="my-plate rounded-top-4 object-fit-cover" style="height: 100px ;width: 200px;">
                                         <Transition name="fade" mode="out-in">
-                                            <img v-if="imageReady" :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 object-fit-cover" alt="@">
+                                            <img v-if="imageReady" :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 img-fluid " alt="@">
                                             <img v-else class="h-100 w-100 rounded-4 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
                                         </Transition>
                                     </div>
@@ -310,7 +310,31 @@ export default {
 .my-card{
     
     border: solid 1px #9c999983;
+    @media (max-width: 767.98px) {
+
+        width: 100% !important ; 
+
+    }
     
+}
+.modificabile{
+    @media (max-width: 767.98px) { /* Fino a sm (mobile) */
+  
+    justify-content: center !important;
+    // width: 100% !important;
+    // height: 100% !important;
+  
+}
+.my-plate{
+    @media (max-width: 767.98px) { /* Fino a sm (mobile) */
+  
+  
+  width: 100% !important;
+
+  height: 10em !important;
+
+}
+}
 }
 
 .modal.show.d-block {
