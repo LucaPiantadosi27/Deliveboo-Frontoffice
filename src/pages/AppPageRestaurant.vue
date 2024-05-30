@@ -174,9 +174,9 @@ export default {
 
                                     </div>
                                         
-                                    <div class="card-body d-flex flex-column  text-black border-black">
+                                    <div class="pb-0 card-body d-flex flex-column text-black border-black my-description">
                                         <h5 class="card-title">{{ plate.name }}</h5>
-                                        <p class="fst-italic">{{ plate.ingredients }}</p>
+                                        <p class="fst-italic mb-0 text-wrap">{{ plate.ingredients }}</p>
                                     </div>
 
                                     <div class="w-100 d-flex justify-content-between p-2">
@@ -324,6 +324,12 @@ h2 {
         left: -10px;
         top: -10px;
     }
+
+    .my-description{
+            p{
+                font-size: 13px;
+            }
+        }
 
 }
 #Carrello {
