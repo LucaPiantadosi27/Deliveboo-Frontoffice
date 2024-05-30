@@ -126,6 +126,7 @@ export default {
             const targetSection = document.getElementById('target');
             if (targetSection) {
               targetSection.scrollIntoView({ behavior: 'smooth' });
+              console.log('scrolla')
             }
         },
     },
@@ -138,7 +139,7 @@ export default {
         class="position-relative d-flex justify-content-center align-items-center  flex-column  pt-5 ">
         <div class="container position-relative mb-5">
             <!-- PULSANTE BACK -->
-            <div @click="scrollToTarget()" class="back pe-5 me-5 ">
+            <div @click="scrollToTarget()" class="back pe-5 me-5">
                 <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
                         class="my-arrow fa-solid fa-reply"></i></router-link>
             </div>
