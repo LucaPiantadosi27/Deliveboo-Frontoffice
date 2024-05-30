@@ -250,7 +250,6 @@ export default {
 }
 
 section {
-  padding-bottom: 150px;
   
   .do-you{
     font-size: 60px;

@@ -51,7 +51,6 @@ export default{
 
 .box{
 
-  margin-bottom: 450px;
   position: relative;
   background-color: #f8ebde;
   

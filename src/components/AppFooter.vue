@@ -9,12 +9,12 @@ export default {
 
 
 <template>
-    <footer id="footer" class="fixed-footer text-white ">
+    <footer id="footer">
         <div class="my-footer d-flex align-items-center justify-content-center flex-column">
-            <div class="row w-100 pt-4 d-flex justify-content-center gap-3">
+            <div class="row w-100 pt-4 p-4 d-flex flex-wrap justify-content-center gap-3">
 
                 <!-- Colonna 1 -->
-                <div class="my-col col-2 p-3 text-center mb-4 ">
+                <div class="my-col col-sm-4 col-md-4 col-lg-2 col-12 p-3 text-center mb-4 ">
                     <h5 class="text-uppercase">Discover Deliveboo</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Who we are</a></li>
@@ -27,7 +27,7 @@ export default {
                 </div>
 
                 <!-- Colonna 2 -->
-                <div class="my-col col-2 p-3 text-center mb-4">
+                <div class="my-col col-sm-4 col-md-4 col-lg-2  col-12 p-3 text-center mb-4">
                     <h5 class="text-uppercase">Legal Notices</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Temrs and Conditions</a></li>
@@ -40,7 +40,7 @@ export default {
                 </div>
 
                 <!-- Colonna 3 -->
-                <div class="my-col col-2 p-3 text-center mb-4">
+                <div class="my-col col-sm-4 col-md-4 col-lg-2 col-12 p-3 text-center mb-4">
                     <h5 class="text-uppercase">Help</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white text-decoration-none ">Contacts</a></li>
@@ -50,7 +50,7 @@ export default {
                 </div>
 
                 <!-- colonna 4 -->
-                <div class="my-col col-2 p-3 text-center mb-4 d-flex justify-content-center">
+                <div class="my-col col-sm-4 col-md-4 col-lg-2 col-12 p-3 text-center mb-4 d-flex justify-content-center">
                     <div class="text-center">
                         <h5 class="text-uppercase">DOWNLOAD APP</h5>
                         <div class="d-flex gap-3 flex-column align-items-center " >
@@ -90,33 +90,9 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 
-.footer{
-    color: #F6F3E4;
-    font-size: 25px;
-
-    width: 100vw;
-
-}
-
-.fixed-footer {
-    position: fixed;
-    bottom: 0; 
-    right: 0;
-    left: 0;
-
-    background-color: #FFAC5F;
-
-    z-index: -1;
-
-    
-}
-
-.fixed-footer.show {
-    bottom: 0; 
-}
-
 .my-footer {
-    height: 450px;
+    min-height: 450px;
+    background-color: #f3ad6c;
 
     .my-col{
         border-radius: 25px;
