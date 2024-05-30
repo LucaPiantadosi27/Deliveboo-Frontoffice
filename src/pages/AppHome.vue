@@ -140,7 +140,7 @@ export default {
             v-for="category in categories"
             :key="category.id"
             :class="{'selected': ArrayCategory.includes(category.id)}"
-            class="d-flex col-5 col-5 col-md-3 col-lg-2 align-items-center justify-content-center card-wrapper">
+            class="d-flex col-5 col-5 col-md-3 col-lg-2 align-items-center justify-content-center">
             <div class="card-category  card w-100 h-100 rounded-4">
               <img class="category-img d-none d-md-flex rounded-4 rounded-bottom-0" :src="'http://localhost:8000/storage/' + category.image" alt="">
               <div class="p-3" >{{ category.name }}</div>
@@ -180,7 +180,7 @@ export default {
     font-size: 25px;
     color: #D62300;
 
-    border: #D62300 2px solid;
+    border: #D62300 1px solid;
     background-color:  #f8ebde;
     z-index: 99;
  
