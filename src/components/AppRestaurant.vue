@@ -53,7 +53,7 @@ export default {
             <img :src="apiImageUrl + restaurant.img_res" class="card-img-top h-75 object-fit-cover rounded-top-5 bg-light" :alt="restaurant.name_res">
             <div class="description position-relative">
               <h3 class="pt-3">{{ restaurant.name_res }}</h3>
-              <span>adress: {{ restaurant.address_res }}</span>
+              <span>address: {{ restaurant.address_res }}</span>
               <div class="categories text-center position-absolute">
                 <div class="square position-absolute"></div>
                 <span v-for="category in restaurant.categories" :key="category.id" class="badge">{{ category.name }}</span>
