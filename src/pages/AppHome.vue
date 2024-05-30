@@ -110,10 +110,10 @@ export default {
   <!-- jumbo -->
   <div>
     <div class="jumbotron d-flex align-items-start pt-5 p-lg-0 align-items-lg-center ">
-      <div class="container-fluid d-flex justify-content-center justify-content-lg-between flex-wrap px-5">
-        <div class="welcome_text d-flex align-items-center justify-content-center ps-3 col-12 col-lg-5 ">
+      <div class="container-fluid d-flex justify-content-center justify-content-lg-between flex-wrap ">
+        <div class="welcome_text d-flex align-items-center justify-content-center col-12 col-lg-5 ">
           <h1>
-            WELCOME TO<br> DELIVEBOO!
+            WELCOME <span class="d-none d-sm-inline">TO<br> DELIVEBOO!</span>
           </h1>
         </div>
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
@@ -487,7 +487,7 @@ section {
     padding-top: 25px;
     .welcome_text{
       h1{
-        font-size: 25px ;
+        font-size: 30px ;
       }
     }
 
