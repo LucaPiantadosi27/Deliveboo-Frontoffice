@@ -235,28 +235,25 @@ export default {
                     </div>
     
                     <!-- MODALE CONFLITTO PIATTI -->
-                    <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
-                        style="background: rgba(0, 0, 0, 0.5);">
+                    <div v-if="showModal" class="modal fade show d-block" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Attention</h5>
-                                    <button type="button" class="btn-close" @click="closeModal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
+                                    <p class="fw-bold">You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
                                         to empty your cart?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-                                    <button type="button" class="btn btn-primary" @click="emptyCart">Empty cart</button>
+                                    <button type="button" class="btn" id="button-close" @click="closeModal">Close</button>
+                                    <button type="button" class="btn" id="button-empty" @click="emptyCart">Empty cart</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -377,5 +374,36 @@ h2 {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+// modale
+.modal-dialog{
+    background-color: $color-cream;
+
+    .modal-content{
+        background-color: $color-cream; 
+        color: $color-text-primary;
+        border-top: 0px;
+        font-family: 'Open Sans', sans-serif;
+
+        .modal-header{
+            h5{
+                font-family: 'Mibery', sans-serif;
+                color: $color-mustard;
+            }
+        }
+
+        .modal-title{
+            color: $color-primary;
+        }
+
+        #button-close{
+            background-color: $color-support;
+        }
+
+        #button-empty{
+            background-color: $color-green;
+        }
+    }
 }
 </style>
