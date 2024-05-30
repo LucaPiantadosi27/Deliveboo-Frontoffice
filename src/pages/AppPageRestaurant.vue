@@ -174,7 +174,7 @@ export default {
                                 <div class="d-flex flex-wrap modificabile">
                                     <div class="my-plate rounded-top-4 object-fit-cover" style="height: 100px ;width: 200px;">
                                         <Transition name="fade" mode="out-in">
-                                            <img v-if="imageReady" :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 img-fluid " alt="@">
+                                            <img v-if="imageReady" :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 img-fluid object-fit-cover" alt="@">
                                             <img v-else class="h-100 w-100 rounded-4 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
                                         </Transition>
                                     </div>
