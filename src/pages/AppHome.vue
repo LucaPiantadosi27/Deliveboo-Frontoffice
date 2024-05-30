@@ -110,10 +110,10 @@ export default {
   <!-- jumbo -->
   <div>
     <div class="jumbotron d-flex align-items-start pt-5 p-lg-0 align-items-lg-center ">
-      <div class="container-fluid d-flex justify-content-center justify-content-lg-between flex-wrap px-5">
-        <div class="welcome_text d-flex align-items-center justify-content-center ps-3 col-12 col-lg-5 ">
+      <div class="container-fluid d-flex justify-content-center justify-content-lg-between flex-wrap ">
+        <div class="welcome_text d-flex align-items-center justify-content-center col-12 col-lg-5 ">
           <h1>
-            WELCOME TO<br> DELIVEBOO!
+            WELCOME <span class="d-none d-sm-inline">TO<br> DELIVEBOO!</span>
           </h1>
         </div>
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
@@ -132,18 +132,18 @@ export default {
 
   <section id="target">
     <div class="container">
-      <div class="container py-5">
-        <h2 class="do-you pt-3">WHAT DO YOU WANT EAT?</h2>
-        <div class="d-flex gap-4 justify-content-center category-wrapper flex-wrap">
+      <div class="container p-0 py-5">
+        <h2 class="do-you">WHAT DO YOU WANT EAT?</h2>
+        <div class="d-flex gap-4 justify-content-center flex-wrap">
           <div
             @click="AddCategory(category.id)"
             v-for="category in categories"
             :key="category.id"
             :class="{'selected': ArrayCategory.includes(category.id)}"
-            class="d-flex gap-2 align-items-center card-wrapper">
-            <div class="card-category card h-100 rounded-4">
-              <img class="category-img rounded-4 rounded-bottom-0" :src="'http://localhost:8000/storage/' + category.image" alt="">
-              <div>{{ category.name }}</div>
+            class="d-flex col-5 col-5 col-md-3 col-lg-2 align-items-center justify-content-center">
+            <div class="card-category  card w-100 h-100 rounded-4">
+              <img class="category-img d-none d-md-flex rounded-4 rounded-bottom-0" :src="'http://localhost:8000/storage/' + category.image" alt="">
+              <div class="p-3" >{{ category.name }}</div>
             </div>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default {
     font-size: 25px;
     color: #D62300;
 
-    border: #D62300 2px solid;
+    border: #D62300 1px solid;
     background-color:  #f8ebde;
     z-index: 99;
  
@@ -231,8 +231,8 @@ export default {
           transform: translateX(100vw);
         }
         100% {
-          -webkit-transform: translateX(0px);
-          transform: translateX(0px);
+          -webkit-transform: translateX(-180px);
+          transform: translateX(-180px);
         }
       }
     }
@@ -241,14 +241,17 @@ export default {
 }
 // End jumbo
 
-.card-wrapper{
-  width: calc(100% / 6 - 20px * 9 / 5);
-}
-
 section {
   
   .do-you{
     font-size: 60px;
+    color: $color-green;
+    font-family: $mibery-font;
+    text-align: center;
+    margin-bottom: 20px;
+
+    z-index: 99;
+    position: relative;
   }
 
   strong{
@@ -263,23 +266,17 @@ section {
     display: block;
   }
 
-  h2{
-    padding-left: 10px;
-    color: $color-green;
-    font-size: 28px;
-    font-family: $mibery-font;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
   .card-category {
-    background-color: #279647;
+    background-color: #f8ebde;
     text-align: center;
     cursor: pointer;
     user-select: none;  
-    transition: transform .3s ease;
+    transition: transform, color, .3s ease;
+    box-shadow: -10px -10px 25px 0 #fff9f3,10px 10px 25px 0 #a29992;
 
-    color:#f8ebde;
+    color:$color-green;
+    text-transform: uppercase;
+    font-weight: bold;
     
     .category-img {
       width: 100%;
@@ -289,14 +286,17 @@ section {
     
     &:hover{
       transform: scale(1.1);
-      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      box-shadow: -12px -12px 30px 0 #fff9f3, 12px 12px 30px 0 #a29992;
+
+      background-color: $color-green;
+      color: $color-cream;
     }
   }
 
   .selected .card-category {
-    opacity: .6;
     transform: scale(1.1);
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background-color: $color-green;
+    color: $color-cream;
   }
 
 
@@ -304,14 +304,110 @@ section {
 
 // ----------------------------------------------------
 
-
-@media (max-width: 576px) {
+@media (max-width: 1399px) {
   .jumbotron{
-    height: 100%;
-    padding-top: 25px;
     .welcome_text{
       h1{
-        font-size: 35px;
+        font-size: 50px;
+      }
+    }
+    
+    .my-btn{
+      margin: 20px;
+      padding: 10px 18px;
+      font-size: 25px;
+    }
+  }
+
+  section{
+    .do-you{
+      font-size: 50px;
+    }
+  }
+
+  
+}
+
+@media (max-width: 1199px) {
+  .jumbotron{
+    .welcome_text{
+      h1{
+        font-size: 50px;
+      }
+    }
+    
+    .my-btn{
+      margin: 20px;
+      padding: 10px 18px;
+      font-size: 25px;
+    }
+  }
+
+  section{
+    .do-you{
+      font-size: 50px;
+    }
+  }
+}
+
+
+
+
+@media (max-width: 992px) {
+  .jumbotron{
+    height: calc(100vh - 80px);
+    .welcome_text{
+      h1{
+        font-size: 45px;
+      }
+    }
+    
+    .my-btn{
+      margin: 20px;
+      padding: 10px 18px;
+      font-size: 25px;
+    }
+  }
+
+  
+}
+
+
+
+@media (max-width: 991px) {
+  .jumbotron{
+    height: calc(100vh - 300px);
+    padding-top: 25px;
+    .welcome_text{
+      transform: rotate(20deg);
+      -webkit-animation: slide 0.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.7s both;
+      animation: slide 0.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.7s both;
+      
+      @-webkit-keyframes slide {
+        0% {
+          -webkit-transform: translateX(100vw);
+          transform: translateX(100vw);
+        }
+        100% {
+          -webkit-transform: translateX(-100px);
+          transform: translateX(-100px);
+        }
+      }
+
+      @keyframes slide {
+        0% {
+          -webkit-transform: translateX(100vw);
+          transform: translateX(100vw);
+        }
+        100% {
+          -webkit-transform: translateX(0px);
+          transform: translateX(0px);
+        }
+      }
+      h1{
+        font-size: 50px;
+        height: 110%;
+
       }
     }
     
@@ -323,16 +419,75 @@ section {
       display: none;
     }
   }
+  section{
+    .do-you{
+      font-size: 35px;
+    }
+  }
 }
+
+@media (max-width: 767px) {
+  .jumbotron{
+    height: calc(100vh - 350px);
+    padding-top: 25px;
+    
+    .welcome_text{
+      transform: rotate(20deg);
+      -webkit-animation: slide 0.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.7s both;
+      animation: slide 0.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.7s both;
+
+      @-webkit-keyframes slide {
+        0% {
+          -webkit-transform: translateX(100vw);
+          transform: translateX(100vw);
+        }
+        100% {
+          -webkit-transform: translateX(-100px);
+          transform: translateX(-100px);
+        }
+      }
+
+      @keyframes slide {
+        0% {
+          -webkit-transform: translateX(100vw);
+          transform: translateX(100vw);
+        }
+        100% {
+          -webkit-transform: translateX(0px);
+          transform: translateX(0px);
+        }
+      }
+      h1{
+        font-size: 35px;
+        height: 110%;
+
+      }
+    }
+  }
+    
+    .my-btn{
+      margin: 20px;
+      padding: 7px 13px;
+      font-size: 18px;
+
+      display: none;
+    }
+  }
+
+  section{
+    .do-you{
+      font-size: 30px;
+    }
+  }
 
 
 @media (max-width: 320px) {
   .jumbotron{
-    height: 100%;
+    height: calc(100vh - 600px);
     padding-top: 25px;
     .welcome_text{
       h1{
-        font-size: 25px ;
+        font-size: 30px ;
       }
     }
 
@@ -344,6 +499,5 @@ section {
       display: none;
     }
   }
-
 }
 </style>
