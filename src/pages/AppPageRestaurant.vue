@@ -16,7 +16,7 @@ export default {
             categories: [],
             Risultato: [],
             ArrayCategory: [],
-            isLoading: true,
+            imageReady: false,
             restaurantId: null,
             singleRestaurant: '',
             showModal: false,
@@ -37,6 +37,7 @@ export default {
         axios.get(this.baseApiUrl + 'restaurants/' + this.restaurantId).then(res => {
             if (res.data.success) {
                 this.singleRestaurant = res.data.results
+                this.imageReady = true
                 console.log(res.data);
             } else {
                 this.$router.push({ name: 'home' })
@@ -144,11 +145,14 @@ export default {
     
             <!-- JUMBO RISTO -->
             <div class="my-jumbo p-0 row card d-flex flex-row w-100 rounded-5 shadow-lg  " style="width: 90%;">
-                <div class="col-7 p-0 position-relative">
-                    <div class="img-box">
-                        <img class="img-fluid rounded-start-5 " :src="apiImageUrl + singleRestaurant.img_res" />
-                    </div>
-                    <img :src="apiImageUrl + 'branding/wave-restaurant.png'" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+                <div class="col-7 p-0 img-box position-relative">
+                    <!-- <div class=""> -->
+                        <Transition name="fade" mode="out-in">
+                            <img v-if="imageReady" class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover risto-img" :src="apiImageUrl + singleRestaurant.img_res" />
+                            <img v-else class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover risto-img" src="/src/assets/fallback.svg" alt="fallback">
+                        </Transition>
+                        <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+                    <!-- </div> -->
                 </div>
                 <div class="col-4 p-3 card-body position-relative">
                     <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
@@ -170,13 +174,15 @@ export default {
                             <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg" style="width: 75%;">
                                 <div class="d-flex flex-wrap">
                                     <div class="my-plate rounded-top-4 object-fit-cover" style="height: 100px ;width: 200px;">
-                                        <img :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 object-fit-covers" alt="@">
-
+                                        <Transition name="fade" mode="out-in">
+                                            <img v-if="imageReady" :src="apiImageUrl + plate.image" class="h-100 w-100 rounded-4 object-fit-cover" alt="@">
+                                            <img v-else class="h-100 w-100 rounded-4 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
+                                        </Transition>
                                     </div>
                                         
-                                    <div class="card-body d-flex flex-column  text-black border-black">
+                                    <div class="pb-0 card-body d-flex flex-column text-black border-black my-description">
                                         <h5 class="card-title">{{ plate.name }}</h5>
-                                        <p class="fst-italic">{{ plate.ingredients }}</p>
+                                        <p class="fst-italic mb-0 text-wrap">{{ plate.ingredients }}</p>
                                     </div>
 
                                     <div class="w-100 d-flex justify-content-between p-2">
@@ -274,12 +280,13 @@ export default {
 }
 
 .my-jumbo {
+    background-color: #f3d9bf;
 
     .img-box {
-        height: 100%;
-        width: 100%;
+        max-height: 300px;
+        width: 50%;
     }
-
+    
     h1 {
         text-align: center;
         margin-top: 15px;
@@ -287,7 +294,7 @@ export default {
         font-weight: bold;
         color: #d62300;
     }
-
+    
     .wave-restaurant{
         top: 0;
         right: 0%;
@@ -325,6 +332,12 @@ h2 {
         top: -10px;
     }
 
+    .my-description{
+            p{
+                font-size: 13px;
+            }
+        }
+
 }
 #Carrello {
     margin-top: 47px;
@@ -349,5 +362,15 @@ h2 {
         font-family: "chicle", cursive;
         color: #d62300;
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
