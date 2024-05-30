@@ -231,8 +231,8 @@ export default {
           transform: translateX(100vw);
         }
         100% {
-          -webkit-transform: translateX(0px);
-          transform: translateX(0px);
+          -webkit-transform: translateX(-180px);
+          transform: translateX(-180px);
         }
       }
     }
