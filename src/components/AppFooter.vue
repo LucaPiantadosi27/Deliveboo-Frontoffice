@@ -62,15 +62,15 @@ export default {
 
             </div>
 
-            <div class="row d-flex w-100 justify-content-center align-items-center ">
-                <div class="col-6 pt-4 d-flex justify-content-center align-items-center  ">
+            <div class="row d-flex pb-5 w-100 justify-content-center align-items-center ">
+                <div class="col-12 col-sm-6 pt-4 d-flex justify-content-center align-items-center  ">
                     <div class="text-center">
                         <h5 class="text-uppercase">COPYRIGHT</h5>
                         <p class="mb-0">© 2024 Deliveboo. Developed by MLMSM</p>
                     </div>
                 </div>
                 
-                <div class="col-6 pt-4 d-flex flex-column justify-content-start align-items-center ">
+                <div class="col-12 col-sm-6 pt-4 d-flex flex-column justify-content-start align-items-center ">
                     <div class="text-center ">
                         <h5 class="text-uppercase">FOLLOW US</h5>
                         <div class="box-icon d-flex justify-content-around gap-4">
