@@ -156,8 +156,8 @@ export default {
                 <div class="col-4 p-3 card-body position-relative">
                     <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
                     <h3>{{ singleRestaurant.address_res }}</h3>
-                    <div class="d-flex gap-2">
-                        <span class="badge text-bg-light" v-for="tag in singleRestaurant.categories">{{ tag.name }}</span>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="badge text-bg-light " v-for="tag in singleRestaurant.categories">{{ tag.name }}</span>
                     </div>
                 </div>
             </div>
@@ -401,5 +401,6 @@ h2 {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+  
 }
 </style>

@@ -284,7 +284,7 @@ export default {
 
 <template>
     <AppLoader v-if="isloader"></AppLoader>
-    <div  v-else class="my-box container py-4 col-8">
+    <div  v-else class="my-box container py-4 col-9">
 
         <!-- Pulsante Back -->
         <div v-if="store.Cart.items.length > 0">
@@ -293,7 +293,7 @@ export default {
 
         <!-- CARRELLO -->
 
-        <div class=" rounded-5 col-7 m-auto shadow-lg " id="Carrello">
+        <div class=" rounded-5 col-12 col-lg-8 col-sm-10 m-auto shadow-lg p-2" id="Carrello">
             <div v-if="store.Cart.items.length > 0">
                 <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
                 <h3 class="text-center fs-1 fw-bolder">{{ store.Cart.items[0].restaurant }}</h3>
@@ -320,7 +320,7 @@ export default {
             <div id="checkout-message" class="text-center"></div>
     </div>
         <!-- CHECKOUT -->
-        <form v-if="this.store.Cart.total > 0" class="mt-5 col-7 m-auto shadow-lg" action="javascript:void(0)">
+        <form v-if="this.store.Cart.total > 0" class="mt-5 col-12 col-lg-8 col-sm-10 m-auto shadow-lg container-md" action="javascript:void(0)">
 
                 <div>
                     <label class="form-label" for="name">Name*</label>
@@ -361,7 +361,7 @@ export default {
 
             <small class="fw-bolder">*these fields are required</small>
 
-                <div id="dropin-container"></div>
+                <div id="dropin-container" class=""></div>
 
                 <div class=" d-flex justify-content-center">
                     <button class="btn  btn-outline-success" id="submit_button" :disabled="formIsValid">Submit payment</button>
@@ -388,7 +388,26 @@ export default {
         position: relative;
         right: 150px;
         bottom: -20px;
+        
     }
+    @media (max-width: 768px) {
+            .my-arrow{
+                right: 10%;
+            font-size: 2.3em;
+            }
+        }
+        @media (max-width: 425px) {
+            .my-arrow{
+                right: 15%;
+            font-size: 2.3em;
+            }
+        }
+        @media (min-width: 768.01px) and (max-width: 1024px) {
+            .my-arrow{
+                right: 10%;
+            font-size: 2.3em;
+            }
+        }
 }
 
 #Carrello {
