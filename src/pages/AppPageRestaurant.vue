@@ -16,7 +16,7 @@ export default {
             categories: [],
             Risultato: [],
             ArrayCategory: [],
-            isLoading: true,
+            imageReady: false,
             restaurantId: null,
             singleRestaurant: '',
             showModal: false,
@@ -37,6 +37,7 @@ export default {
         axios.get(this.baseApiUrl + 'restaurants/' + this.restaurantId).then(res => {
             if (res.data.success) {
                 this.singleRestaurant = res.data.results
+                this.imageReady = true
                 console.log(res.data);
             } else {
                 this.$router.push({ name: 'home' })
@@ -144,11 +145,14 @@ export default {
     
             <!-- JUMBO RISTO -->
             <div class="my-jumbo p-0 row card d-flex flex-row w-100 rounded-5 shadow-lg  " style="width: 90%;">
-                <div class="col-7 p-0 position-relative">
-                    <div class="img-box">
-                        <img class="img-fluid rounded-start-5 " :src="apiImageUrl + singleRestaurant.img_res" />
-                    </div>
-                    <img :src="apiImageUrl + 'branding/wave-restaurant.png'" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+                <div class="col-7 p-0 img-box position-relative">
+                    <!-- <div class=""> -->
+                        <Transition name="fade" mode="out-in">
+                            <img v-if="imageReady" class="img-fluid rounded-start-5 risto-img" :src="apiImageUrl + singleRestaurant.img_res" />
+                            <img v-else class="img-fluid rounded-start-5 risto-img" src="/src/assets/fallback.svg" alt="fallback">
+                        </Transition>
+                        <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute" alt="@">
+                    <!-- </div> -->
                 </div>
                 <div class="col-4 p-3 card-body position-relative">
                     <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
@@ -276,8 +280,14 @@ export default {
 .my-jumbo {
 
     .img-box {
-        height: 100%;
-        width: 100%;
+        max-height: 300px;
+        width: 50%;
+
+        .risto-img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     h1 {
@@ -349,5 +359,15 @@ h2 {
         font-family: "chicle", cursive;
         color: #d62300;
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
