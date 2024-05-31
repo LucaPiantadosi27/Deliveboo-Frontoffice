@@ -194,7 +194,13 @@ export default {
                                         }, 1500);
                                         setTimeout(() => {
                                             this.isloader = false;
-                                            document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful!</h1><p>You should receive a mail shortly with the details</p>';
+                                            document.getElementById('checkout-message').innerHTML = `
+                                            <div style="text-align: center;">
+                                                <h1>Your Order was successful!</h1>
+                                                <p style="color: black">You should receive a mail shortly with the details</p>
+                                                <img src="/public/file.png" alt="Order Successful" style="max-width: 50%; height: auto;">
+                                            </div>
+                                            `;
                                         }, 1500);
                                         // document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
                                         // router.push({ name: 'checkout' });
