@@ -50,11 +50,19 @@ export default {
             this.store.Cart = JSON.parse(localStorage.getItem("cart"))
         }
         
-        // Inizializza il dropdown usando jQuery
-        // this.initDropdown();
+        
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize(); // Chiamiamo la funzione handleResize una volta al montaggio per impostare lo stato iniziale
+
+
         // provvisorio
         
     },
+    // inserito per evitare consumo di memoria
+    beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+    },
+
     methods: {
         AddItemToCart(plate) {
             if (this.store.Cart.items.length != 0 && this.store.Cart.items.find((Item) => Item.restaurant_id != plate.restaurant_id)) {
@@ -137,34 +145,11 @@ export default {
         },
 
         // cancellabile
-        // initDropdown() {
-        //     const obj = $('.size');
-        //     obj.find('.field').click(function () {
-        //         obj.find('.list').fadeIn(400);
-
-        //         $(document).keyup(function (event) {
-        //             if (event.keyCode === 27) {
-        //                 obj.find('.list').fadeOut(400);
-        //             }
-        //         });
-
-        //         obj.find('.list').hover(function () { },
-        //             function () {
-        //                 $(this).fadeOut(400);
-        //             });
-        //     });
-
-        //     obj.find('.list li').click(function () {
-        //         obj.find('.field')
-        //             .val($(this).html())
-        //             .css({
-        //                 'background': '#fff',
-        //                 'color': '#333'
-        //             });
-        //         obj.find('.list').fadeOut(400);
-        //     });
-        // },
-        
+        handleResize() {
+            
+            // impostiamo lo stato della variabile a true se la grandezza della finestra è maggiore di 768px
+        this.isCartVisible = window.innerWidth > 768;
+        },
         // cancellabile
 
         CartVisibility(){
@@ -252,7 +237,7 @@ export default {
                 <!-- CARRELLO -->
                 
                 <!-- impostiamo la visibilità del carrello -->
-                <div v-show="isCartVisible" class="rounded-5 shadow-lg" id="Carrello" style="width: 25%;">
+                <div v-show="isCartVisible" class="rounded-5 shadow-lg " id="Carrello" style="width: 25%;">
                     
                     <div v-if="store.Cart.items.length > 0">
                         <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
@@ -496,6 +481,7 @@ h2 {
     width: 75% !important ; 
   
 }
+
     .lista {
         list-style: none;
         color: #d38f4a;
