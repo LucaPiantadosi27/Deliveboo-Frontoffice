@@ -137,21 +137,21 @@ export default {
 
     <div id="restaurant" style="width: 100%;"
         class="position-relative d-flex justify-content-center align-items-center  flex-column  pt-5 ">
-        <div class="container position-relative mb-5">
+        <div class="container d-flex flex-column align-items-center justify-content-center position-relative mb-5">
             <!-- PULSANTE BACK -->
-            <div @click="scrollToTarget()" class="back pe-5 me-5">
+            <div @click="scrollToTarget()" class="back pb-4 w-100">
                 <router-link class="text-decoration-none" :to="{ name: 'home' }"><i
                         class="my-arrow fa-solid fa-reply"></i></router-link>
             </div>
     
             <!-- JUMBO RISTO -->
-            <div class="my-jumbo p-0 row card d-flex flex-row w-100 rounded-5 shadow-lg  " style="width: 90%;">
+            <div class="my-jumbo p-0 row card d-flex justify-content-center flex-row w-100 rounded-5 shadow-lg  " style="width: 90%;">
                 <div class="col-7 p-0 img-box position-relative">
-                        <Transition name="fade" mode="out-in">
-                            <img v-if="imageReady" class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" :src="apiImageUrl + singleRestaurant.img_res" />
-                            <img v-else class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
-                        </Transition>
-                        <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute d-none d-sm-block " alt="@">
+                    <Transition name="fade" mode="out-in">
+                        <img v-if="imageReady" class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" :src="apiImageUrl + singleRestaurant.img_res" />
+                        <img v-else class="img-fluid rounded-start-5 w-100 h-100 object-fit-cover" src="/src/assets/fallback.svg" alt="fallback">
+                    </Transition>
+                    <img src="/src/assets/wave-restaurant.png" class="wave-restaurant img-fluid h-100 position-absolute d-none d-sm-block " alt="@">
                 </div>
                 <div class="col-4 p-3 card-body position-relative">
                     <h1 class="card-title">{{ singleRestaurant.name_res }}</h1>
@@ -164,7 +164,7 @@ export default {
     
             <!-- MENU PIATTI -->
             <div class="d-flex flex-column-reverse align-items-start w-100 pb-3 flex-md-row" id= menu >
-                <div class="w-75 ">
+                <div class="col-12 col-md-8">
                     <div class=" d-flex justify-content-between pt-5 ">
                         <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
                             style="width: calc(100% / 14rem - 1rem/4 * 5);">
@@ -203,7 +203,7 @@ export default {
     
                 <!-- CARRELLO -->
                 
-                <div class="rounded-5 shadow-lg" id="Carrello" style="width: 25%;">
+                <div class="rounded-5 col-12 col-md-4 shadow-lg" id="Carrello">
                     
                     <div v-if="store.Cart.items.length > 0">
                         <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
@@ -368,7 +368,6 @@ h2 {
 }
 #Carrello {
     margin-top: 47px;
-    width: 15%;
     border: solid 1px #9c999983;
     background-color: #f8ebde;
     color: #d62300;
@@ -380,11 +379,6 @@ h2 {
     overflow-y: auto;
     // padding: 1rem;
 
-    @media (max-width: 768px) {
-
-    width: 75% !important ; 
-  
-}
     .lista {
         list-style: none;
         color: #d38f4a;
