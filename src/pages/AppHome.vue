@@ -20,6 +20,7 @@ export default {
             categories: [],
             Risultato: [],
             ArrayCategory: [],
+            imageReady: false,
             store,
         }
     },
@@ -34,6 +35,7 @@ export default {
                 // Aspetta il caricamento di tutte le immagini
                 await this.loadAllImages();
                 this.isLoading = false;
+                this.imageReady = true
             } catch (error) {
                 console.error("Errore nel caricamento delle categorie:", error);
             }
@@ -119,8 +121,8 @@ export default {
         <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
           <button @click="scrollToTarget()" class="my-btn"><i class="fa-solid fa-down-long"></i></button>
         </div>
-        <div class="logo_laravel col-5 d-none d-lg-flex d-flex justify-content-end align-items-center ">
-          <img class="slide" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
+        <div class="logo_laravel col-5 d-none d-lg-flex justify-content-end align-items-center ">
+          <img class="slide object-fit-cover" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
         </div>
       </div>
       
@@ -140,9 +142,12 @@ export default {
             v-for="category in categories"
             :key="category.id"
             :class="{'selected': ArrayCategory.includes(category.id)}"
-            class="d-flex col-5 col-5 col-md-3 col-lg-2 align-items-center justify-content-center">
-            <div class="card-category  card w-100 h-100 rounded-4">
-              <img class="category-img d-none d-md-flex rounded-4 rounded-bottom-0" :src="'http://localhost:8000/storage/' + category.image" alt="">
+            class="d-flex col-5 full-card col-md-3 col-lg-2 align-items-center justify-content-center">
+            <div class="card-category card w-100 h-100 rounded-4">
+              <Transition name="fade" mode="out-in">
+                <img v-if="imageReady" class="category-img d-none d-md-flex rounded-4 rounded-bottom-0" :src="'http://localhost:8000/storage/' + category.image" alt="">
+                <img v-else class="category-img d-none d-md-flex rounded-4 rounded-bottom-0" src="/src/assets/fallback.svg" alt="fallback">
+              </Transition>
               <div class="p-3 card-text" >{{ category.name }}</div>
             </div>
           </div>
@@ -210,7 +215,7 @@ export default {
 
   .logo_laravel {
     .slide {
-      height: 110%;
+      height: 100%;
       transform: rotate(20deg);
       -webkit-animation: slide 0.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.7s both;
       animation: slide 0.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.7s both;
@@ -241,6 +246,17 @@ export default {
 }
 // End jumbo
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  
+}
+
 section {
   
   .do-you{
@@ -266,34 +282,39 @@ section {
     display: block;
   }
 
-  .card-category {
-    background-color: #f8ebde;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;  
-    transition: transform, color, .3s ease;
-    box-shadow: -10px -10px 25px 0 #fff9f3,10px 10px 25px 0 #a29992;
-
-    color:$color-green;
-    text-transform: uppercase;
-    font-weight: bold;
+  .full-card{
     
-    .category-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .card-category {
+      background-color: #f8ebde;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;  
+      transition: transform, color, .3s ease;
+      box-shadow: -10px -10px 25px 0 #fff9f3,10px 10px 25px 0 #a29992;
+  
+      color:$color-green;
+      text-transform: uppercase;
+      font-weight: bold;
+      
+      .category-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
 
-    .card-text{
-      font-size: .8rem;
-    }
-    
-    &:hover{
-      transform: scale(1.1);
-      box-shadow: -12px -12px 30px 0 #fff9f3, 12px 12px 30px 0 #a29992;
+        max-height: 140px;
 
-      background-color: $color-green;
-      color: $color-cream;
+      }
+      .card-text{
+        font-size: .8rem;
+      }
+      
+      &:hover{
+        transform: scale(1.1);
+        box-shadow: -12px -12px 30px 0 #fff9f3, 12px 12px 30px 0 #a29992;
+  
+        background-color: $color-green;
+        color: $color-cream;
+      }
     }
   }
 
@@ -327,6 +348,14 @@ section {
     .do-you{
       font-size: 50px;
     }
+    .full-card{
+      .card-category{
+        .category-img{
+          max-height: 122px;
+        }
+      }
+    }
+
   }
 
   
@@ -350,6 +379,14 @@ section {
   section{
     .do-you{
       font-size: 50px;
+    }
+
+    .full-card{
+      .card-category{
+        .category-img{
+          max-height: 100px;
+        }
+      }
     }
   }
 }
@@ -427,6 +464,14 @@ section {
     .do-you{
       font-size: 35px;
     }
+
+    .full-card{
+      .card-category{
+        .category-img{
+          max-height: 100px;
+        }
+      }
+    }
   }
 }
 
@@ -482,6 +527,7 @@ section {
     .do-you{
       font-size: 30px;
     }
+
   }
 
 

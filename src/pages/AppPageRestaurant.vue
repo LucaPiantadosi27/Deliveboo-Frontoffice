@@ -390,6 +390,7 @@ h2 {
     }
 }
 
+// ---------------------
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
@@ -400,6 +401,7 @@ h2 {
   opacity: 0;
   
 }
+// -------------------
 
 // modale
 .modal-dialog{
