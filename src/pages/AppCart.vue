@@ -295,7 +295,7 @@ export default {
 
         <div class=" rounded-5 col-12 col-lg-8 col-sm-10 m-auto shadow-lg p-2" id="Carrello">
             <div v-if="store.Cart.items.length > 0">
-                <h2 class="text-center">Cart <i class="fa-solid fa-shopping-cart"></i></h2>
+                <h2 class="text-center pt-3"><i class="fa-solid fa-shopping-cart"></i></h2>
                 <h3 class="text-center fs-1 fw-bolder">{{ store.Cart.items[0].restaurant }}</h3>
 
                 <div class=" justify-content-between align-items-center pb-3">
@@ -427,13 +427,13 @@ export default {
     }
 
     h2 {
-        font-family: "Pacifico", cursive;
+        font-family: "Open Sans", cursive;
         
         color: #d62300;
     }
 
     h3{
-        font-family: "Pacifico", cursive;
+        font-family: "Open Sans", cursive;
         
         color: #d62300;
     }
