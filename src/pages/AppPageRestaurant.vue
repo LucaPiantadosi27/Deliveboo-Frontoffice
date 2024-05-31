@@ -347,6 +347,12 @@ h2 {
 
 #menu{
     margin-top: 40px;
+    @media (max-width: 767.98px) { /* Fino a sm (mobile) */
+  
+        align-items: center !important;
+        
+
+    }
 
     .my-plate{
         left: -10px;
