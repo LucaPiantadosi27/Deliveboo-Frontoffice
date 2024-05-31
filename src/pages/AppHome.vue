@@ -143,7 +143,7 @@ export default {
             class="d-flex col-5 col-5 col-md-3 col-lg-2 align-items-center justify-content-center">
             <div class="card-category  card w-100 h-100 rounded-4">
               <img class="category-img d-none d-md-flex rounded-4 rounded-bottom-0" :src="'http://localhost:8000/storage/' + category.image" alt="">
-              <div class="p-3" >{{ category.name }}</div>
+              <div class="p-3 card-text" >{{ category.name }}</div>
             </div>
           </div>
         </div>
@@ -282,6 +282,10 @@ section {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .card-text{
+      font-size: .8rem;
     }
     
     &:hover{
