@@ -48,6 +48,7 @@ export default {
 
         // recupera token checkout
         this.getClientToken();
+        // document.getElementById('checkout-message').innerHTML = 'Test';
 
     },
 
@@ -156,16 +157,9 @@ export default {
 
                         e.preventDefault();
 
-                        
-
                         setTimeout(() => {
                             this.isloader=true;
                         }, 1500);
-
-                       
-                           
-                         
-                    
 
                         // Imposta l'importo della transazione
                         this.formData.amount = this.store.Cart.total;
@@ -200,7 +194,7 @@ export default {
                                         }, 1500);
                                         setTimeout(() => {
                                             this.isloader = false;
-                                            document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
+                                            document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful!</h1><p>You should receive a mail shortly with the details</p>';
                                         }, 1500);
                                         // document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
                                         // router.push({ name: 'checkout' });
@@ -211,7 +205,7 @@ export default {
                                         this.isloader = false;
 
 
-                                        document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1>';
+                                        document.getElementById('checkout-message').innerHTML = '<h1>Error</h1>';
                                         console.log('apiErrors', result);
                                         this.formErrors = result.data.error
                                         console.log('jsErrors', this.formErrors)
@@ -223,7 +217,7 @@ export default {
 
 
                                     console.error('Errore durante il checkout:', error);
-                                    document.getElementById('checkout-message').innerHTML = '<h1>Errore</h1><p>Controlla la console per maggiori dettagli.</p>';
+                                    document.getElementById('checkout-message').innerHTML = '<h1>Error</h1><p>Try again or with a different card</p>';
                                 });
                         });
                     });
@@ -316,11 +310,9 @@ export default {
                 </div>
             </div>
             <p v-else class="fs-5 text-center">Your Cart is Empty</p>
-
-            <div id="checkout-message" class="text-center"></div>
         </div>
-        
-    <!-- CHECKOUT -->
+
+        <!-- CHECKOUT -->
         <form v-if="this.store.Cart.total > 0" class="mt-5 col-12 col-lg-8 col-sm-10 p-2 m-auto shadow-lg container-md" action="javascript:void(0)">
 
             <div>
@@ -367,9 +359,9 @@ export default {
             <div class=" d-flex justify-content-center">
                 <button class="btn  btn-outline-success" id="submit_button" :disabled="formIsValid">Submit payment</button>
             </div>
-
         </form>
     </div>
+    <div id="checkout-message" class="text-center"></div>
 
     
 
