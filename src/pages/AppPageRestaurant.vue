@@ -237,33 +237,36 @@ export default {
                 <!-- CARRELLO -->
                 
                 <!-- impostiamo la visibilità del carrello -->
-                <div v-show="isCartVisible" class="rounded-5 col-12 col-md-4 shadow-lg " id="Carrello">
-                    
-                    <div v-if="store.Cart.items.length > 0">
-                        <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
-                        <h3 class="text-center fs-1 fw-bold">{{ store.Cart.items[0].restaurant }}</h3>
-                        <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
-                        <div v-for="item in store.Cart.items" :key="item.id" class="p-3 text-start text-white">
-                            <div class="d-flex justify-content-between align-items-center pb-3 text-black">
-                                <div>{{ item.quantity }}x {{ item.name }}</div>
-                                <div>{{ item.subTotal }} &euro;</div>
+                <transition name="slide">
+                    <div v-show="isCartVisible" class="rounded-5 col-12 col-md-4 shadow-lg " id="Carrello">
+                        
+                        <div v-if="store.Cart.items.length > 0">
+                            <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
+                            <h3 class="text-center fs-1 fw-bold">{{ store.Cart.items[0].restaurant }}</h3>
+                            <p class="text-center fs-5 fw-semibold font-weight-400 text-black">Order Summary:</p>
+                            <div v-for="item in store.Cart.items" :key="item.id" class="p-3 text-start text-white">
+                                <div class="d-flex justify-content-between align-items-center pb-3 text-black">
+                                    <div>{{ item.quantity }}x {{ item.name }}</div>
+                                    <div>{{ item.subTotal }} &euro;</div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center border-bottom border-black pb-3 gap-3">
+                                    <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
+                                    <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
                             </div>
-                            <div class="d-flex justify-content-center align-items-center border-bottom border-black pb-3 gap-3">
-                                <button class="btn btn-outline-danger" @click="RemoveItemFromCart(item)"><i class="fa-solid fa-minus"></i></button>
-                                <button class="btn btn-outline-success" @click="AddItemToCart(item)"><i class="fa-solid fa-plus"></i></button>
+                            <h4 class="p-3 text-end text-white text text-center text-bg-primary rounded-5 m-3">Total: {{ store.Cart.total }} &euro;</h4>
+                            <div class="text-center mt-3 pb-3">
+                                <router-Link class="btn btn-success p-2" :to="{ name: 'cart'}">Go to Checkout</router-Link>
                             </div>
                         </div>
-                        <h4 class="p-3 text-end text-white text text-center text-bg-primary rounded-5 m-3">Total: {{ store.Cart.total }} &euro;</h4>
-                        <div class="text-center mt-3 pb-3">
-                            <router-Link class="btn btn-success p-2" :to="{ name: 'cart'}">Go to Checkout</router-Link>
-                        </div>
+                        <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
+                
+                        
+        
+                        
                     </div>
-                    <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
-               
-                    
-    
-                    
-                </div>
+                </transition>
+                
                 <!-- MODALE CONFLITTO PIATTI -->
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
                         <div class="modal-dialog">
@@ -285,20 +288,8 @@ export default {
                 </div>
                     
             </div>
-            <!-- bottone Fix -->
-
-            <!-- cancellabile -->
-            <!-- <div class="size">
-                <input type="text" name="test" value="choose your size" class="field" readonly="readonly" />
-                <ul class="list">
-                    <li>Male - M</li>
-                    <li>Female - M</li>
-                    <li>Male - S</li>
-                    <li>Female - S</li>
-                </ul>
-            </div> -->
-
-            <!-- cancellabile -->
+            
+            
             <button @click="CartVisibility" id="Popcart" class="">
                 <i class="fa-solid fa-cart-shopping"></i>
             </button>
@@ -319,13 +310,26 @@ export default {
     height: 3em;
     background-color: #F8EBDE;
     color: #D62300;
-    border: 1px solid #D62300;
+    border: 1px solid #9c999983;
     border-radius: 35%;
     @media (min-width: 768px) {
         display: none;
         
     }
 }
+// cancellabile 
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.5s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(100%);
+}
+
+.slide-leave-to {
+  transform: translateX(100%);
+}
+// cancellabile 
 
 .back {
     position: relative; /* Cambiato da 'absolute' a 'relative' */
@@ -430,38 +434,7 @@ h2 {
         }
 
 }
-// cancellabile
-// #restaurant{
-//     .size { position:relative }
-// .size .field {
-//     width:300px; background:#EC6603; color:#fff; padding:5px; border:none; cursor:pointer;
-//     font-family:'lucida sans unicode',sans-serif; font-size:1em;
-//     border:solid 1px #EC6603;
-//     -webkit-transition: all .4s ease-in-out;
-//     transition: all .4s ease-in-out;
-// }
-// .size .field:hover {
-//     border:solid 1px #fff;
-//     -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999
-// }
-// .size>ul.list { display:none;
-//     position:absolute; left:30px; top:-30px; z-index:999;
-//     width:300px;
-//     margin:0; padding:10px; list-style:none;
-//     background:#fff; color:#333;
-//     -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
-//     -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999
-// }
-// .size>ul.list li {
-//     padding:10px;
-//     border-bottom: solid 1px #ccc;
-// }
-// .size>ul.list li:hover {
-//     background:#EC6603; color:#fff;
-// }
-// .size>ul.list li:last-child { border:none }
-// }
-// cancellabile
+
 #Carrello {
     margin-top: 47px;
     border: solid 1px #9c999983;
@@ -474,12 +447,22 @@ h2 {
     // margin: 1em 0 1em 0;
     overflow-y: auto;
     // padding: 1rem;
+   
+
 
     @media (max-width: 768px) {
 
     width: 75% !important ; 
   
 }
+// cancellabile
+// @media (min-width: 0.1px) and (max-width: 767.98px) {
+
+//     width: 100%;
+//     height: 100%;
+
+// }
+// cancellabile
 
     .lista {
         list-style: none;
