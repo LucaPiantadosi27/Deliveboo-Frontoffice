@@ -20,6 +20,8 @@ export default {
             restaurantId: null,
             singleRestaurant: '',
             showModal: false,
+            // definizione visibilità carrello
+            isCartVisible:false,
         }
     },
 
@@ -44,10 +46,14 @@ export default {
             }
         })
         console.log(JSON.parse(localStorage.getItem("cart")));
-
         if (JSON.parse(localStorage.getItem("cart")) != null) {
             this.store.Cart = JSON.parse(localStorage.getItem("cart"))
         }
+        
+        // Inizializza il dropdown usando jQuery
+        // this.initDropdown();
+        // provvisorio
+        
     },
     methods: {
         AddItemToCart(plate) {
@@ -129,6 +135,48 @@ export default {
               console.log('scrolla')
             }
         },
+
+        // cancellabile
+        // initDropdown() {
+        //     const obj = $('.size');
+        //     obj.find('.field').click(function () {
+        //         obj.find('.list').fadeIn(400);
+
+        //         $(document).keyup(function (event) {
+        //             if (event.keyCode === 27) {
+        //                 obj.find('.list').fadeOut(400);
+        //             }
+        //         });
+
+        //         obj.find('.list').hover(function () { },
+        //             function () {
+        //                 $(this).fadeOut(400);
+        //             });
+        //     });
+
+        //     obj.find('.list li').click(function () {
+        //         obj.find('.field')
+        //             .val($(this).html())
+        //             .css({
+        //                 'background': '#fff',
+        //                 'color': '#333'
+        //             });
+        //         obj.find('.list').fadeOut(400);
+        //     });
+        // },
+        
+        // cancellabile
+
+        CartVisibility(){
+
+            // visibilità carrello
+            this.isCartVisible =!this.isCartVisible;
+
+            console.log(this.isCartVisible);
+
+        }
+        
+
     },
 }
 </script>
@@ -203,7 +251,8 @@ export default {
     
                 <!-- CARRELLO -->
                 
-                <div class="rounded-5 shadow-lg" id="Carrello" style="width: 25%;">
+                <!-- impostiamo la visibilità del carrello -->
+                <div v-show="isCartVisible" class="rounded-5 shadow-lg" id="Carrello" style="width: 25%;">
                     
                     <div v-if="store.Cart.items.length > 0">
                         <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
@@ -226,16 +275,12 @@ export default {
                     </div>
                     <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
                
-                    <div v-if="showModal" class="modal fade show d-block" tabindex="-1"
-                        style="background: rgba(0, 0, 0, 0.5);">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            </div>
-                        </div>
-                    </div>
+                    
     
-                    <!-- MODALE CONFLITTO PIATTI -->
-                    <div v-if="showModal" class="modal fade show d-block" tabindex="-1">
+                    
+                </div>
+                <!-- MODALE CONFLITTO PIATTI -->
+                <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -251,9 +296,27 @@ export default {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        
                 </div>
+                    
             </div>
+            <!-- bottone Fix -->
+
+            <!-- cancellabile -->
+            <!-- <div class="size">
+                <input type="text" name="test" value="choose your size" class="field" readonly="readonly" />
+                <ul class="list">
+                    <li>Male - M</li>
+                    <li>Female - M</li>
+                    <li>Male - S</li>
+                    <li>Female - S</li>
+                </ul>
+            </div> -->
+
+            <!-- cancellabile -->
+            <button @click="CartVisibility" id="Popcart" class="">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
         </div>
     </div>
 </template>
@@ -262,6 +325,22 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
+#Popcart{
+    position: fixed;
+    bottom: 20%;
+    right: 0%;
+    border: none;
+    width: 3em;
+    height: 3em;
+    background-color: #F8EBDE;
+    color: #D62300;
+    border: 1px solid #D62300;
+    border-radius: 35%;
+    @media (min-width: 768px) {
+        display: none;
+        
+    }
+}
 
 .back {
     position: relative; /* Cambiato da 'absolute' a 'relative' */
@@ -366,6 +445,38 @@ h2 {
         }
 
 }
+// cancellabile
+// #restaurant{
+//     .size { position:relative }
+// .size .field {
+//     width:300px; background:#EC6603; color:#fff; padding:5px; border:none; cursor:pointer;
+//     font-family:'lucida sans unicode',sans-serif; font-size:1em;
+//     border:solid 1px #EC6603;
+//     -webkit-transition: all .4s ease-in-out;
+//     transition: all .4s ease-in-out;
+// }
+// .size .field:hover {
+//     border:solid 1px #fff;
+//     -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999
+// }
+// .size>ul.list { display:none;
+//     position:absolute; left:30px; top:-30px; z-index:999;
+//     width:300px;
+//     margin:0; padding:10px; list-style:none;
+//     background:#fff; color:#333;
+//     -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
+//     -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999
+// }
+// .size>ul.list li {
+//     padding:10px;
+//     border-bottom: solid 1px #ccc;
+// }
+// .size>ul.list li:hover {
+//     background:#EC6603; color:#fff;
+// }
+// .size>ul.list li:last-child { border:none }
+// }
+// cancellabile
 #Carrello {
     margin-top: 47px;
     width: 15%;
