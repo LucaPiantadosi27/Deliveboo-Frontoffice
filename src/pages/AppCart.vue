@@ -284,12 +284,12 @@ export default {
 
 <template>
     <AppLoader v-if="isloader"></AppLoader>
-    <div  v-else class="my-box container py-4 col-9">
-
+    <div  v-else class="my-box container py-4 px-4 col-12">
         <!-- Pulsante Back -->
         <div v-if="store.Cart.items.length > 0">
             <router-link :to="{ name: 'restaurant', params: { id: store.Cart.items[0].restaurant_id } }" class="my-arrow fa-solid fa-reply text-decoration-none"></router-link>
         </div>
+
 
         <!-- CARRELLO -->
 
@@ -318,56 +318,59 @@ export default {
             <p v-else class="fs-5 text-center">Your Cart is Empty</p>
 
             <div id="checkout-message" class="text-center"></div>
-    </div>
-        <!-- CHECKOUT -->
-        <form v-if="this.store.Cart.total > 0" class="mt-5 col-12 col-lg-8 col-sm-10 m-auto shadow-lg container-md" action="javascript:void(0)">
+        </div>
+        
+    <!-- CHECKOUT -->
+        <form v-if="this.store.Cart.total > 0" class="mt-5 col-12 col-lg-8 col-sm-10 p-2 m-auto shadow-lg container-md" action="javascript:void(0)">
 
-                <div>
-                    <label class="form-label" for="name">Name*</label>
-                    <input class="form-control" type="name" name="name" v-model="formData.billingAddress.name" required>
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.name')">Please
-                        input your name</div>
-                </div>
+            <div>
+                <label class="form-label" for="name">Name*</label>
+                <input class="form-control" type="name" name="name" v-model="formData.billingAddress.name" required>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.name')">Please
+                    input your name</div>
+            </div>
 
-                <div>
-                    <label class="form-label" for="surname">Surname*</label>
-                    <input class="form-control" type="surname" name="surname" v-model="formData.billingAddress.surname"
-                        required>
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.surname')">Please
-                        input your surname</div>
-                </div>
+            <div>
+                <label class="form-label" for="surname">Surname*</label>
+                <input class="form-control" type="surname" name="surname" v-model="formData.billingAddress.surname"
+                    required>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.surname')">Please
+                    input your surname</div>
+            </div>
 
-                <div>
-                    <label class="form-label" for="email">Email*</label>
-                    <input class="form-control" type="email" name="email" v-model="formData.email" required>
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.email')">Please input a valid
-                        email</div>
-                </div>
+            <div>
+                <label class="form-label" for="email">Email*</label>
+                <input class="form-control" type="email" name="email" v-model="formData.email" required>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.email')">Please input a valid
+                    email</div>
+            </div>
 
-                <div>
-                    <label class="form-label" for="address">Address*</label>
-                    <input class="form-control" type="text" name="address" v-model="formData.billingAddress.address"
-                        required>
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.address')">Please
-                        input your address</div>
-                </div>
+            <div>
+                <label class="form-label" for="address">Address*</label>
+                <input class="form-control" type="text" name="address" v-model="formData.billingAddress.address"
+                    required>
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.address')">Please
+                    input your address</div>
+            </div>
 
-                <div>
-                    <label class="form-label" for="phone">Phone Number*</label>
-                    <input class="form-control" type="text" name="phone" v-model="formData.billingAddress.phoneNumber">
-                    <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.phoneNumber')">
-                        Please input your phone Number</div>
-                </div>
+            <div>
+                <label class="form-label" for="phone">Phone Number*</label>
+                <input class="form-control" type="text" name="phone" v-model="formData.billingAddress.phoneNumber">
+                <div class="text-danger" v-if="formErrors.hasOwnProperty('formData.billingAddress.phoneNumber')">
+                    Please input your phone Number</div>
+            </div>
 
             <small class="fw-bolder">*these fields are required</small>
 
-                <div id="dropin-container" class=""></div>
+            <div id="dropin-container" class=""></div>
 
-                <div class=" d-flex justify-content-center">
-                    <button class="btn  btn-outline-success" id="submit_button" :disabled="formIsValid">Submit payment</button>
-                </div>
-            </form>
-        </div>
+            <div class=" d-flex justify-content-center">
+                <button class="btn  btn-outline-success" id="submit_button" :disabled="formIsValid">Submit payment</button>
+            </div>
+
+        </form>
+    </div>
+
     
 
 </template>
@@ -386,9 +389,10 @@ export default {
         font-size: 35px;
         color: #ff0800;
         position: relative;
-        right: 150px;
-        bottom: -20px;
         
+        padding-bottom: 20px;
+
+        left: 0;        
     }
     @media (max-width: 768px) {
             .my-arrow{
