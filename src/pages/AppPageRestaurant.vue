@@ -196,14 +196,14 @@ export default {
             </div>
     
             <!-- MENU PIATTI -->
-            <div class="d-flex flex-column-reverse align-items-start w-100 pb-3 flex-md-row" id= menu >
+            <div class="d-flex flex-column-reverse align-items-start pb-3 flex-md-row" id= menu >
                 <div class="col-12 col-md-8">
                     <div class=" d-flex justify-content-between pt-5 ">
                         <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
                             style="width: calc(100% / 14rem - 1rem/4 * 5);">
     
                             <!-- SINGOLO PIATTO -->
-                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg w-75  " >
+                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg" style="width: 85%;" >
                                 <div class="d-flex flex-wrap modificabile">
                                     <div class="my-plate rounded-top-4 object-fit-cover" style="height: 100px ;width: 200px;">
                                         <Transition name="fade" mode="out-in">
@@ -302,15 +302,16 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 #Popcart{
-    position: fixed;
-    bottom: 20%;
-    right: 0%;
+    position: sticky;
+    bottom: 5%;
+    align-self: flex-end;;
     border: none;
     width: 3em;
     height: 3em;
     background-color: #F8EBDE;
     color: #D62300;
     border: 1px solid #9c999983;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     border-radius: 35%;
     @media (min-width: 768px) {
         display: none;
@@ -323,11 +324,11 @@ export default {
 }
 
 .slide-enter-from {
-  transform: translateX(100%);
+  transform: translateX(100vw);
 }
 
 .slide-leave-to {
-  transform: translateX(100%);
+  transform: translateX(100vw);
 }
 // cancellabile 
 
@@ -452,7 +453,7 @@ h2 {
 
     @media (max-width: 768px) {
 
-    width: 75% !important ; 
+    
   
 }
 // cancellabile

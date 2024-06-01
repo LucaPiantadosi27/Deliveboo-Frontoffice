@@ -319,7 +319,7 @@ export default {
         </div>
 
         <!-- CHECKOUT -->
-        <form v-if="this.store.Cart.total > 0" class="mt-5 col-12 col-lg-8 col-sm-10 p-2 m-auto shadow-lg container-md" action="javascript:void(0)">
+        <form v-if="this.store.Cart.total > 0" class="my-5 col-12 col-lg-8 col-sm-10 p-2 m-auto shadow-lg container-md" action="javascript:void(0)">
 
             <div>
                 <label class="form-label" for="name">Name*</label>
