@@ -111,7 +111,7 @@ export default {
 
   <!-- jumbo -->
   <div>
-    <div class="jumbotron d-flex align-items-start pt-5 p-lg-0 align-items-lg-center ">
+    <div class="jumbotron d-flex align-items-start pt-5 p-lg-0 align-items-lg-center h-50">
       <div class="container-fluid d-flex justify-content-center justify-content-lg-between flex-wrap ">
         <div class="welcome_text d-flex align-items-center justify-content-center col-12 col-lg-5 ">
           <h1>
@@ -165,7 +165,7 @@ export default {
 // jumbo
 .jumbotron {
   overflow-x: hidden;
-  height: calc(100vh - 80px);
+  // height: calc(100vh - 80px);
   position: relative;
 
   .welcome_text {
@@ -409,7 +409,7 @@ section {
 
 @media (max-width: 992px) {
   .jumbotron {
-    height: calc(100vh - 80px);
+    // height: calc(100vh - 80px);
 
     .welcome_text {
       h1 {
@@ -431,7 +431,7 @@ section {
 
 @media (max-width: 991px) {
   .jumbotron {
-    height: calc(100vh - 300px);
+    // height: calc(100vh - 300px);
     padding-top: 25px;
 
     .welcome_text {
@@ -496,7 +496,7 @@ section {
 
 @media (max-width: 767px) {
   .jumbotron {
-    height: calc(100vh - 600px);
+    // height: calc(100vh - 600px);
     padding-top: 25px;
 
     .welcome_text {
