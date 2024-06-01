@@ -28,7 +28,6 @@ export default {
     components: {
         AppRestaurant,
         AppLoader,
-        
     },
 
     mounted() {
@@ -260,36 +259,28 @@ export default {
                             </div>
                         </div>
                         <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
-                
-                        
-        
-                        
                     </div>
                 </transition>
                 
                 <!-- MODALE CONFLITTO PIATTI -->
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Attention</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="fw-bold">You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
-                                        to empty your cart?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn" id="button-close" @click="closeModal">Close</button>
-                                    <button type="button" class="btn" id="button-empty" @click="emptyCart">Empty cart</button>
-                                </div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Attention</h5>
+                            </div>
+                            <div class="modal-body">
+                            <p class="fw-bold">You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
+                                    to empty your cart?</p>
+                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" id="button-close" @click="closeModal">Close</button>
+                                <button type="button" class="btn" id="button-empty" @click="emptyCart">Empty cart</button>
                             </div>
                         </div>
-                        
+                    </div>
                 </div>
-                    
             </div>
-            
-            
             <button @click="CartVisibility" id="Popcart" class="">
                 <i class="fa-solid fa-cart-shopping"></i>
             </button>
