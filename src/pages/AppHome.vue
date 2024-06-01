@@ -111,7 +111,7 @@ export default {
 
   <!-- jumbo -->
   <div>
-    <div class="jumbotron d-flex align-items-start pt-5 p-lg-0 align-items-lg-center h-50">
+    <div class="jumbotron d-flex align-items-start p-lg-5 align-items-lg-center h-50">
       <div class="container-fluid d-flex justify-content-center justify-content-lg-between flex-wrap ">
         <div class="welcome_text d-flex align-items-center justify-content-center col-12 col-lg-5 ">
           <h1>
@@ -164,6 +164,7 @@ export default {
 
 // jumbo
 .jumbotron {
+  padding: 50px;
   overflow-x: hidden;
   // height: calc(100vh - 80px);
   position: relative;
