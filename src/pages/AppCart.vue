@@ -449,12 +449,6 @@ form{
     input{
         color: black;
         background-color: rgba(128, 128, 128, 0.226);
-
-        
     }
-
-
 }
-
-
 </style>
