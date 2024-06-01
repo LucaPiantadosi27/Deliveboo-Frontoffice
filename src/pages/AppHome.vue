@@ -118,9 +118,9 @@ export default {
             WELCOME <span class="d-none d-sm-inline">TO<br> DELIVEBOO!</span>
           </h1>
         </div>
-        <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
+        <!-- <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
           <button @click="scrollToTarget()" class="my-btn"><i class="fa-solid fa-down-long"></i></button>
-        </div>
+        </div> -->
         <div class="logo_laravel col-5 d-none d-lg-flex justify-content-end align-items-center ">
           <img class="slide object-fit-cover" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
         </div>
@@ -301,7 +301,8 @@ section {
       cursor: pointer;
       user-select: none;
       transition: transform, color, .3s ease;
-      box-shadow: -10px -10px 25px 0 #fff9f3, 10px 10px 25px 0 #a29992;
+      // box-shadow: -10px -10px 25px 0 #fff9f3, 10px 10px 25px 0 #a29992;
+      box-shadow: -10px -10px 25px 0 rgba($color: #000000, $alpha: 0.2), 10px 10px 25px 0 rgba($color: #000000, $alpha: 0.2);
 
       color: $color-green;
       text-transform: uppercase;
