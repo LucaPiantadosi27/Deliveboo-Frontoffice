@@ -136,10 +136,10 @@ export default {
     <div class="container">
       <div class="container p-0 py-5">
         <h2 class="do-you">WHAT DO YOU WANT EAT?</h2>
-        <div class="d-flex gap-4 justify-content-center flex-wrap">
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 row-gap-4 justify-content-center flex-wrap">
           <div @click="AddCategory(category.id)" v-for="category in categories" :key="category.id"
             :class="{ 'selected': ArrayCategory.includes(category.id) }"
-            class="d-flex col-5 full-card col-md-3 col-lg-2 align-items-center justify-content-center">
+            class="d-flex col full-card align-items-center justify-content-center">
             <div class="card-category card w-100 h-100 rounded-4">
               <Transition name="fade" mode="out-in">
                 <img v-if="imageReady" class="category-img d-none d-md-flex rounded-4 rounded-bottom-0"
