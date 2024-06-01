@@ -439,22 +439,6 @@ h2 {
     // margin: 1em 0 1em 0;
     overflow-y: auto;
     // padding: 1rem;
-   
-
-
-    @media (max-width: 768px) {
-
-    
-  
-}
-// cancellabile
-// @media (min-width: 0.1px) and (max-width: 767.98px) {
-
-//     width: 100%;
-//     height: 100%;
-
-// }
-// cancellabile
 
     .lista {
         list-style: none;
