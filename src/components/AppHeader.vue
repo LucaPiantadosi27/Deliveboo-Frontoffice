@@ -56,20 +56,8 @@ export default {
                 <li class="nav-item">
                     <router-link :to="{ name: 'home'}" class=" text-decoration-none small">Home</router-link>
                 </li>
-
-                <li class="nav-item dropdown small">
-                    <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Partner
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="authDropdown">
-                        <li class="d-down">
-                            <a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a>
-                        </li>
-                        <li class="d-down">
-                            <a class="dropdown-item" href="http://127.0.0.1:8000/register">Become our partner</a>
-                        </li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="text-decoration-none small" href="http://127.0.0.1:8000/dashboard">Partner</a>
                 </li>
 
                 <!-- Icona del carrello -->
