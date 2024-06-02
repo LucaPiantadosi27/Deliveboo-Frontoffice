@@ -194,7 +194,13 @@ export default {
                                         }, 1500);
                                         setTimeout(() => {
                                             this.isloader = false;
-                                            document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful!</h1><p>You should receive a mail shortly with the details</p>';
+                                            document.getElementById('checkout-message').innerHTML = `
+                                            <div style="text-align: center;">
+                                                <h1>Your Order was successful!</h1>
+                                                <p style="color: black">You should receive a mail shortly with the details</p>
+                                                <img src="/public/file.png" alt="Order Successful" style="max-width: 50%; height: auto;">
+                                            </div>
+                                            `;
                                         }, 1500);
                                         // document.getElementById('checkout-message').innerHTML = '<h1>Your Order was successful</h1><p>You should receive a mail shortly with the details</p>';
                                         // router.push({ name: 'checkout' });
@@ -313,7 +319,7 @@ export default {
         </div>
 
         <!-- CHECKOUT -->
-        <form v-if="this.store.Cart.total > 0" class="mt-5 col-12 col-lg-8 col-sm-10 p-2 m-auto shadow-lg container-md" action="javascript:void(0)">
+        <form v-if="this.store.Cart.total > 0" class="my-5 col-12 col-lg-8 col-sm-10 p-2 m-auto shadow-lg container-md" action="javascript:void(0)">
 
             <div>
                 <label class="form-label" for="name">Name*</label>
@@ -443,12 +449,6 @@ form{
     input{
         color: black;
         background-color: rgba(128, 128, 128, 0.226);
-
-        
     }
-
-
 }
-
-
 </style>

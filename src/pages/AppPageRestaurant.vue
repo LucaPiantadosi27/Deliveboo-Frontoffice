@@ -28,7 +28,6 @@ export default {
     components: {
         AppRestaurant,
         AppLoader,
-        
     },
 
     mounted() {
@@ -136,14 +135,6 @@ export default {
             return this.store.Cart.items.some(item => item.id === plateId);
         },
 
-        scrollToTarget() {
-            const targetSection = document.getElementById('target');
-            if (targetSection) {
-              targetSection.scrollIntoView({ behavior: 'smooth' });
-              console.log('scrolla')
-            }
-        },
-
         // cancellabile
         handleResize() {
             
@@ -158,10 +149,13 @@ export default {
             this.isCartVisible =!this.isCartVisible;
 
             console.log(this.isCartVisible);
-
         }
-        
+    },
 
+    computed: {
+        totalItemsInCart() {
+            return this.store.Cart.items.reduce((total, item) => total + item.quantity, 0);
+        }
     },
 }
 </script>
@@ -196,14 +190,14 @@ export default {
             </div>
     
             <!-- MENU PIATTI -->
-            <div class="d-flex flex-column-reverse align-items-start w-100 pb-3 flex-md-row" id= menu >
+            <div class="d-flex flex-column-reverse align-items-start pb-3 flex-md-row w-100" id= menu >
                 <div class="col-12 col-md-8">
                     <div class=" d-flex justify-content-between pt-5 ">
                         <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
                             style="width: calc(100% / 14rem - 1rem/4 * 5);">
     
                             <!-- SINGOLO PIATTO -->
-                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg w-75  " >
+                            <div v-for="plate in singleRestaurant.plates" class="my-card card position-relative rounded-4 shadow-lg" style="width: 85%;" >
                                 <div class="d-flex flex-wrap modificabile">
                                     <div class="my-plate rounded-top-4 object-fit-cover" style="height: 100px ;width: 200px;">
                                         <Transition name="fade" mode="out-in">
@@ -238,7 +232,7 @@ export default {
                 
                 <!-- impostiamo la visibilità del carrello -->
                 <transition name="slide">
-                    <div v-show="isCartVisible" class="rounded-5  shadow-lg" id="Carrello">
+                    <div v-show="isCartVisible" class="rounded-5 col-12 col-md-4 shadow-lg" id="Carrello">
                         
                         <div v-if="store.Cart.items.length > 0">
                             <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
@@ -260,38 +254,31 @@ export default {
                             </div>
                         </div>
                         <p v-else class="fs-5 text-center fw-bolder p-3">Your Cart is Empty </p>
-                
-                        
-        
-                        
                     </div>
                 </transition>
                 
                 <!-- MODALE CONFLITTO PIATTI -->
                 <div v-if="showModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.5);">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Attention</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="fw-bold">You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
-                                        to empty your cart?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn" id="button-close" @click="closeModal">Close</button>
-                                    <button type="button" class="btn" id="button-empty" @click="emptyCart">Empty cart</button>
-                                </div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Attention</h5>
+                            </div>
+                            <div class="modal-body">
+                            <p class="fw-bold">You already have items in your cart with {{ store.Cart.items[0].restaurant }}. Do you wish
+                                    to empty your cart?</p>
+                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" id="button-close" @click="closeModal">Close</button>
+                                <button type="button" class="btn" id="button-empty" @click="emptyCart">Empty cart</button>
                             </div>
                         </div>
-                        
+                    </div>
                 </div>
-                    
             </div>
-            
-            
-            <button @click="CartVisibility" id="Popcart" class="">
+            <button @click="CartVisibility" id="Popcart" class="d-flex justify-content-center align-items-center">
                 <i class="fa-solid fa-cart-shopping"></i>
+                <span class="ms-1" v-if="totalItemsInCart > 0">{{ totalItemsInCart }}</span>
             </button>
         </div>
     </div>
@@ -302,18 +289,19 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 #Popcart{
-    position: fixed;
-    bottom: 20%;
-    right: 0%;
+    position: sticky;
+    bottom: 5%;
+    align-self: flex-end;;
     border: none;
     width: 3em;
     height: 3em;
     background-color: #F8EBDE;
     color: #D62300;
     border: 1px solid #9c999983;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     border-radius: 35%;
     @media (min-width: 768px) {
-        display: none;
+        display: none !important;
         
     }
 }
@@ -323,11 +311,11 @@ export default {
 }
 
 .slide-enter-from {
-  transform: translateX(100%);
+  transform: translateX(100vw);
 }
 
 .slide-leave-to {
-  transform: translateX(100%);
+  transform: translateX(100vw);
 }
 // cancellabile 
 
@@ -387,20 +375,19 @@ export default {
     @media (max-width: 767.98px) { /* Fino a sm (mobile) */
   
     justify-content: center !important;
-    // width: 100% !important;
-    // height: 100% !important;
+    
   
 }
 .my-plate{
-    @media (max-width: 767.98px) { /* Fino a sm (mobile) */
-  
-  
-  width: 100% !important;
+            @media (max-width: 767.98px) { /* Fino a sm (mobile) */
+        
+        
+        width: 100% !important;
 
-  height: 10em !important;
+        height: 10em !important;
 
-}
-}
+        }
+    }
 }
 
 .modal.show.d-block {
@@ -418,7 +405,7 @@ h2 {
     @media (max-width: 767.98px) { /* Fino a sm (mobile) */
   
         align-items: center !important;
-        
+       
 
     }
 
@@ -440,29 +427,11 @@ h2 {
     border: solid 1px #9c999983;
     background-color: #f8ebde;
     color: #d62300;
-  
-    
     border-radius: 0.2em;
     height: 50%;
-    // margin: 1em 0 1em 0;
+    // width: 100%; 
+    // max-width: 430px; 
     overflow-y: auto;
-    // padding: 1rem;
-   
-
-
-    @media (max-width: 768px) {
-
-    width: 75% !important ; 
-  
-}
-// cancellabile
-// @media (min-width: 0.1px) and (max-width: 767.98px) {
-
-//     width: 100%;
-//     height: 100%;
-
-// }
-// cancellabile
 
     .lista {
         list-style: none;
@@ -473,7 +442,20 @@ h2 {
         font-family: "chicle", cursive;
         color: #d62300;
     }
+
+    p {
+        padding: 1rem;
+        text-align: center; 
+    }
 }
+
+// @media (max-width: 768px) { 
+  
+//   #Carrello{
+//     max-width: 230px;
+//   }
+ 
+// }
 
 // ---------------------
 .fade-enter-active,

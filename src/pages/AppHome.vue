@@ -111,16 +111,16 @@ export default {
 
   <!-- jumbo -->
   <div>
-    <div class="jumbotron d-flex align-items-start pt-5 p-lg-0 align-items-lg-center ">
+    <div class="jumbotron d-flex align-items-start p-lg-5 align-items-lg-center h-50">
       <div class="container-fluid d-flex justify-content-center justify-content-lg-between flex-wrap ">
         <div class="welcome_text d-flex align-items-center justify-content-center col-12 col-lg-5 ">
           <h1>
             WELCOME <span class="d-none d-sm-inline">TO<br> DELIVEBOO!</span>
           </h1>
         </div>
-        <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
+        <!-- <div class="center-box col-2 d-flex align-items-end justify-content-center rounded-3 ">
           <button @click="scrollToTarget()" class="my-btn"><i class="fa-solid fa-down-long"></i></button>
-        </div>
+        </div> -->
         <div class="logo_laravel col-5 d-none d-lg-flex justify-content-end align-items-center ">
           <img class="slide object-fit-cover" :src="'http://localhost:8000/storage/' + 'branding/meat.png'" alt="@">
         </div>
@@ -136,10 +136,10 @@ export default {
     <div class="container">
       <div class="container p-0 py-5">
         <h2 class="do-you">WHAT DO YOU WANT EAT?</h2>
-        <div class="d-flex gap-4 justify-content-center flex-wrap">
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 row-gap-4 justify-content-center flex-wrap">
           <div @click="AddCategory(category.id)" v-for="category in categories" :key="category.id"
             :class="{ 'selected': ArrayCategory.includes(category.id) }"
-            class="d-flex col-5 full-card col-md-3 col-lg-2 align-items-center justify-content-center">
+            class="d-flex col full-card align-items-center justify-content-center">
             <div class="card-category card w-100 h-100 rounded-4">
               <Transition name="fade" mode="out-in">
                 <img v-if="imageReady" class="category-img d-none d-md-flex rounded-4 rounded-bottom-0"
@@ -164,8 +164,9 @@ export default {
 
 // jumbo
 .jumbotron {
+  padding: 50px;
   overflow-x: hidden;
-  height: calc(100vh - 80px);
+  // height: calc(100vh - 80px);
   position: relative;
 
   .welcome_text {
@@ -301,7 +302,8 @@ section {
       cursor: pointer;
       user-select: none;
       transition: transform, color, .3s ease;
-      box-shadow: -10px -10px 25px 0 #fff9f3, 10px 10px 25px 0 #a29992;
+      // box-shadow: -10px -10px 25px 0 #fff9f3, 10px 10px 25px 0 #a29992;
+      box-shadow: -10px -10px 25px 0 rgba($color: #000000, $alpha: 0.2), 10px 10px 25px 0 rgba($color: #000000, $alpha: 0.2);
 
       color: $color-green;
       text-transform: uppercase;
@@ -409,7 +411,7 @@ section {
 
 @media (max-width: 992px) {
   .jumbotron {
-    height: calc(100vh - 80px);
+    // height: calc(100vh - 80px);
 
     .welcome_text {
       h1 {
@@ -431,7 +433,7 @@ section {
 
 @media (max-width: 991px) {
   .jumbotron {
-    height: calc(100vh - 300px);
+    // height: calc(100vh - 300px);
     padding-top: 25px;
 
     .welcome_text {
@@ -496,7 +498,7 @@ section {
 
 @media (max-width: 767px) {
   .jumbotron {
-    height: calc(100vh - 600px);
+    // height: calc(100vh - 600px);
     padding-top: 25px;
 
     .welcome_text {
