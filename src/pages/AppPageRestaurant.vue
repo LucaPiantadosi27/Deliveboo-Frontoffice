@@ -190,7 +190,7 @@ export default {
             </div>
     
             <!-- MENU PIATTI -->
-            <div class="d-flex flex-column-reverse align-items-start pb-3 flex-md-row" id= menu >
+            <div class="d-flex flex-column-reverse align-items-start pb-3 flex-md-row w-100" id= menu >
                 <div class="col-12 col-md-8">
                     <div class=" d-flex justify-content-between pt-5 ">
                         <div class="d-flex flex-wrap justify-content-start gap-3  rounded-2"
@@ -429,8 +429,8 @@ h2 {
     color: #d62300;
     border-radius: 0.2em;
     height: 50%;
-    width: 100%; 
-    max-width: 430px; 
+    // width: 100%; 
+    // max-width: 430px; 
     overflow-y: auto;
 
     .lista {
