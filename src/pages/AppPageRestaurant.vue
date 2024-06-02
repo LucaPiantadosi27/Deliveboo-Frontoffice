@@ -135,14 +135,6 @@ export default {
             return this.store.Cart.items.some(item => item.id === plateId);
         },
 
-        scrollToTarget() {
-            const targetSection = document.getElementById('target');
-            if (targetSection) {
-              targetSection.scrollIntoView({ behavior: 'smooth' });
-              console.log('scrolla')
-            }
-        },
-
         // cancellabile
         handleResize() {
             
@@ -240,7 +232,7 @@ export default {
                 
                 <!-- impostiamo la visibilità del carrello -->
                 <transition name="slide">
-                    <div v-show="isCartVisible" class="rounded-5 col-12 col-md-4 shadow-lg " id="Carrello">
+                    <div v-show="isCartVisible" class="rounded-5 col-12 col-md-4 shadow-lg" id="Carrello">
                         
                         <div v-if="store.Cart.items.length > 0">
                             <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
@@ -309,7 +301,7 @@ export default {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     border-radius: 35%;
     @media (min-width: 768px) {
-        display: none;
+        display: none !important;
         
     }
 }
@@ -413,7 +405,7 @@ h2 {
     @media (max-width: 767.98px) { /* Fino a sm (mobile) */
   
         align-items: center !important;
-        
+       
 
     }
 
@@ -438,7 +430,7 @@ h2 {
     border-radius: 0.2em;
     height: 50%;
     width: 100%; 
-    max-width: 400px; 
+    max-width: 430px; 
     overflow-y: auto;
 
     .lista {
@@ -456,6 +448,14 @@ h2 {
         text-align: center; 
     }
 }
+
+// @media (max-width: 768px) { 
+  
+//   #Carrello{
+//     max-width: 230px;
+//   }
+ 
+// }
 
 // ---------------------
 .fade-enter-active,
