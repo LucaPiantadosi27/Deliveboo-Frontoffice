@@ -284,9 +284,9 @@ export default {
                     </div>
                 </div>
             </div>
-            <button @click="CartVisibility" id="Popcart" class="">
+            <button @click="CartVisibility" id="Popcart" class="d-flex justify-content-center align-items-center">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <span v-if="totalItemsInCart > 0">{{ totalItemsInCart }}</span>
+                <span class="ms-1" v-if="totalItemsInCart > 0">{{ totalItemsInCart }}</span>
             </button>
         </div>
     </div>
