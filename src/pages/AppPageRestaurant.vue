@@ -238,7 +238,7 @@ export default {
                 
                 <!-- impostiamo la visibilità del carrello -->
                 <transition name="slide">
-                    <div v-show="isCartVisible" class="rounded-5 col-12 col-md-4 shadow-lg " id="Carrello">
+                    <div v-show="isCartVisible" class="rounded-5  shadow-lg" id="Carrello">
                         
                         <div v-if="store.Cart.items.length > 0">
                             <h2 class="text-center pt-2"> <i class="fa-solid fa-shopping-cart small"></i></h2>
