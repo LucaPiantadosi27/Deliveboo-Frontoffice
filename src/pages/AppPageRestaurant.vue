@@ -157,10 +157,13 @@ export default {
             this.isCartVisible =!this.isCartVisible;
 
             console.log(this.isCartVisible);
-
         }
-        
+    },
 
+    computed: {
+        totalItemsInCart() {
+            return this.store.Cart.items.reduce((total, item) => total + item.quantity, 0);
+        }
     },
 }
 </script>
@@ -283,6 +286,7 @@ export default {
             </div>
             <button @click="CartVisibility" id="Popcart" class="">
                 <i class="fa-solid fa-cart-shopping"></i>
+                <span v-if="totalItemsInCart > 0">{{ totalItemsInCart }}</span>
             </button>
         </div>
     </div>
