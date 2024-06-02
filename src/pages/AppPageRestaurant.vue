@@ -379,20 +379,19 @@ export default {
     @media (max-width: 767.98px) { /* Fino a sm (mobile) */
   
     justify-content: center !important;
-    // width: 100% !important;
-    // height: 100% !important;
+    
   
 }
 .my-plate{
-    @media (max-width: 767.98px) { /* Fino a sm (mobile) */
-  
-  
-  width: 100% !important;
+            @media (max-width: 767.98px) { /* Fino a sm (mobile) */
+        
+        
+        width: 100% !important;
 
-  height: 10em !important;
+        height: 10em !important;
 
-}
-}
+        }
+    }
 }
 
 .modal.show.d-block {
@@ -432,13 +431,11 @@ h2 {
     border: solid 1px #9c999983;
     background-color: #f8ebde;
     color: #d62300;
-  
-    
     border-radius: 0.2em;
     height: 50%;
-    // margin: 1em 0 1em 0;
+    width: 100%; 
+    max-width: 400px; 
     overflow-y: auto;
-    // padding: 1rem;
 
     .lista {
         list-style: none;
@@ -448,6 +445,11 @@ h2 {
     h2 {
         font-family: "chicle", cursive;
         color: #d62300;
+    }
+
+    p {
+        padding: 1rem;
+        text-align: center; 
     }
 }
 
